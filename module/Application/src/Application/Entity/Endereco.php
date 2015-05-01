@@ -11,6 +11,7 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Table (name = "endereco")
  *
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
+ * @author Ana Paula Binda <anapaulasif@unochapeco.edu.br>
  * #categoy Admin
  * @package Entity
  */
