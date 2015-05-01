@@ -16,7 +16,7 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        $user;
+        
         return new ViewModel(
                 array('data' => date('Y:m:d H:i:s'),
                     'obj_data' => $date_time)
