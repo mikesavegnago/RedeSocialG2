@@ -24,6 +24,13 @@ class Evento {
      * @var integer
      */
     protected $id;
+    
+    /**
+     * @ORM\Column (type="string")
+     *
+     * @var string
+     */
+    protected $capa;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", cascade={"persist"})
