@@ -33,6 +33,8 @@ class Imagem {
      */
     protected $idAlbum;
     
+    //fazer one to many de imagem para comentario e de imagem para like
+    
     /**
      * @ORM\Column (type="string")
      *
@@ -55,7 +57,7 @@ class Imagem {
     }
 
     /**
-     * @return strgin
+     * @return string
      * 
      */
     public function getImagem(){
@@ -63,20 +65,19 @@ class Imagem {
     }
     
     /**
-     * @param string $imagem
+     * @param $idAlbum
      */
-    public function setIdUsr($idUsr) {
-        $this->idUsr = $idUsr;
+    public function setIdAlbum($idAlbum){
+        $this->idAlbum = $idAlbum;
     }
-
+    
     /**
      * @return integer
      * 
      */
-    public function getIdUser(){
-        return $this->idUsr;
+    public function getIdAlbum(){
+        return $this->idAlbum;
     }
-
 }
 
 ?>

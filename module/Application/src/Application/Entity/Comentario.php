@@ -26,12 +26,11 @@ class Comentario {
     protected $id;
 
    /**
-     * @ORM\ManyToOne(targetEntity="Imagem", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_imagem", referencedColumnName="id")
-     *
-     * @var \Admin\Entity\Imagem
+    *  @ORM\Column(type="string")
+    * 
+     * @var comentario
      */
-    protected $idImagem;
+    protected $comentario;
     
     /**
      * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
@@ -40,6 +39,16 @@ class Comentario {
      * @var \Admin\Entity\Perfil
      */
     protected $perfil;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Imagem", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_imagem", referencedColumnName="id")
+     *
+     * @var \Admin\Entity\Imagem
+     */
+    protected $idImagem;
+    
+   
 
     /**
      * @return integer
@@ -49,19 +58,19 @@ class Comentario {
     }
 
     /**
-     * @param string $idImagem
+     * @param string $comentario
      */
-    public function setIdImagem($idImagem) {
-        $this->idImagem = $idImagem;
+    public function setComentario($comentario) {
+        $this->comentario = $comentario;
     }
 
     /**
-     * @return integer
+     * @return string
      * 
      */
     
-    public function getIdImagem(){
-        return $this->idImagem;
+    public function getComentario(){
+        return $this->comentario;
     }
     
     /**
@@ -77,6 +86,20 @@ class Comentario {
      */
     public function getPerfil(){
         return $this->perfil;
+    }
+    
+     /**
+     * @param integer $idImagem
+     */
+    public function setIdImagem($idImagem){
+        $this->idImagem = $idImagem;
+    }
+    
+    /**
+     * @return integer
+     */
+    public function getIdImagem(){
+        return $this->idImagem;
     }
 
 }

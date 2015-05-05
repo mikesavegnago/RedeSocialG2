@@ -24,14 +24,6 @@ class Like {
      * @var integer
      */
     protected $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Imagem", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_imagem", referencedColumnName="id")
-     *
-     * @var \Admin\Entity\Imagem
-     */
-    protected $idImagem;
     
     /**
      * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
@@ -40,28 +32,21 @@ class Like {
      * @var \Admin\Entity\Perfil
      */
     protected $perfil;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Imagem", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_imagem", referencedColumnName="id")
+     *
+     * @var \Admin\Entity\Imagem
+     */
+    protected $idImagem;
+    
 
     /**
      * @return integer
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * @param string $idImagem
-     */
-    public function setIdImagem($idImagem) {
-        $this->idImagem = $idImagem;
-    }
-
-    /**
-     * @return integer
-     * 
-     */
-    
-    public function getIdImagem(){
-        return $this->idImagem;
     }
     
     /**
@@ -77,6 +62,20 @@ class Like {
      */
     public function getPerfil(){
         return $this->perfil;
+    }
+    
+    /**
+     * @param integer $idImagem
+     */
+    public function setIdImagem($idImagem){
+        $this->idImagem = $idImagem;
+    }
+    
+    /**
+     * @return integer
+     */
+    public function getIdImagem(){
+        return $this->idImagem;
     }
 
 }
