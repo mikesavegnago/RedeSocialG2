@@ -9,9 +9,10 @@ use Zend\InputFilter\InputFilter;
 /**
  * @ORM\Entity
  * @ORM\Table (name = "album")
+ * 
  *
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
- * #categoy Admin
+ * @category Admin
  * @package Entity
  */
 class Album {
@@ -26,51 +27,13 @@ class Album {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
      *
-     * @var \Admin\Entity\Usuario
+     * @var \Admin\Entity\Perfil
      */
-    protected $idUsr;
+    protected $perfil;
     
-    /**
-     * @ORM\Column (type="string")
-     *
-     * @var string
-     */
-    protected $statusRelacionamento;
-
-    /**
-     * @ORM\Column (type="string)
-     * 
-     * @var string
-     */
-    protected $profissao;
-    
-    /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     */
-    protected $formacao;
-    
-    /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     * 
-     */
-    protected $ondeTrabalha;
-    
-    /**
-     * 
-     * @ORM\Column (type="integer")
-     * 
-     * @var integer
-     */
-    protected $idEnd;
     
     
     /**
@@ -81,89 +44,19 @@ class Album {
     }
 
     /**
-     * @param string $idUsr
+     * @param string $perfil
      */
-    public function setIdUsr($idUsr) {
-        $this->idUsr = $idUsr;
+    public function setPerfil($perfil) {
+        $this->perfil = $perfil;
     }
     
     /**
-     * @return integer
+     * @return perfil
      * 
      */
-    public function getIdUser(){
-        return $this->idUsr;
+    public function getPerfil(){
+        return $this->perfil;
     }
-
-    /**
-     * @return string
-     * 
-     */
-    public function getStatusRelacionamento(){
-        return $this->statusRelacionamento;
-    }
-    
-    /**
-     * @param string $statusRelacionamento
-     */
-    public function setStatusRelacionamento($statusRelacionamento){
-        $this->statusRelacionamento = $statusRelacionamento;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getProfissao(){
-        return $this->profissao;
-    }
-    
-    /**
-     * @param $profissao
-     */
-    public function setProfissao($profissao){
-        $this->profissao = $profissao;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getFormacao(){
-        return $this->formacao;
-    }
-    
-    /**
-     * @param  $formacao 
-     */
-    public function setFormacao(){
-        $this->formacao = $formacao;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getOndeTrabalha(){
-        return $this->ondeTrabalha;
-    }
-    
-    /**
-     * @param $ondeTrabalha
-     */
-    public function setOndeTrabalha($ondeTrabalha){
-        $this->ondeTrabalha = $ondeTrabalha;
-    }
-    
-    /**
-     * @return integer
-     */
-    public function getIdEnd(){
-        return $this->idEnd;
-    }
-    
-    
-   
-
-    
-
 }
 
 ?>

@@ -38,7 +38,7 @@ class Evento {
      *
      * @var \Admin\Entity\Usuario
      */
-    protected $idUsr;
+    protected $perfil;
     
     /**
      * @ORM\Column (type="string")
@@ -90,16 +90,16 @@ class Evento {
     /**
      * @param string $idUsr
      */
-    public function setIdUsr($idUsr) {
-        $this->idUsr = $idUsr;
+    public function setPerfil($perfil) {
+        $this->perfil = $perfil;
     }
     
     /**
      * @return integer
      * 
      */
-    public function getIdUser(){
-        return $this->idUsr;
+    public function getPerfil(){
+        return $this->perfil;
     }
 
     /**
@@ -141,7 +141,7 @@ class Evento {
     /**
      * @param  $formacao 
      */
-    public function setFormacao(){
+    public function setFormacao($formacao){
         $this->formacao = $formacao;
     }
     
@@ -173,4 +173,3 @@ class Evento {
 
 }
 
-?>
