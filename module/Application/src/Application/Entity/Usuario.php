@@ -24,6 +24,15 @@ class Usuario {
      * @var integer
      */
     protected $id;
+    
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Perfil", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
+     *
+     * @var \Admin\Entity\Perfil
+     */
+    protected $perfil;
 
     /**
      * @ORM\Column (type="string")
@@ -65,9 +74,9 @@ class Usuario {
     
     /**
      * 
-     * @ORM\Column (type="date")
+     * @ORM\Column (type="dateTime")
      * 
-     * @var date
+     * @var dateTime
      */
     protected $dataNascimento;
     
@@ -81,9 +90,9 @@ class Usuario {
     
     /**
      * 
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="boolean")
      * 
-     * @var sring
+     * @var boolean
      */
     protected $autenticado;
     
@@ -173,7 +182,7 @@ class Usuario {
     }
     
     /**
-     * @return string
+     * @return dateTime
      */
     public function getDataNascimento(){
         return $this->dataNascimento;
@@ -201,7 +210,7 @@ class Usuario {
     }
     
     /**
-     * @return string
+     * @return boolean
      */
     public function getAutenticacao(){
         return $this->autenticado;

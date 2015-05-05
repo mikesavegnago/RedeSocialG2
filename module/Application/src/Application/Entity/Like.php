@@ -26,7 +26,7 @@ class Like {
     protected $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Perfil")
      * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
      *
      * @var \Admin\Entity\Perfil

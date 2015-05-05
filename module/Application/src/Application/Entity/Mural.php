@@ -24,13 +24,23 @@ class Mural {
      * @var integer
      */
     protected $id;
-
+    
     /**
-     * @ORM\Column (type="perfil")
+     * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
      *
-     * @var perfil
+     * @var \Admin\Entity\Perfil
      */
     protected $perfil;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Perfil")
+     * @ORM\JoinColumn(name="id_perfil, referenced COlumnName="id")
+     *
+     * @var \Admin\Entity\Perfil
+     */
+    protected $perfil;
+    
     
     /**
      * @ORM\Column (type="blob")
