@@ -12,7 +12,7 @@ use Zend\InputFilter\InputFilter;
  * 
  *
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
- * #categoy Admin
+ * @category Admin
  * @package Entity
  */
 class Album {

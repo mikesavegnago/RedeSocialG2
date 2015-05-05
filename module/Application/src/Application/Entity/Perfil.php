@@ -15,6 +15,8 @@ use Zend\InputFilter\InputFilter;
  * @package Entity
  */
 class Perfil {
+ 
+     
 
     /**
      * @ORM\Id
