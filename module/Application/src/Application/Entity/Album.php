@@ -50,7 +50,7 @@ class Album {
     }
     
     /**
-     * @return integer
+     * @return perfil
      * 
      */
     public function getPerfil(){
