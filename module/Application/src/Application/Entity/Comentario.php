@@ -34,11 +34,12 @@ class Comentario {
     protected $idImagem;
     
     /**
-     * @ORM\Column (type="integer")
+     * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
      *
-     * @var integer
+     * @var \Admin\Entity\Perfil
      */
-    protected $idUsr;
+    protected $perfil;
 
     /**
      * @return integer
@@ -64,18 +65,18 @@ class Comentario {
     }
     
     /**
-     * @param string $idImagem
+     * @param string $perfil
      */
-    public function setIdUsr($idUsr) {
-        $this->idUsr = $idUsr;
+    public function setPerfil($perfil) {
+        $this->perfil = $perfil;
     }
 
     /**
-     * @return integer
+     * @return perfil
      * 
      */
-    public function getIdUser(){
-        return $this->idUsr;
+    public function getPerfil(){
+        return $this->perfil;
     }
 
 }
