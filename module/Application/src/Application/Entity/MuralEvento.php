@@ -31,47 +31,24 @@ class MuralEvento {
      *
      * @var \Admin\Entity\Usuario
      */
-    protected $idUsr;
+    protected $evento;
     
-    /**
-     * @ORM\Column (type="string")
-     *
-     * @var string
-     */
-    protected $statusRelacionamento;
-
-    /**
+          /**
      * @ORM\Column (type="string)
      * 
      * @var string
      */
-    protected $profissao;
-    
-    /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     */
-    protected $formacao;
-    
-    /**
-     * 
-     * @ORM\Column (type="string")
+     protected $texto; 
+
+      /**
+     * @ORM\Column (type="string)
      * 
      * @var string
-     * 
-     */
-    protected $ondeTrabalha;
-    
-    /**
-     * 
-     * @ORM\Column (type="integer")
-     * 
-     * @var integer
-     */
-    protected $idEnd;
-    
+     */    
+    protected $imagem; 
+
+
+
     
     /**
      * @return integer
@@ -80,90 +57,57 @@ class MuralEvento {
         return $this->id;
     }
 
-    /**
-     * @param string $idUsr
+     /**
+     * @return string
      */
-    public function setIdUsr($idUsr) {
-        $this->idUsr = $idUsr;
-    }
-    
-    /**
-     * @return integer
-     * 
-     */
-    public function getIdUser(){
-        return $this->idUsr;
+
+    public function getEvento(){
+        return $this->evento;
     }
 
     /**
-     * @return string
-     * 
+     * @param $evento
      */
-    public function getStatusRelacionamento(){
-        return $this->statusRelacionamento;
+    public function setEvento($evento){
+        $this->evento = $evento;
     }
-    
-    /**
-     * @param string $statusRelacionamento
-     */
-    public function setStatusRelacionamento($statusRelacionamento){
-        $this->statusRelacionamento = $statusRelacionamento;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getProfissao(){
-        return $this->profissao;
-    }
-    
-    /**
-     * @param $profissao
-     */
-    public function setProfissao($profissao){
-        $this->profissao = $profissao;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getFormacao(){
-        return $this->formacao;
-    }
-    
-    /**
-     * @param  $formacao 
-     */
-    public function setFormacao(){
-        $this->formacao = $formacao;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getOndeTrabalha(){
-        return $this->ondeTrabalha;
-    }
-    
-    /**
-     * @param $ondeTrabalha
-     */
-    public function setOndeTrabalha($ondeTrabalha){
-        $this->ondeTrabalha = $ondeTrabalha;
-    }
-    
-    /**
-     * @return integer
-     */
-    public function getIdEnd(){
-        return $this->idEnd;
-    }
-    
-    
-   
 
-    
 
-}
+     /**
+     * @return string
+     */
+    public function getTexto(){
+
+        return $this-> texto;
+
+    }
+ 
+     /**
+     * @param $texto
+     */
+
+   public function setTexto($texto){
+    $this -> texto = $texto; 
+
+   }
+
+   /**
+     * @return string
+     */
+
+    public function getImagem(){
+
+        return $this-> imagem;
+
+    }
+
+     /**
+     * @param $imagem
+     */
+
+   public function setImagem($imagem){
+    $this -> imagem = $imagem; 
+   }
+
 
 ?>
