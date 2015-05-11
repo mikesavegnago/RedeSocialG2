@@ -4,6 +4,7 @@ namespace Admin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
 
 /**
@@ -32,16 +33,7 @@ class Mural {
      * @var \Admin\Entity\Perfil
      */
     protected $perfil;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Perfil")
-     * @ORM\JoinColumn(name="id_perfil, referenced COlumnName="id")
-     *
-     * @var \Admin\Entity\Perfil
-     */
-    protected $perfil;
-    
-    
+       
     /**
      * @ORM\Column (type="blob")
      *
@@ -119,6 +111,49 @@ class Mural {
     public function setPermissao($permissao){
         $this->permissao = $permissao;
     }
+    
+    /**
+	*
+	* @return Zend/InputFilter/InputFilter
+	*/
+	public function getInputFilter(){
+		if (!$this->inputFilter) {
+
+			$inputFilter = new InputFilter();
+			$factory = new InputFactory();
+			$inputFilter->add($factory->createInput(array(
+			'name' => 'id',
+			'required' => true,
+			'filters' => array(
+				array('name' => 'Int'),
+				),
+			)));
+			$inputFilter->add($factory->createInput(array(
+			'name' => 'descricao',
+			'required' => true,
+			'validators' => array(
+				array(
+					'name' => 'StringLength',
+					'options' => array(
+						'encoding' => 'UTF-8',
+						),
+					),
+				),
+			'filters' => array(
+				array('name' => 'StripTags'),
+				array('name' => 'StringTrim'),
+				array('name' => 'StringToUpper',
+					'options' => array('encoding' => 'UTF-8')
+					),
+				),
+			)));
+                        
+                      
+			$this->inputFilter = $inputFilter;
+		}
+		return $this->inputFilter;
+	}
+    
 }
 
 ?>
