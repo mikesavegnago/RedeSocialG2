@@ -1,5 +1,4 @@
 <?php
-
 namespace Admin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -29,7 +28,7 @@ class Imagem {
      * @ORM\ManyToOne(targetEntity="Album", cascade={"persist"})
      * @ORM\JoinColumn(name="id_album", referencedColumnName="id")
      *
-     * @var \Admin\Entity\Album
+     * @var \Admin\Entity\Album 
      */
     protected $idAlbum;
     
