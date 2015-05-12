@@ -108,6 +108,4 @@ class MuralEvento {
    public function setImagem($imagem){
     $this -> imagem = $imagem; 
    }
-
-
-?>
+}

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2"> 
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/home/mike/worspace/Prime/module/Application/src/Application/Controller/IndexController.php</file>
             <file>file:/home/mike/worspace/Prime/module/Application/view/application/index/index.phtml</file>
@@ -9,6 +12,7 @@
             <file>file:/home/mike/worspace/Prime/module/Application/view/layout/layout.phtml</file>
             <file>file:/home/mike/worspace/Prime/public/css/style.css</file>
             <file>file:/home/mike/worspace/Prime/public/css/bootstrap.css</file>
-        </group> 
+        </group>
+>>>>>>> Ajuste de layout inicial
     </open-files>
 </project-private>

@@ -96,6 +96,14 @@ class Usuario {
      */
     protected $autenticado;
     
+     /**
+     * 
+     * @ORM\Column (type="string")
+     * 
+     * @var string
+     */
+    protected $role;
+    
     
     /**
      * @return id
@@ -216,13 +224,137 @@ class Usuario {
         return $this->autenticado;
     }
     
+    /**
+     * @param $role
+     */
+    public function setRole($role){
+        $this->role = $role;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRole(){
+        return $this->role;
+    } 
     
     
-    
-   
+    /**
+     * Filtros
+     *
+     * @return Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter() {
+        $input_filter = new InputFilter();
+        $factory = new InputFactory();
 
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'id',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'Int'
+                                )
+                            )
+                        )
+                )
+        );
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'tipo_usuario',
+                            'required' => false,
+                            'validators' => array(
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array('message' =>
+                                        'O campo tipo de usuário não pode estar vazio')
+                                ),
+                            ),
+                        )
+                )
+        );
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'login',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 4,
+                                        'max' => 30,
+                                        'message' => 'O campo login deve ser'
+                                        . ' maior que 4 caracteres e menor que'
+                                        . ' 20 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo login não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'senha',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 4,
+                                        'max' => 255,
+                                        'message' => 'O campo senha deve ter mais
+                              que 4 caracteres e menos que 255'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo senha não
+                               pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+        
+          $this->input_filter = $input_filter;
+        return $this->input_filter;
+    }
+    
     
 
 }
-
-?>
