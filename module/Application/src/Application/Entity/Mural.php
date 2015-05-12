@@ -1,9 +1,9 @@
 <?php
 
-namespace Admin\Entity;
+namespace Application\Entity;
 
+use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
-use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
 
@@ -11,12 +11,12 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Entity
  * @ORM\Table (name = "mural")
  *
+ * @category Application
+ * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
- * #categoy Admin
- * @package Entity
  */
-class Mural {
-
+class Mural extends Entity
+{
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -42,9 +42,9 @@ class Mural {
     protected $foto;
 
     /**
-     * @ORM\Column (type="string)
+     * @ORM\Column (type="text")
      * 
-     * @var string
+     * @var text
      */
     protected $descricao;
     

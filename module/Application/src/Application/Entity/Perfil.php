@@ -1,7 +1,8 @@
 <?php
 
-namespace Admin\Entity;
+namespace Application\Entity;
 
+use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
@@ -10,14 +11,12 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Entity
  * @ORM\Table (name = "perfil")
  *
+ * @category Application
+ * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
- * #categoy Admin
- * @package Entity
  */
-class Perfil {
- 
-     
-
+class Perfil extends Entity
+{
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -35,7 +34,7 @@ class Perfil {
     protected $statusRelacionamento;
 
     /**
-     * @ORM\Column (type="string)
+     * @ORM\Column (type="string")
      * 
      * @var string
      */

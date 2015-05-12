@@ -1,7 +1,8 @@
 <?php
 
-namespace Admin\Entity;
+namespace Application\Entity;
 
+use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
@@ -10,12 +11,12 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Entity
  * @ORM\Table (name = "usuario")
  *
+ * @category Application
+ * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
- * #categoy Admin
- * @package Entity
  */
-class Usuario {
-
+class Usuario extends Entity
+{
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -49,7 +50,7 @@ class Usuario {
     protected $sobrenome;
 
     /**
-     * @ORM\Column (type="string)
+     * @ORM\Column (type="string")
      * 
      * @var string
      */
@@ -74,9 +75,9 @@ class Usuario {
     
     /**
      * 
-     * @ORM\Column (type="dateTime")
+     * @ORM\Column (type="datetime")
      * 
-     * @var dateTime
+     * @var datetime
      */
     protected $dataNascimento;
     
