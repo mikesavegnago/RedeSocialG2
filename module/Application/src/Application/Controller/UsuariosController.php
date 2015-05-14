@@ -1,14 +1,14 @@
 <?php
-namespace Application\Controller;
+namespace Prime\Controller;
 
 use Core\Controller\ActionController as ActionController;
-use Application\Form\Usuario as Form;
+use Prime\Form\Usuario as Form;
 use Zend\View\Model\ViewModel;
 
 /**
 * Controller Usuarios
 *
-* @category Application
+* @category Prime
 * @package  Controller
 * @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
@@ -38,14 +38,14 @@ class UsuariosController extends ActionController
         die("e");
         if ($request->isPost()) {
             
-            $form->setInputFilter(\Application\Entity\Usuario::getInputFilter());
+            $form->setInputFilter(\Prime\Entity\Usuario::getInputFilter());
             $form->setData($request->getPost());
             var_dump($form->getData()); exit;
             if ($form->isValid()) {
                 $values = $form->getData();
                 
                 try{
-                    $usuario = $this->getService('Application\Service\Usuario')->save($values);
+                    $usuario = $this->getService('Admin\Service\Usuario')->save($values);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
@@ -55,7 +55,7 @@ class UsuariosController extends ActionController
         }
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $usuario = $this->getService('Application\Service\Usuario')->find($id);
+            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
             $form->bind($usuario);
         }
 
@@ -71,11 +71,11 @@ class UsuariosController extends ActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         try {
-            $this->getService('Application\Service\Usuario')->delete($id);
+            $this->getService('Admin\Service\Usuario')->delete($id);
         } catch(\Exception $e) {
             echo $e->getMessage();
         }
 
-        return $this->redirect()->toUrl('/Application/usuarios');
+        return $this->redirect()->toUrl('/admin/usuarios');
     }
 }
