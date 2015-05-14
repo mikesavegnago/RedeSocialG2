@@ -11,7 +11,7 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Entity
  * @ORM\Table (name = "evento")
  *
- * @category Prime
+ * @category Application
  * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
  */

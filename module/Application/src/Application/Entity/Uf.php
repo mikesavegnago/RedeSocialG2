@@ -9,7 +9,7 @@ use Zend\InputFilter\InputFilter;
 /**
 * Model Uf
 *
-* @category Prime
+* @category Application
 * @package  Entity
 * @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
 *

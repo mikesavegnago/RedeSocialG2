@@ -10,7 +10,7 @@ use Zend\InputFilter\InputFilter;
  *
  * Model Cidade
  *
- * @category Prime
+ * @category Application
  * @package  Entity
  * @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
  *
