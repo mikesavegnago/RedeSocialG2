@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Entity;
+namespace Prime\Entity;
 
 use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +11,7 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Entity
  * @ORM\Table (name = "comentario")
  *
- * @category Application
+ * @category Prime
  * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
  */

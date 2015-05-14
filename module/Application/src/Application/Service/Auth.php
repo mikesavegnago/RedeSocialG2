@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Service;
+namespace Prime\Service;
 
 use Core\Service\Service;
 use Zend\Authentication\AuthenticationService;
@@ -11,7 +11,7 @@ use Zend\Db\Sql\Sql;
 /**
  * Serviço para autenticação de um usuário simples no sistema
  * 
- * @category Application
+ * @category Prime
  * @package Service
  * @author Mike Savegnago
  */

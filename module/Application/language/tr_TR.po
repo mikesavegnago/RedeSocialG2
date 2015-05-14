@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../view/layout/layout.phtml:6
 #: ../view/layout/layout.phtml:33
-msgid "Skeleton Application"
+msgid "Skeleton Prime"
 msgstr ""
 
 #: ../view/layout/layout.phtml:36
@@ -36,8 +36,8 @@ msgstr "%sZend Framework 2%s'a hoş geldiniz"
 
 #: ../view/application/index/index.phtml:3
 #, php-format
-msgid "Congratulations! You have successfully installed the %sZF2 Skeleton Application%s. You are currently running Zend Framework version %s. This skeleton can serve as a simple starting point for you to begin building your application on ZF2."
-msgstr "Tebrikler! %sZF2 Skeleton Application%s'u  başarıyla yüklediniz. Şu anda Zend Framework %s  sürüm ile çalışıyorsunuz. Bu iskelet ZF2 üzerinde uygulama oluşturmak için basit bir başlangıç ​​noktası olarak hizmet verebilir."
+msgid "Congratulations! You have successfully installed the %sZF2 Skeleton Prime%s. You are currently running Zend Framework version %s. This skeleton can serve as a simple starting point for you to begin building your application on ZF2."
+msgstr "Tebrikler! %sZF2 Skeleton Prime%s'u  başarıyla yüklediniz. Şu anda Zend Framework %s  sürüm ile çalışıyorsunuz. Bu iskelet ZF2 üzerinde uygulama oluşturmak için basit bir başlangıç ​​noktası olarak hizmet verebilir."
 
 #: ../view/application/index/index.phtml:4
 msgid "Fork Zend Framework 2 on GitHub"

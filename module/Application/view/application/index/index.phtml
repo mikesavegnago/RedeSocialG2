@@ -1,98 +1,93 @@
 <div id="mainWrap">
-			<div id="loggit">
-				<h1> Prime</h1>
-				<h3>Por favor, faça seu <strong>login</strong> ou <strong>Registre-se</strong></h3>
+<div id="loggit">
+        <h1> Prime</h1>
+        <h3>Por favor, faça seu <strong>login</strong> ou <strong>Registre-se</strong></h3>
 
-				<form action="#" id="logForm" method="post" class="form-horizontal">
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-								<input type="text" class="form-control input-lg" placeholder="E-mail" autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-								<input type="password" class="form-control input-lg" placeholder="Senha" autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div class="form-group formSubmit">
-						<div class="col-sm-7">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" checked autocomplete="off"> Lembrar-me
-								</label>
-							</div>
-						</div>
-						<div class="col-sm-5 submitWrap">
-							<button type="submit" class="btn btn-primary btn-lg">Login</button>
-						</div>
-					</div>
-					<div class="form-group formNotice">
-						<div class="col-xs-12">
-							<p class="text-center">Não tem conta? <span>Registre-se agora</span></p>
-						</div>
-					</div>
-				</form>
-				<form action="#" id="regForm" method="post" class="form-horizontal">
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-								<input type="text" class="form-control input-lg" placeholder="Username" autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-								<input type="text" class="form-control input-lg" placeholder="E-mail" autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-								<input type="password" class="form-control input-lg" placeholder="Senha" autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div class="form-group formSubmit">
-						<div class="col-sm-7">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" autocomplete="off"> Aceito os termos de uso.
-								</label>
-							</div>
-						</div>
-						<div class="col-sm-5 submitWrap">
-							<button type="submit" class="btn btn-success btn-lg">Registre-se</button>
-						</div>
-					</div>
-					<div class="form-group formNotice">
-						<div class="col-xs-12">
-							<p class="hasAccount text-center">Já possui conta? <span>Faça seu login!</span></p>
-						</div>
-					</div>
-				</form>
-			</div>
+        <form action="#" id="logForm" method="post" class="form-horizontal">
+                <div class="form-group">
+                        <div class="col-xs-12">
+                                <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                                        <input type="text" class="form-control input-lg" placeholder="E-mail" autocomplete="off">
+                                </div>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-xs-12">
+                                <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                        <input type="password" class="form-control input-lg" placeholder="Senha" autocomplete="off">
+                                </div>
+                        </div>
+                </div>
+                <div class="form-group formSubmit">
+                        <div class="col-sm-7">
+                                <div class="checkbox">
+                                        <label>
+                                                <input type="checkbox" checked autocomplete="off"> Lembrar-me
+                                        </label>
+                                </div>
+                        </div>
+                        <div class="col-sm-5 submitWrap">
+                                <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                        </div>
+                </div>
+                <div class="form-group formNotice">
+                        <div class="col-xs-12">
+                                <p class="text-center">Não tem conta? <span>Registre-se agora</span></p>
+                        </div>
+                </div>
+        </form>
+        <form action="application/usuarios/save" id="regForm" method="post" class="form-horizontal">
+                <div class="form-group">
+                        <div class="col-xs-12">
+                                <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                        <input type="text" id="nome" class="form-control input-lg" placeholder="Nome" autocomplete="off">
+                                </div>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-xs-12">
+                                <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                                        <input type="text" id="email" class="form-control input-lg" placeholder="E-mail" autocomplete="off">
+                                </div>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-xs-12">
+                                <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                        <input type="password" id="senha" class="form-control input-lg" placeholder="Senha" autocomplete="off">
+                                </div>
+                        </div>
+                </div>
+                <div class="form-group formSubmit">
+                        <div class="col-sm-7"> 
+                        </div>
+                        <div class="col-sm-5 submitWrap">
+                                <button type="submit" class="btn btn-success btn-lg">Registre-se</button>
+                        </div>
+                </div>
+                <div class="form-group formNotice">
+                        <div class="col-xs-12">
+                                <p class="hasAccount text-center">Já possui conta? <span>Faça seu login!</span></p>
+                        </div>
+                </div>
+        </form>
+</div>
 
-			</div>
+</div>
 
-		<script type="text/javascript">
-				$(document).ready(function() {
-					
-					$('.formNotice span').click(function() {
-						$("#logForm").toggle();
-						$("#regForm").toggle();
-					});
-					
-						
-				});
-			</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+
+                $('.formNotice span').click(function() {
+                        $("#logForm").toggle();
+                        $("#regForm").toggle();
+                });
+
+
+        });
+</script>

@@ -1,5 +1,5 @@
 <?php
-namespace Application\Entity;
+namespace Prime\Entity;
 
 use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Zend\InputFilter\InputFilter;
 /**
 * Model Uf
 *
-* @category Application
+* @category Prime
 * @package  Entity
 * @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
 *

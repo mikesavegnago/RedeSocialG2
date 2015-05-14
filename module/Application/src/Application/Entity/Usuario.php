@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Entity;
+namespace Prime\Entity;
 
 use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +11,7 @@ use Zend\InputFilter\InputFilter;
  * @ORM\Entity
  * @ORM\Table (name = "usuario")
  *
- * @category Application
+ * @category Prime
  * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
  */
@@ -262,27 +262,48 @@ class Usuario extends Entity
                         )
                 )
         );
+ 
 
         $input_filter->add(
                 $factory->createInput(
                         array(
-                            'name' => 'tipo_usuario',
-                            'required' => false,
-                            'validators' => array(
+                            'name' => 'nome',
+                            'required' => true,
+                            'filters' => array(
                                 array(
-                                    'name' => 'NotEmpty',
-                                    'options' => array('message' =>
-                                        'O campo tipo de usuário não pode estar vazio')
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
                                 ),
                             ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 4,
+                                        'max' => 30,
+                                        'message' => 'O campo login deve ser'
+                                        . ' maior que 4 caracteres e menor que'
+                                        . ' 20 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo login não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
                         )
                 )
         );
-
         $input_filter->add(
                 $factory->createInput(
                         array(
-                            'name' => 'login',
+                            'name' => 'email',
                             'required' => true,
                             'filters' => array(
                                 array(

@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../view/layout/layout.phtml:6 ../view/layout/layout.phtml:33
-msgid "Skeleton Application"
-msgstr "Skeleton Application"
+msgid "Skeleton Prime"
+msgstr "Skeleton Prime"
 
 #: ../view/layout/layout.phtml:36
 msgid "Home"
@@ -36,11 +36,11 @@ msgstr "Привет, %sZend Framework 2%s"
 #, php-format
 msgid ""
 "Congratulations! You have successfully installed the %sZF2 Skeleton "
-"Application%s. You are currently running Zend Framework version %s. This "
+"Prime%s. You are currently running Zend Framework version %s. This "
 "skeleton can serve as a simple starting point for you to begin building your "
 "application on ZF2."
 msgstr ""
-"Поздравляем! Вы успешно установили %sZF2 Skeleton Application%s. У вас "
+"Поздравляем! Вы успешно установили %sZF2 Skeleton Prime%s. У вас "
 "установлен Zend Framework версии %s. Этот каркас может служить простой "
 "отправной точкой, чтобы начать строить приложения на ZF2."
 
