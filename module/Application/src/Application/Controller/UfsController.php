@@ -1,14 +1,14 @@
 <?php
-namespace Admin\Controller;
+namespace Application\Controller;
 
 use Core\Controller\ActionController as ActionController;
-use Admin\Form\Uf as Form;
+use Application\Form\Uf as Form;
 use Zend\View\Model\ViewModel;
 
 /**
 * Controller Ufs
 *
-* @category Admin
+* @category Application
 * @package  Controller
 * @author   Cezar Junior de Souza <cezar08@unochapeco.edu.br>
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
@@ -23,7 +23,7 @@ class UfsController extends ActionController
     */
     public function indexAction()
     {
-        $ufs = $this->getService('Admin\Service\Uf')->fetchAll();
+        $ufs = $this->getService('Application\Service\Uf')->fetchAll();
 
         return new ViewModel(array('ufs' => $ufs));
     }
@@ -38,12 +38,12 @@ class UfsController extends ActionController
         $form = new Form();
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setInputFilter(\Admin\Model\Uf::getInputFilter());
+            $form->setInputFilter(\Application\Model\Uf::getInputFilter());
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $values = $form->getData();
                 try{
-                    $uf = $this->getService('Admin\Service\Uf')->save($values);
+                    $uf = $this->getService('Application\Service\Uf')->save($values);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
@@ -53,7 +53,7 @@ class UfsController extends ActionController
         }
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $uf = $this->getService('Admin\Service\Uf')->find($id);
+            $uf = $this->getService('Application\Service\Uf')->find($id);
             $form->bind($uf);
         }
 
@@ -69,11 +69,10 @@ class UfsController extends ActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         try {
-            $this->getService('Admin\Service\Uf')->delete($id);
+            $this->getService('Application\Service\Uf')->delete($id);
         } catch(\Exception $e) {
             echo $e->getMessage();
         }
 
         return $this->redirect()->toUrl('/admin/ufs');
     }
-}

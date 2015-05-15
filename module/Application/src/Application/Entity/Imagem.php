@@ -1,5 +1,5 @@
 <?php
-namespace Prime\Entity;
+namespace Application\Entity;
 
 use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;

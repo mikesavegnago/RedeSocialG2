@@ -1,14 +1,14 @@
 <?php
-namespace Admin\Controller;
+namespace Application\Controller;
 
 use Core\Controller\ActionController as ActionController;
-use Admin\Form\Cidade as Form;
+use Application\Form\Cidade as Form;
 use Zend\View\Model\ViewModel;
 
 /**
 * Controller Cidades
 *
-* @category Admin
+* @category Application
 * @package  Controller
 * @author   Cezar Junior de Souza <cezar08@unochapeco.edu.br>
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
@@ -23,7 +23,7 @@ class CidadesController extends ActionController
     */
     public function indexAction()
     {
-        var_dump($this->getService('Admin\Service\Cidade')->fetchAll());
+        var_dump($this->getService('Application\Service\Cidade')->fetchAll());
         exit;
     }
 
@@ -37,22 +37,22 @@ class CidadesController extends ActionController
         $form = new Form($this->getObjectManager());
         $request = $this->getRequest();
         if ($request->isPost()) {            
-            $form->setInputFilter(\Admin\Model\Cidade::getInputFilter());            
+            $form->setInputFilter(\Application\Model\Cidade::getInputFilter());            
             $form->setData($request->getPost());            
             if ( $form->isValid() ) {                
                 $values = $form->getData();
                 try {
-                    $uf = $this->getService('Admin\Service\Cidade')->save($values);
+                    $uf = $this->getService('Application\Service\Cidade')->save($values);
                 } catch(\Exception $e) {
                     echo $e->getMessage(); 
                     exit;
                 }
-                return $this->redirect()->toUrl('/admin/cidades');    
+                return $this->redirect()->toUrl('/Application/cidades');    
             }                    
         }
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $cidade = $this->getService('Admin\Service\Cidade')->find($id);            
+            $cidade = $this->getService('Application\Service\Cidade')->find($id);            
             $form->bind($cidade);
         }
 
@@ -68,12 +68,12 @@ class CidadesController extends ActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         try{
-            $this->getService('Admin\Service\Cidade')->delete($id);
+            $this->getService('Application\Service\Cidade')->delete($id);
         }catch(\Exception $e){
             echo $e->getMessage();
             exit;
         }
 
-        return $this->redirect()->toUrl('/admin/cidades');
+        return $this->redirect()->toUrl('/Application/cidades');
     }
 }
