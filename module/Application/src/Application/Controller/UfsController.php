@@ -76,3 +76,4 @@ class UfsController extends ActionController
 
         return $this->redirect()->toUrl('/admin/ufs');
     }
+}
