@@ -45,3 +45,5 @@ class AlbunsController extends ActionController
     {
     
     }
+    
+}
