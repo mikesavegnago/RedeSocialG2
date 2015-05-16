@@ -1,14 +1,14 @@
 <?php
-namespace Prime\Controller;
+namespace Application\Controller;
 
 use Core\Controller\ActionController as ActionController;
-use Prime\Form\Usuario as Form;
+use Application\Form\Usuario as Form;
 use Zend\View\Model\ViewModel;
 
 /**
 * Controller Usuarios
 *
-* @category Prime
+* @category Application
 * @package  Controller
 * @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
@@ -23,7 +23,17 @@ class UsuariosController extends ActionController
     */
     public function indexAction()
     {
-         
+         return new ViewModel();
+    }
+    
+    /**
+    *Função para criar o layout
+    *
+    *@return void
+    */
+    public function layoutAction()
+    {
+         return new ViewModel();
     }
 
     /**

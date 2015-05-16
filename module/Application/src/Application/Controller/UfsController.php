@@ -11,7 +11,7 @@ use Zend\View\Model\ViewModel;
 * 
 * @category Application
 * @package  Controller
-* @author   Cezar Junior de Souza <cezar08@unochapeco.edu.br>
+* @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
 * @link     localhost
 */
@@ -27,6 +27,16 @@ class UfsController extends ActionController
         $ufs = $this->getService('Application\Service\Uf')->fetchAll();
 
         return new ViewModel(array('ufs' => $ufs));
+    }
+    
+    /**
+    *Função para criar o layout
+    *
+    *@return void
+    */
+    public function layoutAction()
+    {
+         return new ViewModel();
     }
     
     /**

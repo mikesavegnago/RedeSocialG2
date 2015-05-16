@@ -5,7 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
-* Controller Index
+* Controller Login
 *
 * @category Application
 * @package  Controller
@@ -13,7 +13,7 @@ use Zend\View\Model\ViewModel;
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
 * @link     localhost
 */
-class IndexController extends AbstractActionController
+class LoginController extends AbstractActionController
 {
     public function indexAction()
     {

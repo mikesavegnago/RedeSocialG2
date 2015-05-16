@@ -45,3 +45,4 @@ class MuralEventosController extends ActionController
     {
     
     }
+}

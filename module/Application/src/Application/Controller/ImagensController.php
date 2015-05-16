@@ -27,6 +27,16 @@ class ImagensController extends ActionController
     }
     
     /**
+    *Função para criar o layout
+    *
+    *@return void
+    */
+    public function layoutAction()
+    {
+         return new ViewModel();
+    }
+    
+    /**
     *Função save
     *
     *@return void

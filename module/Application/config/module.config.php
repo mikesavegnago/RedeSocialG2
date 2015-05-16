@@ -15,7 +15,7 @@ return array(
                 'options' => array(
                     'route' => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => 'Application\Controller\Login',
                         'action' => 'index',
                     ),
                 ),
@@ -85,8 +85,20 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
+            'Application\Controller\Login' => 'Application\Controller\LoginController',
             'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Perfis' => 'Application\Controller\PerfisController',
+            'Application\Controller\Albuns' => 'Application\Controller\AlbunsController',
+            'Application\Controller\Imagens' => 'Application\Controller\ImagensController',
+            'Application\Controller\Eventos' => 'Application\Controller\EventosController',
             'Application\Controller\Usuarios' => 'Application\Controller\UsuariosController',
+            
+            'Application\Controller\Comentarios' => 'Application\Controller\ComentariosController',
+            'Application\Controller\Cidades' => 'Application\Controller\CidadesController',
+            'Application\Controller\Ufs' => 'Application\Controller\UfsController',
+            'Application\Controller\Murais' => 'Application\Controller\MuraisController',
+            'Application\Controller\MuralEventos' => 'Application\Controller\MuralEventosController',
+            'Application\Controller\Enderecos' => 'Application\Controller\EnderecosController',
         ),
     ),
     'view_manager' => array(
@@ -97,7 +109,7 @@ return array(
         'exception_template' => 'error/index',
         'template_map' => array(
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'application/login/index' => __DIR__ . '/../view/application/login/index.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
