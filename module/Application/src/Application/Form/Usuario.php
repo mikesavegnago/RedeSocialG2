@@ -24,18 +24,18 @@ class Usuario extends Form
             'name' => 'id'
         ));
         
-         $this->add(array(
-            'name' => 'perfil',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Peril*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o perfil',
-                'id' => 'perfil',
-                'class' => 'form-control'
-            )
-        ));
+//         $this->add(array(
+//            'name' => 'perfil',
+//            'type' => 'text',
+//            'options' => array(
+//                'label' => 'Peril*'
+//            ),
+//            'attributes' => array(
+//                'placeholder' => 'Informe o perfil',
+//                'id' => 'perfil',
+//                'class' => 'form-control'
+//            )
+//        ));
         
         
         
