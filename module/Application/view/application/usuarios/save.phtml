@@ -58,8 +58,10 @@
         <?php echo $form->get('autenticado')->getLabel(); ?>
     </div>
     <div class="input-xlarge">
-        <?php echo $this->formInput($form->get('autenticado')); ?>
+        <?php echo $this->formSelect($form->get('autenticado')); ?>
     </div> 
+    <br><hr>
+    <br>
     <div class="input-group">
         <?php echo $this->formSubmit($form->get('submit')); ?>
     </div> 
