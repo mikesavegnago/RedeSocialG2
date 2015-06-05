@@ -23,18 +23,24 @@ class Usuario extends Service
         else
             $usuario = new \Application\Entity\Usuario();
         
-        var_dump($usuario);exit;
-        $cidade->setDescricao($values['descricao']);
-        $uf = $this->getService('Admin\Service\Uf')->find($values['uf']);
-        $cidade->setUf($uf);
-        $this->getObjectManager()->persist($cidade);
+        $usuario->setNome($values['nome']);
+        $usuario->setEmail($values['email']);
+        $usuario->setSenha($values['senha']);
+        $usuario->setSobrenome($values['sobrenome']);
+        $usuario->setCelular($values['celular']);
+        $usuario->setDataNascimento( new \DateTime($values['dataNascimento']));
+        $usuario->setSexo($values['sexo']);
+        $usuario->setAutenticacao($values['autenticado']);
+        $usuario->setRole($values['role']);
+        
+        $this->getObjectManager()->persist($usuario);
         try{
             $this->getObjectManager()->flush();
         }catch(\Exception $e){
-            throw new EntityException('Erro ao salvar dados');
+            throw new EntityException('Erro ao salvar dados'.$e);
         }
 
-        return $cidade;        
+        return $usuario;        
     }
 
 
