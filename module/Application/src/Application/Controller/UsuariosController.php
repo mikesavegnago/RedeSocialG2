@@ -50,18 +50,16 @@ class UsuariosController extends ActionController
             
             $valores = $request->getPost();
             $usuario = new \Application\Entity\Usuario();
-            $perfil = new \Application\Entity\Peril();
             $filtros = $usuario->getInputFilter();
             $form->setInputFilter($filtros);
             $form->setData($valores);
             
-            var_dump($form->isValid());exit;
             
-            if ($form->isValid()) {
+            if (!$form->isValid()) {
                 $values = $form->getData();
                 
                 try{
-                    $usuario = $this->getService('Admin\Service\Usuario')->save($values);
+                    $usuario = $this->getService('Application\Service\Usuario')->saveUsuario($values);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
@@ -71,7 +69,7 @@ class UsuariosController extends ActionController
         }
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
+            $usuario = $this->getService('Application\Service\Usuario')->find($id);
             $form->bind($usuario);
         }
 
