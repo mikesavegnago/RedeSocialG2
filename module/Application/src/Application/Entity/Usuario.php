@@ -193,7 +193,7 @@ class Usuario extends Entity
      * @param $sexo
      */
     public function setSexo($sexo){
-        $this->senha = $sexo;
+        $this->sexo = $sexo;
     }
     
     /**
