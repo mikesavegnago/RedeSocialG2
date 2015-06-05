@@ -13,7 +13,7 @@ use Zend\View\Model\ViewModel;
 * @license  Copyright <http://www.softwarecontracts.net/p05_copyright_patent_software.htm>
 * @link     localhost
 */
-class PerfisController extends ActionController
+class MuraisController extends ActionController
 {
     /**
     *Função index
@@ -33,8 +33,43 @@ class PerfisController extends ActionController
     */
     public function saveAction()
     {
-       
+       // fazer com que o form /na parte de usuarios ja venha preechido quando clicado em cadsatrar perfiol
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $form = new \Application\Form\Mural($em);
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $valores = $request->getPost();
+            $mural = new \Application\Entity\Mural();
+            
+            $filtros = $mural->getInputFilter();
+            $form->setInputFilter($filtros);
+            $filtros = $mural->getInputFilter();
+            $form->setData($valores);            
+            
+            if (!$form->isValid()) {
+                $values = $form->getData();
+                
+                try{
+                    $mural = $this->getService('Application\Service\Mural')->saveMural($values);
+                }catch(\Exception $e){
+                    echo $e->getMessage(); 
+                    exit;
+                }
+                
+                return $this->redirect()->toUrl('/');    
+            }  
+            
+        }
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if ($id > 0) {
+            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
+            $form->bind($usuario);
+        }
+
+        return new ViewModel(array('form' => $form,'formUsuario' => $formUsuario));
     }
+
 
     /**
     *Função delete
@@ -44,5 +79,6 @@ class PerfisController extends ActionController
     public function deleteAction()
     {
     
+        return new ViewModel();
     }
 }    
