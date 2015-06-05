@@ -26,14 +26,6 @@ class Usuario extends Entity
      */
     protected $id;
     
-    
-    /**
-     * @ORM\OneToOne(targetEntity="Perfil", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
-     *
-     * @var \Admin\Entity\Perfil
-     */
-    protected $perfil;
 
     /**
      * @ORM\Column (type="string")
