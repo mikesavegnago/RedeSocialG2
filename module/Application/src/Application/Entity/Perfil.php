@@ -63,7 +63,7 @@ class Perfil extends Usuario
      * 
      * @var integer
      */
-    protected $idEnd;
+    protected $endereco;
     
     
     /**
@@ -133,8 +133,16 @@ class Perfil extends Usuario
     /**
      * @return integer
      */
-    public function getIdEnd(){
-        return $this->idEnd;
+    public function getEndereco(){
+        return $this->endereco;
+    }
+    
+    
+    /**
+     * @var endereco
+     */
+    public function setEndereco($endereco){
+         $this->endereco = $endereco;
     }
     
     
