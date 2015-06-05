@@ -112,7 +112,7 @@ class Perfil extends Usuario
     /**
      * @param  $formacao 
      */
-    public function setFormacao(){
+    public function setFormacao($formacao){
         $this->formacao = $formacao;
     }
     
