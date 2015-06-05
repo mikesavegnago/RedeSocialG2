@@ -24,31 +24,148 @@ class Usuario extends Form
             'name' => 'id'
         ));
         
-        $this->add(
-            array(
-                    'type' => 'text',
-                    'name' => 'nome',
-                    'options' => array(
-                        'label' => 'Nome*'
-                    ),
-                ));
+         $this->add(array(
+            'name' => 'perfil',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Peril*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe o perfil',
+                'id' => 'perfil',
+                'class' => 'form-control'
+            )
+        ));
         
-        $this->add(
-            array(
-                    'type' => 'text',
-                    'name' => 'email',
-                    'options' => array(
-                        'label' => 'Email*'
-                    ),
-                ));
         
-        $this->add(
-            array(
-                    'type' => 'password',
-                    'name' => 'senha',
-                    'options' => array(
-                        'label' => 'Senha*'
-                    ),
-                ));     
+        
+        $this->add(array(
+            'name' => 'nome',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Nome*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe o nome',
+                'id' => 'nome',
+                'class' => 'form-control'
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'sobrenome',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Sobrenome*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe o sobrenome',
+                'id' => 'sobrenome',
+                'class' => 'form-control'
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'email',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Email*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe o email',
+                'id' => 'email',
+                'class' => 'form-control'
+            )
+        ));
+        
+         $this->add(array(
+            'name' => 'celular',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Celular*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe o celular',
+                'id' => 'celular',
+                'class' => 'form-control'
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'senha',
+            'type' => 'password',
+            'options' => array(
+                'label' => 'Senha*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe a senha',
+                'id' => 'senha',
+                'class' => 'form-control'
+            )
+        ));
+        
+        
+         $this->add(array(
+            'name' => 'dataNascimento',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Data de Nascimento*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe a data de nascimento',
+                'id' => 'dataNascimento',
+                'class' => 'form-control'
+            )
+        ));
+        
+        
+         $this->add(array(
+            'name' => 'sexo',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Sexo*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'Informe o sexo',
+                'id' => 'sexo',
+                'class' => 'form-control'
+            )
+        ));
+        
+         $this->add(array(
+            'name' => 'autenticado',
+            'type' => 'checkbox',
+            'options' => array(
+                'label' => 'Autenticacao*'
+            ),
+            'attributes' => array(
+                'placeholder' => 'sim ou nao',
+                'id' => 'autenticado',
+                'class' => 'form-control'
+            )
+        ));
+       
+        
+        $this->add(array(
+            'name' => 'role',
+            'type' => 'select',
+            'options' => array(
+                'label' => 'Perfil:*',
+                'value_options' => array('EDITOR' => 'EDITOR', 'ADMIN' => 'ADMIN')
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'submit',
+            'type' => 'submit',
+            'attributes' => array(
+                'value' => 'Salvar',
+                'class' => 'btn btn-primary'
+            )
+        ));
+        
     }
 }
