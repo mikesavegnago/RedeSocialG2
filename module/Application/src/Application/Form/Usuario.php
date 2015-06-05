@@ -132,18 +132,18 @@ class Usuario extends Form
             )
         ));
         
-         $this->add(array(
+        $this->add(array(
             'name' => 'autenticado',
-            'type' => 'checkbox',
+            'type' => 'select',
             'options' => array(
-                'label' => 'Autenticacao*'
+                'label' => 'Autenticacao:*',
+                'value_options' => array('Sim' => true, 'Não' => false)
             ),
             'attributes' => array(
-                'placeholder' => 'sim ou nao',
-                'id' => 'autenticado',
                 'class' => 'form-control'
             )
         ));
+        
        
         
         $this->add(array(
@@ -157,6 +157,7 @@ class Usuario extends Form
                 'class' => 'form-control'
             )
         ));
+        
         
         $this->add(array(
             'name' => 'submit',
