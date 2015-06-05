@@ -33,6 +33,7 @@ class PerfisController extends ActionController
     */
     public function layoutAction()
     {
+        
          return new ViewModel();
     }
     
