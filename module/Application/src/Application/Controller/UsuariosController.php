@@ -33,6 +33,7 @@ class UsuariosController extends ActionController
     */
     public function layoutAction()
     {
+        var_dump($expression);exit;
          return new ViewModel();
     }
 
@@ -45,12 +46,17 @@ class UsuariosController extends ActionController
     {
         $form = new Form($this->getObjectManager());
         $request = $this->getRequest();
-        die("e");
         if ($request->isPost()) {
             
-            $form->setInputFilter(\Prime\Entity\Usuario::getInputFilter());
-            $form->setData($request->getPost());
-            var_dump($form->getData()); exit;
+            $valores = $request->getPost();
+            $usuario = new \Application\Entity\Usuario();
+            $perfil = new \Application\Entity\Peril();
+            $filtros = $usuario->getInputFilter();
+            $form->setInputFilter($filtros);
+            $form->setData($valores);
+            
+            var_dump($form->isValid());exit;
+            
             if ($form->isValid()) {
                 $values = $form->getData();
                 
