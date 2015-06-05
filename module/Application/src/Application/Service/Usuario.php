@@ -1,171 +1,44 @@
 <?php
-namespace Application\Form;
 
-use Zend\Form\Element;
-use Zend\Form\Form;
+namespace Application\Service;
+
+use Core\Service\Service;
+use Core\Model\EntityException as EntityException;
 
 /**
-* Form Usuario
+* Service Save Entityes
 *
-* @category Prime
-* @package  Form
-* @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
-*/
-class Usuario extends Form
+* @category Admin
+* @package  Service
+* @author   Paulo José Cella <paulocella@unochapeco.edu.br> 
+* @link     localhost 
+ */
+class Usuario extends Service
 {
-    public function __construct($em)
-    {
-        parent::__construct('usuario');
-        $this->setAttribute('method', 'post');
-        $this->setAttribute('action', '');
 
-        $this->add(array(
-            'type' => 'hidden',
-            'name' => 'id'
-        ));
+    public function saveUsuario($values)
+    {
         
-         $this->add(array(
-            'name' => 'perfil',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Peril*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o perfil',
-                'id' => 'perfil',
-                'class' => 'form-control'
-            )
-        ));
+        $values = new \Usuario();
+        var_dump($values);exit;
         
-        
-        
-        $this->add(array(
-            'name' => 'nome',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Nome*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o nome',
-                'id' => 'nome',
-                'class' => 'form-control'
-            )
-        ));
-        
-        $this->add(array(
-            'name' => 'sobrenome',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Sobrenome*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o sobrenome',
-                'id' => 'sobrenome',
-                'class' => 'form-control'
-            )
-        ));
-        
-        $this->add(array(
-            'name' => 'email',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Email*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o email',
-                'id' => 'email',
-                'class' => 'form-control'
-            )
-        ));
-        
-         $this->add(array(
-            'name' => 'celular',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Celular*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o celular',
-                'id' => 'celular',
-                'class' => 'form-control'
-            )
-        ));
-        
-        $this->add(array(
-            'name' => 'senha',
-            'type' => 'password',
-            'options' => array(
-                'label' => 'Senha*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe a senha',
-                'id' => 'senha',
-                'class' => 'form-control'
-            )
-        ));
-        
-        
-         $this->add(array(
-            'name' => 'dataNascimento',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Data de Nascimento*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe a data de nascimento',
-                'id' => 'dataNascimento',
-                'class' => 'form-control'
-            )
-        ));
-        
-        
-         $this->add(array(
-            'name' => 'sexo',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Sexo*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o sexo',
-                'id' => 'sexo',
-                'class' => 'form-control'
-            )
-        ));
-        
-         $this->add(array(
-            'name' => 'autenticado',
-            'type' => 'checkbox',
-            'options' => array(
-                'label' => 'Autenticacao*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'sim ou nao',
-                'id' => 'autenticado',
-                'class' => 'form-control'
-            )
-        ));
-       
-        
-        $this->add(array(
-            'name' => 'role',
-            'type' => 'select',
-            'options' => array(
-                'label' => 'Perfil:*',
-                'value_options' => array('EDITOR' => 'EDITOR', 'ADMIN' => 'ADMIN')
-            ),
-            'attributes' => array(
-                'class' => 'form-control'
-            )
-        ));
-        
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
-                'value' => 'Salvar',
-                'class' => 'btn btn-primary'
-            )
-        ));
-        
+        if( (int) $values['id'] > 0)
+            $cidade = $this->find($values['id']);
+        else
+            $cidade = new \Admin\Model\Cidade();
+        $cidade->setDescricao($values['descricao']);
+        $uf = $this->getService('Admin\Service\Uf')->find($values['uf']);
+        $cidade->setUf($uf);
+        $this->getObjectManager()->persist($cidade);
+        try{
+            $this->getObjectManager()->flush();
+        }catch(\Exception $e){
+            throw new EntityException('Erro ao salvar dados');
+        }
+
+        return $cidade;        
     }
+
+
+
 }

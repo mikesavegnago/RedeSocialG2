@@ -1,93 +1,61 @@
 <?php
-namespace Application\Form;
 
-use Zend\Form\Element;
-use Zend\Form\Form;
+namespace Application\Service;
+
+use Core\Service\Service;
+use Core\Model\EntityException as EntityException;
 
 /**
-* Form Usuario
+* Service Save Entityes
 *
-* @category Prime
-* @package  Form
-* @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
-*/
-class Perfil extends Usuario
+* @category Admin
+* @package  Service
+* @author   Paulo José Cella <paulocella@unochapeco.edu.br> 
+* @link     localhost 
+ */
+class Perfil extends Service
 {
-    public function __construct($em)
-    {
-        parent::__construct('perfil');
-        $this->setAttribute('method', 'post');
-        $this->setAttribute('action', '');
 
-        $this->add(array(
-            'type' => 'hidden',
-            'name' => 'id'
-        ));
-       
-        $this->add(array(
-            'name' => 'statusRelacionamento',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Status Relacionamento*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe o Status de Relacionamento',
-                'id' => 'statusRelacionamento',
-                'class' => 'form-control'
-            )
-        ));
+    public function savePerfil($values)
+    {
         
-        $this->add(array(
-            'name' => 'profissao',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Profissao*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe a Profissao',
-                'id' => 'profissao',
-                'class' => 'form-control'
-            )
-        ));
+        if( (int) $values['id'] > 0)
+            $perfil = $this->find($values['id']);
+        else
+        $perfil = new \Application\Entity\Perfil();
+    var_dump($values);
+        $perfil->setStatusRelacionamento($values['statusRelacionamento']);
+        $perfil->setProfissao($values['profissao']);
+        $perfil->setFormacao($values['formacao']);
+        $perfil->setOndeTrabalha($values['ondeTrabalha']);
+        //campos para endereco
+        //relacionamento com endereco
+        $perfil->setEndereco();
+
+//        protected 'endereco' => null
+//        protected 'perfil' => null
+//        
+        $perfil->setNome($values['nome']);
+        $perfil->setSobrenome($values['sobrenome']);
+        $perfil->setEmail($values['email']);
+        $perfil->setCelular($values['celular']);
+        $perfil->setSenha($values['senha']);
+        $perfil->setDataNascimento($values['dataNascimento']);
+        $perfil->setSexo($values['sexo']);
+        $perfil->setAutenticado($values['autenticado']);
+        $perfil->setRole($values['rolex']);
+
+
         
-        $this->add(array(
-            'name' => 'formacao',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Formacao*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe a formação',
-                'id' => 'formacao',
-                'class' => 'form-control'
-            )
-        ));
-        
-         $this->add(array(
-            'name' => 'ondeTrabalha',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'OndeTrabalha*'
-            ),
-            'attributes' => array(
-                'placeholder' => 'Informe onde trabalha',
-                'id' => 'ondeTrabalha',
-                'class' => 'form-control'
-            )
-        ));
-     
-  
-         // puxar os fields de endereco
-         
-        
-        $this->add(array(
-            'name' => 'submit',
-            'type' => 'submit',
-            'attributes' => array(
-                'value' => 'Salvar',
-                'class' => 'btn btn-primary'
-            )
-        ));
-        
+        $this->getObjectManager()->persist($perfil);
+        try{
+            $this->getObjectManager()->flush();
+        }catch(\Exception $e){
+            throw new EntityException('Erro ao salvar dados');
+        }
+
+        return $perfil;        
     }
+
+
 }
