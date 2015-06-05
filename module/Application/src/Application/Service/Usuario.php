@@ -18,14 +18,12 @@ class Usuario extends Service
 
     public function saveUsuario($values)
     {
-        
-        $values = new \Usuario();
-        var_dump($values);exit;
-        
         if( (int) $values['id'] > 0)
-            $cidade = $this->find($values['id']);
+            $usuario = $this->find($values['id']);
         else
-            $cidade = new \Admin\Model\Cidade();
+            $usuario = new \Application\Entity\Usuario();
+        
+        var_dump($usuario);exit;
         $cidade->setDescricao($values['descricao']);
         $uf = $this->getService('Admin\Service\Uf')->find($values['uf']);
         $cidade->setUf($uf);
