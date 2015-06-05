@@ -136,8 +136,8 @@ class Usuario extends Form
             'name' => 'autenticado',
             'type' => 'select',
             'options' => array(
-                'label' => 'Autenticacao:*',
-                'value_options' => array('Sim' => true, 'Não' => false)
+                'label' => 'Autenticacão:*',
+                'value_options' => array( true =>'Sim', false => 'Não')
             ),
             'attributes' => array(
                 'class' => 'form-control'
