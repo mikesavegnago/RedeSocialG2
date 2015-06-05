@@ -58,10 +58,10 @@ class Perfil extends Usuario
     protected $ondeTrabalha;
     
     /**
-     * 
-     * @ORM\Column (type="integer")
-     * 
-     * @var integer
+     * @ORM\ManyToOne(targetEntity="Endereco", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_endereco", referencedColumnName="id")
+     *
+     * @var \Application\Entity\Endereco
      */
     protected $endereco;
     
