@@ -15,7 +15,7 @@ use Zend\InputFilter\InputFilter;
  * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
  */
-class Perfil extends Entity
+class Perfil extends Usuario
 {
     /**
      * @ORM\Id
