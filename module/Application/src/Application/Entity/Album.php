@@ -32,8 +32,7 @@ class Album extends Entity
      *
      * @var \Admin\Entity\Perfil
      */
-    protected $perfil;
-    
+    protected $perfil;    
     
     
     /**

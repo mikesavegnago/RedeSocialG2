@@ -39,46 +39,7 @@ class Evento extends Entity
      *
      * @var \Admin\Entity\Usuario
      */
-    protected $perfil;
-    
-    /**
-     * @ORM\Column (type="string")
-     *
-     * @var string
-     */
-    protected $statusRelacionamento;
-
-    /**
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     */
-    protected $profissao;
-    
-    /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     */
-    protected $formacao;
-    
-    /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     * 
-     */
-    protected $ondeTrabalha;
-    
-    /**
-     * 
-     * @ORM\Column (type="integer")
-     * 
-     * @var integer
-     */
-    protected $idEnd;
+    protected $perfil;    
     
     
     /**
@@ -88,89 +49,43 @@ class Evento extends Entity
         return $this->id;
     }
 
+   
     /**
-     * @param string $idUsr
+     * @return string
+     */
+    public function getCapa(){
+        return $this->capa;
+    }
+    
+    /**
+     * @param $capa
+     */
+    public function setCapa($capa){
+        $this->capa = $capa;
+    }
+    
+     /**
+     * @return integer
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * @param string $perfil
      */
     public function setPerfil($perfil) {
         $this->perfil = $perfil;
     }
     
     /**
-     * @return integer
+     * @return perfil
      * 
      */
     public function getPerfil(){
         return $this->perfil;
     }
-
-    /**
-     * @return string
-     * 
-     */
-    public function getStatusRelacionamento(){
-        return $this->statusRelacionamento;
-    }
-    
-    /**
-     * @param string $statusRelacionamento
-     */
-    public function setStatusRelacionamento($statusRelacionamento){
-        $this->statusRelacionamento = $statusRelacionamento;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getProfissao(){
-        return $this->profissao;
-    }
-    
-    /**
-     * @param $profissao
-     */
-    public function setProfissao($profissao){
-        $this->profissao = $profissao;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getFormacao(){
-        return $this->formacao;
-    }
-    
-    /**
-     * @param  $formacao 
-     */
-    public function setFormacao($formacao){
-        $this->formacao = $formacao;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getOndeTrabalha(){
-        return $this->ondeTrabalha;
-    }
-    
-    /**
-     * @param $ondeTrabalha
-     */
-    public function setOndeTrabalha($ondeTrabalha){
-        $this->ondeTrabalha = $ondeTrabalha;
-    }
-    
-    /**
-     * @return integer
-     */
-    public function getIdEnd(){
-        return $this->idEnd;
-    }
-    
-    
    
-
-    
 
 }
 

@@ -64,6 +64,12 @@ class Perfil extends Usuario
      * @var \Application\Entity\Endereco
      */
     protected $endereco;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Imagem")
+     * @ORM\JoinColumn(name="id_imagem",referencedColumnName="id")
+     */
+    protected $imagem;
     
     
     /**
@@ -143,9 +149,7 @@ class Perfil extends Usuario
      */
     public function setEndereco($endereco){
          $this->endereco = $endereco;
-    }
-    
-    
+    }    
    
 
     
