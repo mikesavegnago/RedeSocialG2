@@ -68,6 +68,8 @@ class Perfil extends Usuario
     /**
      * @ORM\OneToOne(targetEntity="Imagem")
      * @ORM\JoinColumn(name="id_imagem",referencedColumnName="id")
+     * 
+     *  @var \Application\Entity\Imagem
      */
     protected $imagem;
     
