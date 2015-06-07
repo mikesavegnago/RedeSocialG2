@@ -16,6 +16,13 @@ use Core\Controller\ActionController as ActionController;
  */
 class Usuario extends Service
 {
+   public function findUsuario($values ,$em){
+       
+       $usuario = $em->find('\Application\Entity\Usuario',$values);
+       
+       return $usuario;
+   }
+    
    public function saveUsuario($values)
     {
         if( (int) $values['id'] > 0)
