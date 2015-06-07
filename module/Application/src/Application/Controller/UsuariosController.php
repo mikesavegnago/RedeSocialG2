@@ -23,7 +23,12 @@ class UsuariosController extends ActionController
     */
     public function indexAction()
     {
-         return new ViewModel();
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $usuarios = $em->getRepository('\Application\Entity\Usuario')->findAll();
+        
+         return new ViewModel(array(
+             'usuarios' => $usuarios
+         ));
     }
     
     /**
@@ -46,8 +51,8 @@ class UsuariosController extends ActionController
     {
         $form = new Form($this->getObjectManager());
         $request = $this->getRequest();
+        
         if ($request->isPost()) {
-            
             $valores = $request->getPost();
             $usuario = new \Application\Entity\Usuario();
             $filtros = $usuario->getInputFilter();
@@ -67,6 +72,7 @@ class UsuariosController extends ActionController
                 return $this->redirect()->toUrl('/');    
             }                    
         }
+        
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
             $usuario = $this->getService('Application\Service\Usuario')->find($id);
@@ -77,19 +83,21 @@ class UsuariosController extends ActionController
     }
 
     /**
-    *Função delete
+    *Função delete 
     *
     *@return void
     */
     public function deleteAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
+        $id = $this->params()->fromRoute('id', 0);
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        
         try {
-            $this->getService('Admin\Service\Usuario')->delete($id);
+            $this->getService('Application\Service\Usuario')->removerUsuario($id, $em);
         } catch(\Exception $e) {
-            echo $e->getMessage();
+            echo $e->getMessage(); exit;
         }
 
-        return $this->redirect()->toUrl('/admin/usuarios');
+        return $this->redirect()->toUrl('/application/usuarios');
     }
 }
