@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-body" style="width: 500px;">
       <?php
-        echo $this->form()->openTag($form); 
+        echo $this->form()->openTag($form);
     ?>
 
         
@@ -30,23 +30,25 @@
         <?php echo $this->formInput($form->get('celular')); ?>
     </div> 
     <div>
-        <?php echo $form->get('senha')->getLabel(); ?>
+        <?php echo $form->get('senha')->getLabel();  ?>
     </div>
     <div class="input-xlarge">
-        <?php echo $this->formInput($form->get('senha')); ?>
+        <?php echo $this->formInput($form->get('senha'));  ?>
     </div> 
     <br>
     <div>
-        <?php echo $form->get('role')->getLabel(); ?>
+        <?php echo $form->get('role')->getLabel();  ?>
     </div>
     <div class="input-xlarge">
-        <?php echo $this->formSelect($form->get('role')); ?>
+        <?php echo $this->formSelect($form->get('role'));  ?>
     </div> 
     <div>
-        <?php echo $form->get('dataNascimento')->getLabel(); ?>
+        <?php echo $form->get('dataNascimento')->getLabel();  ?>
     </div>
     <div class="input-xlarge">
-        <?php echo $this->formInput($form->get('dataNascimento')); ?>
+        <?php
+        //ta dando erro aqui mike ao editar
+        echo $this->formInput($form->get('dataNascimento'));  ?>
     </div> 
     <div>
         <?php echo $form->get('sexo')->getLabel(); ?>
@@ -58,12 +60,12 @@
         <?php echo $form->get('autenticado')->getLabel(); ?>
     </div>
     <div class="input-xlarge">
-        <?php echo $this->formSelect($form->get('autenticado')); ?>
+        <?php echo $this->formSelect($form->get('autenticado'));  ?>
     </div> 
     <br><hr>
     <br>
     <div class="input-group">
-        <?php echo $this->formSubmit($form->get('submit')); ?>
+        <?php echo $this->formSubmit($form->get('submit'));  ?>
     </div> 
     <?php 
         echo $this->form()->closeTag();
