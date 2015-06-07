@@ -63,13 +63,6 @@ class Evento extends Entity
     public function setCapa($capa){
         $this->capa = $capa;
     }
-    
-     /**
-     * @return integer
-     */
-    public function getId() {
-        return $this->id;
-    }
 
     /**
      * @param string $perfil
