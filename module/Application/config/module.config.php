@@ -50,48 +50,53 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type'    => 'Literal',
                 'options' => array(
-                    'route' => '/',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Login',
-                        'action' => 'index',
-                    ),
-                ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/application',
+                    'route'    => '/application',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
-                        'controller' => 'Index',
-                        'action' => 'index',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                        'module'        => 'application'
                     ),
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
                     'default' => array(
-                        'type' => 'Segment',
+                        'type'    => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action]]',
+                            'route'    => '/[:controller[/:action]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
                             ),
                         ),
+                        'child_routes' => array( //permite mandar dados pela url 
+                            'wildcard' => array(
+                                'type' => 'Wildcard'
+                            ),
+                        ),
                     ),
+                    
                 ),
             ),
+            'index_paginacao' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/[page/:page]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index',
+                        'module' => 'application',
+                        'page' => 1,
+                    ),
+                ),
+            ), 
         ),
     ),
-    
     'service_manager' => array(
         'factories' => array(
             'Session' => function ($sm) {
