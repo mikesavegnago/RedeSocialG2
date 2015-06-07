@@ -4,6 +4,7 @@ namespace Application\Service;
 
 use Core\Service\Service;
 use Core\Model\EntityException as EntityException;
+use Core\Controller\ActionController as ActionController;
 
 /**
 * Service Save Entityes
@@ -15,8 +16,7 @@ use Core\Model\EntityException as EntityException;
  */
 class Usuario extends Service
 {
-
-    public function saveUsuario($values)
+   public function saveUsuario($values)
     {
         if( (int) $values['id'] > 0)
             $usuario = $this->find($values['id']);
@@ -43,6 +43,21 @@ class Usuario extends Service
         return $usuario;        
     }
 
+    
+    public function removerUsuario($values ,$em)
+    {
+        
+        
+        if ($values > 0) {
+            $usuario = $em->find('\Application\Entity\Usuario',$values);
+            $em->remove($usuario);
+
+            try {
+                $em->flush();
+            } catch (\Exception $e) {
+            }
+        }
+    }
 
 
 }
