@@ -36,6 +36,12 @@ class Usuario extends Service
         $usuario->setSobrenome($values['sobrenome']);
         $usuario->setCelular($values['celular']);
         $usuario->setDataNascimento( new \DateTime($values['dataNascimento']));
+        $idade =  (new \DateTime())->format('Y') -  ($usuario->getDataNascimento()->format('Y')) ;
+        
+        if($idade < 16){
+            die('usuario não pode se cadastrar pois sua idade é menor que 16 anos');
+        }
+        
         $usuario->setSexo($values['sexo']);
         $usuario->setAutenticacao($values['autenticado']);
         $usuario->setRole($values['role']);
