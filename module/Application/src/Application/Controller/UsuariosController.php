@@ -49,6 +49,7 @@ class UsuariosController extends ActionController
     */
     public function saveAction()
     {
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new Form($this->getObjectManager());
         $request = $this->getRequest();
         
@@ -69,13 +70,13 @@ class UsuariosController extends ActionController
                     echo $e->getMessage(); 
                     exit;
                 }
-                return $this->redirect()->toUrl('/');    
+                return $this->redirect()->toUrl('/application/usuarios');    
             }                    
         }
         
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $usuario = $this->getService('Application\Service\Usuario')->find($id);
+            $usuario = $this->getService('Application\Service\Usuario')->findUsuario($id ,$em);
             $form->bind($usuario);
         }
 
