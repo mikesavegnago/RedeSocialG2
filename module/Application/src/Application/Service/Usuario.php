@@ -16,9 +16,9 @@ use Core\Controller\ActionController as ActionController;
  */
 class Usuario extends Service
 {
-   public function findUsuario($values ,$em){
-       
-       $usuario = $em->find('\Application\Entity\Usuario',$values);
+   public function findUsuario($values){
+       $em = $this->getObjectManager();
+       $usuario = $em->find ('\Application\Entity\Usuario',$values);
        
        return $usuario;
    }
@@ -43,8 +43,8 @@ class Usuario extends Service
         }
         
         $usuario->setSexo($values['sexo']);
-        $usuario->setAutenticacao($values['autenticado']);
-        $usuario->setRole($values['role']);
+        $usuario->setAutenticacao(true);
+        $usuario->setRole('ADMIN');
         
         $this->getObjectManager()->persist($usuario);
         try{
@@ -57,9 +57,10 @@ class Usuario extends Service
     }
 
     
-    public function removerUsuario($values ,$em)
+    public function removerUsuario($values )
     {
         
+        $em = $this->getObjectManager();
         
         if ($values > 0) {
             $usuario = $em->find('\Application\Entity\Usuario',$values);
