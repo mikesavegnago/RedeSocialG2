@@ -254,6 +254,20 @@ class Usuario extends Entity
                         )
                 )
         );
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'celular',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'Int'
+                                )
+                            )
+                        )
+                )
+        );
  
 
         $input_filter->add(
@@ -285,6 +299,42 @@ class Usuario extends Entity
                                     'name' => 'NotEmpty',
                                     'options' => array(
                                         'message' => 'O campo login não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'sobrenome',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 4,
+                                        'max' => 250,
+                                        'message' => 'O campo sobrenome deve ser'
+                                        . ' maior que 4 caracteres e menor que'
+                                        . ' 250 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo sobrenome não '
                                         . ' pode estar vazio'
                                     )
                                 )
@@ -357,6 +407,42 @@ class Usuario extends Entity
                                     'name' => 'NotEmpty',
                                     'options' => array(
                                         'message' => 'O campo senha não
+                               pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+        
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'sexo',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 4,
+                                        'max' => 255,
+                                        'message' => 'O campo sexo deve ter mais
+                              que 4 caracteres e menos que 255'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo sexo não
                                pode estar vazio'
                                     )
                                 )
