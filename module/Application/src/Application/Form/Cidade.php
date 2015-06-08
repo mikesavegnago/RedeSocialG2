@@ -39,7 +39,7 @@ class Cidade extends Form
             'options' => array(                
                 'label' => 'UF',
                 'object_manager' => $em,
-                'target_class' => 'Admin\Model\Uf',
+                'target_class' => 'Application\Entity\Uf',
                 'empty_option' => 'SELECIONE UM ESTADO',
                 'property' => 'descricao',
                 'is_method' => true,
