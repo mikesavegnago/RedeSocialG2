@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Form;
+namespace Application\Form;
 
 use Zend\Form\Element;
 use Zend\Form\Form;
@@ -18,6 +18,8 @@ class Cidade extends Form
     {
         parent::__construct('cidade');
         $this->setName('cidade');
+        $this->setAttribute('method', 'post');
+        $this->setAttribute('action', '');
 
         $this->add(array(
             'type' => 'hidden',
