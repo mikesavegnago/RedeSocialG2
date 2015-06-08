@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -12,20 +13,28 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class EnderecosController extends AbstractActionController
-{
-    public function indexAction()
+class EnderecosController extends AbstractActionController {
+
+    public function indexAction() {
+        
+    }
+
+    public function saveAction() 
     {
-        
-        return new ViewModel();
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $formEndereco = new \Application\Form\Endereco($em);
+        $formCidade = new \Application\Form\Cidade($em);
+        $formUfs = new \Application\Form\Uf();
+
+        return new ViewModel(array(
+            'formEndereco' => $formEndereco,
+            'formUfs' => $formUfs,
+            'formCidade' => $formCidade
+        ));
     }
-    
-    public function saveAction() {
-        
-    }
-    
+
     public function deleteAction() {
         
     }
-    
+
 }
