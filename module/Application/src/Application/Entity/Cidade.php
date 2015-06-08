@@ -60,7 +60,7 @@ class Cidade extends Entity
     */
     public function setUf( $uf )
     {
-        $this->uf = $this->valid('uf', $uf);
+        $this->uf = $uf;
     }
     /**
     *@Uf
