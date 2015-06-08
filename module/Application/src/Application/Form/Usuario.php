@@ -107,7 +107,7 @@ class Usuario extends Form
         
          $this->add(array(
             'name' => 'dataNascimento',
-            'type' => 'text',
+            'type' => 'Date',
             'options' => array(
                 'label' => 'Data de Nascimento*'
             ),
