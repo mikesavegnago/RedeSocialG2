@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Service;
+namespace Application\Service;
 
 use Core\Service\Service;
 use Core\Model\EntityException as EntityException;
@@ -24,7 +24,7 @@ class Cidade extends Service
     public function fetchAll()
     {
         $select = $this->getObjectManager()->createQueryBuilder()
-            ->select('Cidade')->from('Admin\Model\Cidade', 'Cidade');
+            ->select('Cidade')->from('Application\Entity\Cidade', 'Cidade');
 
         return $select->getQuery()->getResult();
     }
@@ -34,7 +34,7 @@ class Cidade extends Service
         $nome = mb_strtoupper($nome, 'UTF-8');
         $select = $this->getObjectManager()->createQueryBuilder()
             ->select('Cidade.descricao as label', 'Cidade.id')
-            ->from('Admin\Model\Cidade', 'Cidade') 
+            ->from('Application\Entity\Cidade', 'Cidade') 
             ->where("Cidade.descricao like ?1")
             ->setParameter(1, "%$nome%");
 
@@ -52,14 +52,14 @@ class Cidade extends Service
     {
         $id = (int) $id;
         
-        return $this->getObjectManager()->find('\Admin\Model\Cidade', $id);
+        return $this->getObjectManager()->find('\Application\Entity\Cidade', $id);
     }
 
     public function findByNome($nome)
     {
         mb_strtoupper($nome, 'UTF-8');
 
-        return $this->getObjectManager()->getRepository('\Admin\Model\Cidade')
+        return $this->getObjectManager()->getRepository('\Application\Entity\Cidade')
             ->findOneBy(array('descricao' => $nome));
     }
 
@@ -75,9 +75,9 @@ class Cidade extends Service
         if( (int) $values['id'] > 0)
             $cidade = $this->find($values['id']);
         else
-            $cidade = new \Admin\Model\Cidade();
+            $cidade = new \Application\Entity\Cidade();
         $cidade->setDescricao($values['descricao']);
-        $uf = $this->getService('Admin\Service\Uf')->find($values['uf']);
+        $uf = $this->getService('Application\Service\Uf')->find($values['uf']);
         $cidade->setUf($uf);
         $this->getObjectManager()->persist($cidade);
         try{

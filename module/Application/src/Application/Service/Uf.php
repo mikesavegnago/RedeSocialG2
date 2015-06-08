@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Service;
+namespace Applicaion\Service;
 
 use Core\Service\Service;
 use Core\Model\EntityException as EntityException;
@@ -24,7 +24,7 @@ class Uf extends Service
     public function fetchAll()
     {
         $select = $this->getObjectManager()->createQueryBuilder()
-            ->select('Uf')->from('Admin\Model\Uf', 'Uf')
+            ->select('Uf')->from('Application\Entity\Uf', 'Uf')
             ->orderBy('Uf.descricao', 'ASC');
 
         return $select->getQuery()->getResult();
@@ -35,7 +35,7 @@ class Uf extends Service
         $nome = mb_strtoupper($nome, 'UTF-8');
         $select = $this->getObjectManager()->createQueryBuilder()
             ->select('Uf.descricao as label', 'Uf.id')
-            ->from('Admin\Model\Uf', 'Uf') 
+            ->from('Application\Entity\Uf', 'Uf') 
             ->where("Uf.descricao like ?1")
             ->setParameter(1, "%$nome%");
 
@@ -53,7 +53,7 @@ class Uf extends Service
     {
         $id = (int) $id;
 
-        return $this->getObjectManager()->find('\Admin\Model\Uf', $id);
+        return $this->getObjectManager()->find('\Application\Entity\Uf', $id);
     }
 
     /**
