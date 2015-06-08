@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Form;
+namespace Application\Form;
 
 use Zend\Form\Element;
 use Zend\Form\Form;
@@ -18,6 +18,8 @@ class Uf extends Form
     {
         parent::__construct('uf');
         $this->setName('uf');
+        $this->setAttribute('method', 'post');
+        $this->setAttribute('action', '');
 
         $this->add(array(
             'type' => 'hidden',
@@ -29,7 +31,7 @@ class Uf extends Form
                     'type' => 'text',
                     'name' => 'descricao',
                     'options' => array(
-                        'label' => 'UF'
+                        'label' => 'Estado'
                     ),
                 ));
 
