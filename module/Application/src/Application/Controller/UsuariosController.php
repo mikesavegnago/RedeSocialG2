@@ -76,9 +76,10 @@ class UsuariosController extends ActionController
         }
         
         $id = (int) $this->params()->fromRoute('id', 0);
+        
         if ($id > 0) {
             $usuario = $this->getService('Application\Service\Usuario')
-                    ->findUsuario($id ,$em);
+                    ->findUsuario($id);
             $form->bind($usuario);
         }
 
@@ -96,7 +97,7 @@ class UsuariosController extends ActionController
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         
         try {
-            $this->getService('Application\Service\Usuario')->removerUsuario($id,$em);
+            $this->getService('Application\Service\Usuario')->removerUsuario($id);
         } catch(\Exception $e) {
             echo $e->getMessage(); exit;
         }
