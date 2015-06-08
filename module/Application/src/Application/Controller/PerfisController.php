@@ -44,6 +44,7 @@ class PerfisController extends ActionController
     */
     public function saveAction()
     {
+        // fazer com que o form /na parte de usuarios ja venha preechido quando clicado em cadsatrar perfiol
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new \Application\Form\Perfil($em);
         $request = $this->getRequest();
