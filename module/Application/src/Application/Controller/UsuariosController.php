@@ -65,7 +65,8 @@ class UsuariosController extends ActionController
                 $values = $form->getData();
                 
                 try{
-                    $usuario = $this->getService('Application\Service\Usuario')->saveUsuario($values);
+                    $usuario = $this->getService('Application\Service\Usuario')
+                            ->saveUsuario($values);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
@@ -76,7 +77,8 @@ class UsuariosController extends ActionController
         
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $usuario = $this->getService('Application\Service\Usuario')->findUsuario($id ,$em);
+            $usuario = $this->getService('Application\Service\Usuario')
+                    ->findUsuario($id ,$em);
             $form->bind($usuario);
         }
 
@@ -94,7 +96,7 @@ class UsuariosController extends ActionController
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         
         try {
-            $this->getService('Application\Service\Usuario')->removerUsuario($id, $em);
+            $this->getService('Application\Service\Usuario')->removerUsuario($id,$em);
         } catch(\Exception $e) {
             echo $e->getMessage(); exit;
         }
