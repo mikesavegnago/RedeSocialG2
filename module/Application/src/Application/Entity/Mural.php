@@ -48,13 +48,6 @@ class Mural extends Entity
      */
     protected $descricao;
     
-    /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     */
-    protected $permissao;
     
     /**
      * @return id
@@ -98,19 +91,7 @@ class Mural extends Entity
         $this->descricao = $descricao;
     }
     
-    /**
-     * @return string
-     */
-    public function getPermissao(){
-        return $this->permissao;
-    }
-    
-    /**
-     * @param $permissao
-     */
-    public function setPermissao($permissao){
-        $this->permissao = $permissao;
-    }
+
     
     /**
 	*

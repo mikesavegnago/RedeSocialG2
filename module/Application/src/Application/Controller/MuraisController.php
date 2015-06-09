@@ -63,11 +63,11 @@ class MuraisController extends ActionController
         }
         $id = (int) $this->params()->fromRoute('id', 0);
         if ($id > 0) {
-            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
+            $usuario = $this->getService('Application\Service\Mural')->find($id);
             $form->bind($usuario);
         }
 
-        return new ViewModel(array('form' => $form,'formUsuario' => $formUsuario));
+        return new ViewModel(array('form' => $form));
     }
 
 

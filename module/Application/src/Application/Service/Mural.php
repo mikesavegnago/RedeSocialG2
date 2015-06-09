@@ -16,7 +16,7 @@ use Core\Model\EntityException as EntityException;
 class Mural extends Service
 {
 
-    public function saveMural($values)
+    public function saveAction($values)
     {
         var_dump($values);exit;
         if( (int) $values['id'] > 0)
