@@ -202,14 +202,15 @@ class Endereco extends Entity
                                         'message' => 'O campo rua não '
                                         . ' pode estar vazio'
                                     )
-                                )
-                            )
+                                ),
+                            ),
                         )
                 )
         );
 
 
-    $inputFilter->add($factory->createInput(array(
+       $input_filter->add(
+            $factory->createInput(array(
                 'name' => 'numero',
                 'required' => true,
                 'validators' => array(
@@ -236,7 +237,7 @@ class Endereco extends Entity
                 ),
             )));
 
-     $inputFilter->add($factory->createInput(array(
+     $input_filter->add($factory->createInput(array(
                 'name' => 'bairro',
                 'required' => true,
                 'validators' => array(
@@ -263,7 +264,7 @@ class Endereco extends Entity
                 ),
             )));
 
- $inputFilter->add($factory->createInput(array(
+ $input_filter->add($factory->createInput(array(
                 'name' => 'idCidade',
                 'required' => true,
                 'validators' => array(
@@ -274,7 +275,7 @@ class Endereco extends Entity
                 ),
             )));
 
- $inputFilter->add($factory->createInput(array(
+ $input_filter->add($factory->createInput(array(
                 'name' => 'idUf',
                 'required' => true,
                 'validators' => array(
@@ -285,7 +286,8 @@ class Endereco extends Entity
                 ),
             )));
 
-
+        $this->input_filter = $input_filter;
+        return $this->input_filter;
 }
 }
 
