@@ -7,7 +7,7 @@ use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
 
 /**
-* Model Uf
+* Entity Uf
 *
 * @category Application
 * @package  Entity
@@ -73,7 +73,6 @@ class Uf extends Entity
     */
     public function getInputFilter()
     {
-        if (!$this->input_filter) {
             $input_filter = new InputFilter();
             $factory = new InputFactory();
 
@@ -124,9 +123,7 @@ class Uf extends Entity
             )
                 )
             );
-            $this->input_filter = $input_filter;
-        }
-
+        $this->input_filter = $input_filter;
         return $this->input_filter;
     }
 }
