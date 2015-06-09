@@ -52,8 +52,25 @@ class Uf extends Service
     public function find($id)
     {
         $id = (int) $id;
-
         return $this->getObjectManager()->find('\Application\Entity\Uf', $id);
+    }
+    /**
+    *Função de busca pordescricao
+    *
+    *@param integer $descricao
+    *
+    *@return Uf
+    */
+    public function findWithDesc($desc)
+    {
+        $uf = $this->getObjectManager()->getRepository('\Application\Entity\Uf')
+                ->findOneBy(array('descricao'=>$desc));
+        
+        if(count($uf)<= 0){
+            $values['uf'] = $desc;
+            $this->saveUfs($values);
+        }
+        return $uf;
     }
 
     /**
@@ -88,16 +105,14 @@ class Uf extends Service
     */
     public function saveUfs($values)
     {
-        if( (int) $values['id'] > 0)
-            $uf = $this->find($values['id']);
-        else
-            $uf = new \Admin\Model\Uf();
-        $uf->setDescricao($values['descricao']);
+        $uf = new \Application\Entity\Uf();
+        $uf->setDescricao($values['uf']);
+        
         $this->getObjectManager()->persist($uf);
         try{
             $this->getObjectManager()->flush();
         }catch(\Exception $e){
-            throw new EntityException('Erro ao salvar dados');
+            throw new EntityException('Erro ao salvar Estado'.$e);
         }
 
         return $uf;        

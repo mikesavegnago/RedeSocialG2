@@ -76,8 +76,9 @@ class Cidade extends Service
             $cidade = $this->find($values['id']);
         else
             $cidade = new \Application\Entity\Cidade();
-        $cidade->setDescricao($values['descricao']);
-        $uf = $this->getService('Application\Service\Uf')->find($values['uf']);
+        
+        $cidade->setDescricao($values['cidade']);
+        $uf = $this->getService('Application\Service\Uf')->findWithDesc($values['uf']);
         $cidade->setUf($uf);
         $this->getObjectManager()->persist($cidade);
         try{
