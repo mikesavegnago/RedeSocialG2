@@ -53,7 +53,7 @@ class Uf extends Entity
     */
     public function setDescricao($descricao)
     {
-        $this->descricao = $this->valid('descricao', $descricao);
+        $this->descricao =  $descricao;
     }
 
     /**
@@ -108,11 +108,11 @@ class Uf extends Entity
                             'name' => 'StringLength',
                             'options' => array(
                                 'encoding' => 'UTF-8',
-                                'min' => 3,
+                                'min' => 2,
                                 'max' => 80,
                                 'message' => 
                                 'O campo descrição deve 
-                                ter mais que 3 caracteres e menos que 80',
+                                ter mais que 2 caracteres e menos que 80',
                             ),
                         ),
                         array(
