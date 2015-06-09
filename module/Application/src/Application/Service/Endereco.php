@@ -25,16 +25,8 @@ class Endereco extends Service
     
    public function saveEndereco($values)
     {
-       
-//       if ((int) $values['id'] > 0) {
-//            $endereco = $this->find($values['id']);
-//            $endereco->bind($endereco);
-//        } else {
-//            $endereco = new \Application\Entity\Endereco();
-//        }
 
         $endereco = new \Application\Entity\Endereco();
-       
         $endereco->setRua($values['rua']);
         $endereco->setNumero($values['numero']);
         $endereco->setBairro($values['bairro']);

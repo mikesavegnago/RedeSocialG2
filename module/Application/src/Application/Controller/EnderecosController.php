@@ -23,6 +23,7 @@ class EnderecosController extends ActionController {
 
         $request = $this->getRequest();
         
+        
         if ($request->isPost())
         {
             $valores = $request->getPost();
@@ -46,23 +47,22 @@ class EnderecosController extends ActionController {
                 
                 $valuesEndereco = $formEndereco->getData();
                 $valuesCidade = $formCidade->getData();
-                $valuesUfs = $formUfs->getData();
                 
                 try{
-                    $ufs = $this->getService('Application\Service\Uf')->saveUfs($valuesUfs);
-//                    $cidade = $this->getService('Application\Service\Cidade')
-//                            ->saveUfs($valuesCidade);
-//                    $endereco = $this->getService('Application\Service\Endereco')
-//                            ->saveEndereco($valuesEndereco);
+                    $cidade = $this->getService('Application\Service\Cidade')->findWithDesc($valuesCidade);
+                    $valuesEndereco['cidade'] = $cidade;
+                    $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($valuesEndereco);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
                 }
+                
                 return $this->redirect()->toUrl('/application/enderecos/save');    
             }                    
         }
         
         $id = (int) $this->params()->fromRoute('id', 0);
+        
         if ($id > 0) {
             $usuario = $this->getService('Application\Service\Usuario')
                     ->findUsuario($id ,$em);

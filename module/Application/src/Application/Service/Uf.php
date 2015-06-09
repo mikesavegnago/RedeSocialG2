@@ -82,15 +82,6 @@ class Uf extends Service
     */
     public function save($values)
     {
-//        var_dump($values);exit;
-//        
-//        if( (int) $values['id'] > 0){
-//            $uf = $this->find($values['id']);
-//            $uf->bind($uf);
-//            //$form->get('cidade')->setValue($cidade->getId());
-//        }else{
-//            $uf = new \Admin\Model\Uf();
-//        }
         $uf = new \Admin\Model\Uf();
         $uf->setDescricao($values['descricao']);
         $this->getObjectManager()->persist($uf);
