@@ -25,14 +25,16 @@ class Usuario extends Service
     
    public function saveUsuario($values)
     {
-        if( (int) $values['id'] > 0)
-            $usuario = $this->find($values['id']);
-        else
+       $em = $this->getObjectManager();
+       if ((int) $values['id'] > 0) {
+            $usuario = $em->find('\Application\Entity\Usuario',$values['id']);
+        } else {
             $usuario = new \Application\Entity\Usuario();
-        
+        }
+
         $usuario->setNome($values['nome']);
         $usuario->setEmail($values['email']);
-        $usuario->setSenha($values['senha']);
+        $usuario->setSenha(md5($values['senha']));
         $usuario->setSobrenome($values['sobrenome']);
         $usuario->setCelular($values['celular']);
         $usuario->setDataNascimento( new \DateTime($values['dataNascimento']));
@@ -44,7 +46,7 @@ class Usuario extends Service
         
         $usuario->setSexo($values['sexo']);
         $usuario->setAutenticacao(true);
-        $usuario->setRole('ADMIN');
+        
         
         $this->getObjectManager()->persist($usuario);
         try{
