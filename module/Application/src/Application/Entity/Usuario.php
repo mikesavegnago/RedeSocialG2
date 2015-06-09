@@ -75,7 +75,7 @@ class Usuario extends Entity
     
     /**
      * 
-     * @ORM\Column (type="string",nullable = true)
+     * @ORM\Column (type="string", nullable = true)
      * 
      * @var string
      */
@@ -292,7 +292,7 @@ class Usuario extends Entity
                 $factory->createInput(
                         array(
                             'name' => 'sobrenome',
-                            'required' => true,
+                            'required' => false,
                             'filters' => array(
                                 array(
                                     'name' => 'StripTags'
