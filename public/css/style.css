@@ -2,10 +2,7 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
 }
-
-.zf-green {
-    color: #68b604;
-}
+ 
 
 .btn-success {
   background-color: #57a900;
@@ -39,12 +36,11 @@ html, body {
 	height: 100%;
 }
 body {
-    color: #fff;
     font-family: "Open Sans",sans-serif;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 /**********************************************************************/
 /************************** COMMON ELEMENTS **************************/
@@ -176,4 +172,10 @@ footer p {
 	#loggit {
 		width: 100%;
 	}
+}
+.foto-usuario{
+    width: 50px;
+}
+.foto-mural{
+    width: 150px;
 }
