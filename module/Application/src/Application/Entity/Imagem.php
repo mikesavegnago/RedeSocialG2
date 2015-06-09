@@ -34,13 +34,17 @@ class Imagem extends Entity
     protected $idAlbum;
     
     //fazer one to many de imagem para comentario e de imagem para like
-    
-    /**
-     * @ORM\Column (type="string")
+   
+
+  /**
+     * @ORM\Column(type="blob", nullable=true)
      *
-     * @var string
+     * @var blob
      */
+
     protected $imagem;
+
+
 
     /**
      * @return integer
@@ -49,16 +53,16 @@ class Imagem extends Entity
         return $this->id;
     }
 
-    /**
-     * @param string $imagem
+   /**
+     * @param blob $imagem
+     *
      */
     public function setImagem($imagem) {
         $this->imagem = $imagem;
     }
 
     /**
-     * @return string
-     * 
+     * @return blob
      */
     public function getImagem(){
         return $this->imagem;
@@ -78,6 +82,71 @@ class Imagem extends Entity
     public function getIdAlbum(){
         return $this->idAlbum;
     }
+
+
+    /**
+     * Filtros
+     *
+     * @return Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter() {
+        $input_filter = new InputFilter();
+        $factory = new InputFactory();
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'id',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'Int'
+                                )
+                            )
+                        )
+                )
+        );
+
+
+/*$inputFilter->add($factory->createInput(array(
+                'name' => 'idAlbum',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo Sobrenome não pode estar vazio')
+                    ),
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 3,
+                            'max' => 255,
+                            'message' => 'O campo sobrenome deve ter mais que 3 caracteres e menos que 255',
+                        ),
+                    ),
+                ),
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'StringToUpper',
+                        'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            ))); */
+
+
+
+    $inputFilter->add($factory->createInput(
+            array(
+                'name' => 'imagem',
+                'required' => false
+            )
+
+        ));
+         return $this->inputFilter;
+    }
 }
 
 ?>
+

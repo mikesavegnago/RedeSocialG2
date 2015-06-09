@@ -370,10 +370,9 @@ class Perfil extends Usuario
             )));
     
     $this->inputFilter = $inputFilter;
-        }
-        return $this->inputFilter;
-}
+            return $this->inputFilter;
+    }
 
-}
+    }
 
 ?>
