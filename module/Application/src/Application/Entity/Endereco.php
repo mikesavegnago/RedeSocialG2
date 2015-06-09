@@ -147,8 +147,148 @@ class Endereco extends Entity
     public function setIdCidade($idCidade){
         $this->idCidade = $idCIdade;
     }
-   
 
+    /**
+     * Filtros
+     *
+     * @return Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter() {
+        $input_filter = new InputFilter();
+        $factory = new InputFactory();
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'id',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'Int'
+                                )
+                            )
+                        )
+                )
+        );
+
+     $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'rua',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 1,
+                                        'max' => 30,
+                                        'message' => 'O campo rua deve ser'
+                                        . ' maior que 1 caracteres e menor que'
+                                        . ' 30 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo rua não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+
+
+    $inputFilter->add($factory->createInput(array(
+                'name' => 'numero',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo numero nao pode estar vazio')
+                    ),
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 2,
+                            'max' => 180,
+                            'message' => 'O campo numero deve ter mais que 2 caracteres e menos que 180',
+                        ),
+                    ),
+                ),
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'StringToUpper',
+                        'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            )));
+
+     $inputFilter->add($factory->createInput(array(
+                'name' => 'bairro',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo bairro nao pode estar vazio')
+                    ),
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 2,
+                            'max' => 180,
+                            'message' => 'O campo bairro deve ter mais que 2 caracteres e menos que 180',
+                        ),
+                    ),
+                ),
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'StringToUpper',
+                        'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            )));
+
+ $inputFilter->add($factory->createInput(array(
+                'name' => 'idCidade',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo cidade não pode estar vazio')
+                    )
+                ),
+            )));
+
+ $inputFilter->add($factory->createInput(array(
+                'name' => 'idUf',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo uf não pode estar vazio')
+                    )
+                ),
+            )));
+
+
+}
 }
 
 ?>
+   
+
