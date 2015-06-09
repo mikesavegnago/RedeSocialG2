@@ -72,15 +72,24 @@ class Cidade extends Service
     */
     public function save($values)
     {
-        if( (int) $values['id'] > 0)
-            $cidade = $this->find($values['id']);
-        else
-            $cidade = new \Application\Entity\Cidade();
+        
+        $uf = $this->getService('Application\Service\Uf')->findWithDesc($values['uf']);
+        
+//        var_dump($values);exit;
+//        
+//        if( (int) $values['id'] > 0){
+//            $cidade = $this->find($values['id']);
+//            $cidade->bind($cidade);
+//        }else{
+//            $cidade = new \Application\Entity\Cidade();
+//        }
+        
+        $cidade = new \Application\Entity\Cidade();
         
         $cidade->setDescricao($values['cidade']);
-        $uf = $this->getService('Application\Service\Uf')->findWithDesc($values['uf']);
         $cidade->setUf($uf);
         $this->getObjectManager()->persist($cidade);
+        
         try{
             $this->getObjectManager()->flush();
         }catch(\Exception $e){
@@ -88,6 +97,24 @@ class Cidade extends Service
         }
 
         return $cidade;        
+    }
+    
+        /**
+    *Função de busca pordescricao
+    *
+    *@param integer $descricao
+    *
+    *@return Uf
+    */
+    public function findWithDesc($value)
+    {
+        $cidade = $this->getObjectManager()->getRepository('\Application\Entity\Cidade')
+                ->findOneBy(array('descricao'=>$value['cidade']));
+        
+        if(count($cidade)<= 0){
+            $cidade = $this->save($value);
+        }
+        return $cidade;
     }
 
     /**

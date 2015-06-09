@@ -68,7 +68,7 @@ class Uf extends Service
         
         if(count($uf)<= 0){
             $values['uf'] = $desc;
-            $this->saveUfs($values);
+            $uf = $this->saveUfs($values);
         }
         return $uf;
     }
@@ -82,16 +82,22 @@ class Uf extends Service
     */
     public function save($values)
     {
-        if( (int) $values['id'] > 0)
-            $uf = $this->find($values['id']);
-        else
-            $uf = new \Admin\Model\Uf();
+//        var_dump($values);exit;
+//        
+//        if( (int) $values['id'] > 0){
+//            $uf = $this->find($values['id']);
+//            $uf->bind($uf);
+//            //$form->get('cidade')->setValue($cidade->getId());
+//        }else{
+//            $uf = new \Admin\Model\Uf();
+//        }
+        $uf = new \Admin\Model\Uf();
         $uf->setDescricao($values['descricao']);
         $this->getObjectManager()->persist($uf);
         try{
             $this->getObjectManager()->flush();
         }catch(\Exception $e){
-            throw new EntityException('Erro ao salvar dados');
+            throw new EntityException('Erro ao salvar dados');exit;
         }
 
         return $uf;        
