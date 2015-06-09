@@ -175,8 +175,204 @@ class Perfil extends Usuario
          $this->endereco = $endereco;
     }    
    
+   /**
+     * Filtros
+     *
+     * @return Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter() {
+        $input_filter = new InputFilter();
+        $factory = new InputFactory();
 
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'id',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'Int'
+                                )
+                            )
+                        )
+                )
+        );
+
+      
+  $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'statusRelacionamento',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 4,
+                                        'max' => 30,
+                                        'message' => 'O campo status relacionamento deve ser'
+                                        . ' maior que 4 caracteres e menor que'
+                                        . ' 30 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo status de relacionamento não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'profissao',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 1,
+                                        'max' => 30,
+                                        'message' => 'O campo profissao deve ser'
+                                        . ' maior que 1 caracteres e menor que'
+                                        . ' 30 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo profissao não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+
+ $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'formacao',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 1,
+                                        'max' => 30,
+                                        'message' => 'O campo formacao deve ser'
+                                        . ' maior que 1 caracteres e menor que'
+                                        . ' 30 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo formacao não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+
+ $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'ondeTrabalha',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 1,
+                                        'max' => 30,
+                                        'message' => 'O campo ondeTrabalha deve ser'
+                                        . ' maior que 1 caracteres e menor que'
+                                        . ' 30 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo ondeTrabalha não '
+                                        . ' pode estar vazio'
+                                    )
+                                )
+                            )
+                        )
+                )
+        );
+
+        $inputFilter->add($factory->createInput(array(
+                'name' => 'endereco',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo endereco não pode estar vazio')
+                    )
+                ),
+            )));
     
+    $inputFilter->add($factory->createInput(array(
+                'name' => 'imagem',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo imagem não pode estar vazio')
+                    )
+                ),
+            )));
+    
+    $this->inputFilter = $inputFilter;
+        }
+        return $this->inputFilter;
+}
 
 }
 
