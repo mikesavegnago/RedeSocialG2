@@ -27,7 +27,7 @@ return array(
             'orm_default' => array(
                 'object_manager' => 'Doctrine\ORM\EntityManager',
                 'identity_class' => 'Application\Entity\Usuario',
-                'identity_property' => 'login',
+                'identity_property' => 'email',
                 'credential_property' => 'senha',
             ),
             ),
