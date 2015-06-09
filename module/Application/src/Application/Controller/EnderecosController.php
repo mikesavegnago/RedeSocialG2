@@ -1,19 +1,13 @@
 <?php
 
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
 
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Core\Controller\ActionController as ActionController;
 
-class EnderecosController extends AbstractActionController {
+class EnderecosController extends ActionController {
 
     public function indexAction() 
     {
@@ -29,31 +23,37 @@ class EnderecosController extends AbstractActionController {
 
         $request = $this->getRequest();
         
-        if ($request->isPost()) {
+        if ($request->isPost())
+        {
             $valores = $request->getPost();
-            var_dump($valores);exit;
-            $usuario = new \Application\Entity\Usuario();
-            $filtros = $usuario->getInputFilter();
-            $formEndereco->setInputFilter($filtros);
+            $endereco = new \Application\Entity\Endereco();
+            $cidade = new \Application\Entity\Cidade();
+            $ufs = new \Application\Entity\Uf();
+            $filtrosEndereco = $endereco->getInputFilter();
+            $filtrosCidade = $cidade->getInputFilter();
+            $filtrosUfs = $ufs->getInputFilter();
+            $formEndereco->setInputFilter($filtrosEndereco);
             $formEndereco->setData($valores);
-            $formCidade->setInputFilter($filtros);
+            $formCidade->setInputFilter($filtrosCidade);
             $formCidade->setData($valores);
-            $formUfs->setInputFilter($filtros);
+            $formUfs->setInputFilter($filtrosUfs);
             $formUfs->setData($valores);
+            $formCidade->isValid();
+            $formUfs->isValid();
             
-            
-            if (!$formEndereco->isValid()) {
+            if (!($formEndereco->isValid() && $formCidade->isValid() && $formUfs->isValid()))
+            {
+                
                 $valuesEndereco = $formEndereco->getData();
                 $valuesCidade = $formCidade->getData();
                 $valuesUfs = $formUfs->getData();
                 
                 try{
-                    $ufs = $this->getService('Application\Service\Ufs')
-                            ->saveUfs($valuesUfs);
-                    $cidade = $this->getService('Application\Service\Cidade')
-                            ->saveUfs($valuesCidade);
-                    $endereco = $this->getService('Application\Service\Endereco')
-                            ->saveEndereco($valuesEndereco);
+                    $ufs = $this->getService('Application\Service\Uf')->saveUfs($valuesUfs);
+//                    $cidade = $this->getService('Application\Service\Cidade')
+//                            ->saveUfs($valuesCidade);
+//                    $endereco = $this->getService('Application\Service\Endereco')
+//                            ->saveEndereco($valuesEndereco);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
