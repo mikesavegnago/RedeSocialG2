@@ -34,13 +34,18 @@ class Auth extends Service
             ->setCredentialValue($senha);
         $result = $authService->authenticate();
         if (!$result->isValid()) {
-            throw new \Exception("Login ou senha inválidos");
+            throw new \Exception("Email ou senha inválidos");
         }
         $session = $this->getServiceManager()->get('Session');
 	$identity = $result->getIdentity();
         $session->offsetSet('user', $identity);
-        $session->offsetSet('role', $identity->getPerfil());
-        var_dump($session);exit;
+        $autenticado = $identity->getAutenticacao();
+        if($autenticado){
+            $session->offsetSet('role','ADMIN' );
+        }
+        else{
+            $session->offsetSet('role', 'VISITANTE');
+        }
         return true;
     }
     
