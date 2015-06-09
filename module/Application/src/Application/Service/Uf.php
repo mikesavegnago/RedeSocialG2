@@ -1,6 +1,6 @@
 <?php
 
-namespace Applicaion\Service;
+namespace Application\Service;
 
 use Core\Service\Service;
 use Core\Model\EntityException as EntityException;
@@ -64,6 +64,29 @@ class Uf extends Service
     *@return Uf
     */
     public function save($values)
+    {
+        if( (int) $values['id'] > 0)
+            $uf = $this->find($values['id']);
+        else
+            $uf = new \Admin\Model\Uf();
+        $uf->setDescricao($values['descricao']);
+        $this->getObjectManager()->persist($uf);
+        try{
+            $this->getObjectManager()->flush();
+        }catch(\Exception $e){
+            throw new EntityException('Erro ao salvar dados');
+        }
+
+        return $uf;        
+    }
+    /**
+    *Função de salvar
+    *    
+    *@param array $values [Opcional]
+    *
+    *@return Uf
+    */
+    public function saveUfs($values)
     {
         if( (int) $values['id'] > 0)
             $uf = $this->find($values['id']);
