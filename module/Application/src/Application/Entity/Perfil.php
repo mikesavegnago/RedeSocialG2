@@ -58,6 +58,15 @@ class Perfil extends Usuario
     protected $ondeTrabalha;
     
     /**
+     * 
+     * @ORM\Column (type="string")
+     * 
+     * @var string
+     * 
+     */
+    protected $permissao;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Endereco", cascade={"persist"})
      * @ORM\JoinColumn(name="id_endereco", referencedColumnName="id")
      *
@@ -108,6 +117,19 @@ class Perfil extends Usuario
      */
     public function setProfissao($profissao){
         $this->profissao = $profissao;
+    }
+    /**
+     * @return string
+     */
+    public function getPermissao(){
+        return $this->permissao;
+    }
+    
+    /**
+     * @param $permissao
+     */
+    public function setPermissao($permissao){
+        $this->permissao = $permissao;
     }
     
     /**
