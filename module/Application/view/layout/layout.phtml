@@ -15,6 +15,7 @@
                         ->prependStylesheet($this->basePath('css/style.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.css'))
                         ->prependStylesheet($this->basePath('css/font-awesome.css'))
+                        ->prependStylesheet($this->basePath('css/skin-blue.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap.css')) ?>
 
         <!-- Scripts -->
@@ -27,13 +28,7 @@
 
     </head>
     <body style="background: url('img/background.jpg'); background-size: 100%;">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header"> 
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/logo.png') ?>" alt="Prime"/></a>
-                </div> 
-            </div>
-        </nav>
+        
         <div class="container">
             <?php echo $this->content; ?>  
         </div> <!-- /container -->
