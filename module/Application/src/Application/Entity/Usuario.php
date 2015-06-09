@@ -35,7 +35,7 @@ class Usuario extends Entity
     protected $nome;
     
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string",nullable = true)
      *
      * @var string
      */
@@ -50,7 +50,7 @@ class Usuario extends Entity
     
     /**
      * 
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string",nullable = true)
      * 
      * @var string
      */
@@ -67,7 +67,7 @@ class Usuario extends Entity
     
     /**
      * 
-     * @ORM\Column (type="datetime")
+     * @ORM\Column (type="datetime",nullable = true)
      * 
      * @var datetime
      */
@@ -75,7 +75,7 @@ class Usuario extends Entity
     
     /**
      * 
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string",nullable = true)
      * 
      * @var string
      */
@@ -89,13 +89,7 @@ class Usuario extends Entity
      */
     protected $autenticado;
     
-     /**
-     * 
-     * @ORM\Column (type="string")
-     * 
-     * @var string
-     */
-    protected $role;
+
     
     
     /**
@@ -217,19 +211,7 @@ class Usuario extends Entity
         return $this->autenticado;
     }
     
-    /**
-     * @param $role
-     */
-    public function setRole($role){
-        $this->role = $role;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getRole(){
-        return $this->role;
-    } 
+
     
     
     /**
