@@ -54,7 +54,7 @@ class Endereco extends Entity
      *
      * @var \Admin\Entity\Cidade
      */
-    protected $idCidade;
+    protected $cidade;
     
      /**
      * @ORM\OneToOne(targetEntity="Uf", cascade={"persist"})
@@ -62,7 +62,7 @@ class Endereco extends Entity
      *
      * @var \Admin\Entity\Uf
      */
-     protected $idUf;
+     protected $uf;
 
     /**
      * @return integer
@@ -76,16 +76,16 @@ class Endereco extends Entity
     /**
      * @param string $idUf
      */
-    public function setIdUf($idUf) {
-        $this->idUf = $idUsr;
+    public function setUf($uf) {
+        $this->uf = $uf;
     }
     
     /**
      * @return integer
      * 
      */
-    public function getIdUf(){
-        return $this->idUf;
+    public function getUf(){
+        return $this->uf;
     }
 
     /**
@@ -134,18 +134,18 @@ class Endereco extends Entity
     }
     
     /**
-     * @return string
+     * @return \Application\Entity\Cidade
      * 
      */
-    public function getIdCidade(){
-        return $this->idCidade;
+    public function getCidade(){
+        return $this->cidade;
     }
     
     /**
-     * @param string $idCidade
+     * @param  \Application\Entity\Cidade
      */
-    public function setIdCidade($idCidade){
-        $this->idCidade = $idCIdade;
+    public function setIdCidade($cidade){
+        $this->cidade = $cidade;
     }
 
     /**
@@ -265,7 +265,7 @@ class Endereco extends Entity
             )));
 
  $input_filter->add($factory->createInput(array(
-                'name' => 'idCidade',
+                'name' => 'cidade',
                 'required' => true,
                 'validators' => array(
                     array(
@@ -276,7 +276,7 @@ class Endereco extends Entity
             )));
 
  $input_filter->add($factory->createInput(array(
-                'name' => 'idUf',
+                'name' => 'uf',
                 'required' => true,
                 'validators' => array(
                     array(
