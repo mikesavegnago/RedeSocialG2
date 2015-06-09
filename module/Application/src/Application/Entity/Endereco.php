@@ -144,7 +144,7 @@ class Endereco extends Entity
     /**
      * @param  \Application\Entity\Cidade
      */
-    public function setIdCidade($cidade){
+    public function setCidade($cidade){
         $this->cidade = $cidade;
     }
 
