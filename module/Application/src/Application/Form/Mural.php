@@ -28,7 +28,9 @@ class Mural extends Form
         $this->add(array(
             'name' => 'foto',
             'type' => 'file',
-            
+            'options' => array(
+                'label' => 'foto*'
+            ),
             'attributes' => array(
                 'placeholder' => 'Informe o nome',
                 'id' => 'foto'
