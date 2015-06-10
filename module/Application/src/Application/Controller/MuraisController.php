@@ -3,6 +3,10 @@ namespace Application\Controller;
 
 use Core\Controller\ActionController as ActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Validator\Exception\InvalidMagicMimeFileException;
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
+use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
+use Zend\Paginator\Paginator;
 
 /**
 * Controller Perfis
@@ -35,11 +39,16 @@ class MuraisController extends ActionController
     {
        // fazer com que o form /na parte de usuarios ja venha preechido quando clicado em cadsatrar perfiol
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $form = new \Application\Form\Mural($em);
+        $form = new \Application\Form\  Mural($em);
         $request = $this->getRequest();
         
         if ($request->isPost()) {
+            //var_dump($request);exit;
             $valores = $request->getPost();
+            $file = $request->getFiles('foto');
+            var_dump($file);exit;
+            $photo = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
+            var_dump($photo); exit;
             $mural = new \Application\Entity\Mural();
             
             $filtros = $mural->getInputFilter();

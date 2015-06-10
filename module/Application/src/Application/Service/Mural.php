@@ -16,23 +16,18 @@ use Core\Model\EntityException as EntityException;
 class Mural extends Service
 {
 
-    public function saveAction($values)
+    public function saveMural($values)
     {
-        var_dump($values);exit;
         if( (int) $values['id'] > 0)
-            $usuario = $this->find($values['id']);
+            $mural = $this->find($values['id']);
         else
-            $usuario = new \Application\Entity\Usuario();
+            $mural = new \Application\Entity\Mural();
         
-        $usuario->setNome($values['nome']);
-        $usuario->setEmail($values['email']);
-        $usuario->setSenha($values['senha']);
-        $usuario->setSobrenome($values['sobrenome']);
-        $usuario->setCelular($values['celular']);
-        $usuario->setDataNascimento( new \DateTime($values['dataNascimento']));
-        $usuario->setSexo($values['sexo']);
-        $usuario->setAutenticacao($values['autenticado']);
-        $usuario->setRole($values['role']);
+        $mural->setDescricao($values['descricao']);
+
+        $foto = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($values['foto']);
+
+        $usuario->setFoto($foto);
         
         $this->getObjectManager()->persist($usuario);
         try{
