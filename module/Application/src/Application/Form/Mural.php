@@ -18,6 +18,7 @@ class Mural extends Form
         parent::__construct('mural');
         $this->setAttribute('method', 'post');
         $this->setAttribute('action', '');
+        $this->setAttribute('enctype', 'multipart/form-data');
 
         $this->add(array(
             'type' => 'hidden',
@@ -25,17 +26,16 @@ class Mural extends Form
         ));
         
         
-        $this->add(array(
-            'name' => 'foto',
-            'type' => 'file',
-            'options' => array(
-                'label' => 'foto*'
-            ),
+       $this->add(array( 
+            'name' => 'foto', 
+            'type' => 'file', 
+            'options' => array( 
+                'label' => 'foto*' ), 
             'attributes' => array(
-                'placeholder' => 'Informe o nome',
-                'id' => 'foto'
-            )
-        ));
+             'placeholder' => 'Informe o nome', 
+             'id' => 'foto', 
+             'enctype' => 'multipart/form-data', )
+              ));
 
 
 
