@@ -36,14 +36,7 @@ class Imagem extends Entity
     //fazer one to many de imagem para comentario e de imagem para like
    
 
-  /**
-     * @ORM\Column(type="blob", nullable=true)
-     *
-     * @var blob
-     */
-
     protected $imagem;
-
 
 
     /**

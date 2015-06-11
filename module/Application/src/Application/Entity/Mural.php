@@ -76,7 +76,18 @@ class Mural extends Entity
     public function setFoto($foto){
         $this->foto = $foto;
     }
+
+    /**
+     * @return blob
+     */
+    public function getFoto(){
+        return $this->foto;
+    }
     
+
+
+
+
     /**
      * @return string
      */
