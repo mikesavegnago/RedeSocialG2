@@ -49,7 +49,7 @@ class Endereco extends Entity
     protected $bairro;
     
      /**
-     * @ORM\OneToOne(targetEntity="Cidade", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Cidade", cascade={"persist"})
      * @ORM\JoinColumn(name="id_cidade", referencedColumnName="id")
      *
      * @var \Admin\Entity\Cidade
@@ -57,7 +57,7 @@ class Endereco extends Entity
     protected $cidade;
     
      /**
-     * @ORM\OneToOne(targetEntity="Uf", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Uf", cascade={"persist"})
      * @ORM\JoinColumn(name="id_uf", referencedColumnName="id")
      *
      * @var \Admin\Entity\Uf
