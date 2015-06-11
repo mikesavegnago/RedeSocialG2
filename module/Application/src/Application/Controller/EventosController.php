@@ -27,6 +27,17 @@ class EventosController extends ActionController
     }
     
     /**
+    *Função index
+    *
+    *@return void
+    */
+    public function eventoAction()
+    {
+        
+        return new ViewModel();
+    }
+    
+    /**
     *Função para criar o layout
     *
     *@return void

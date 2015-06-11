@@ -28,10 +28,9 @@
                     </form>
                 </ul>
                 <ul class="nav navbar-nav  navbar-right ">
-                    <!-- User -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                            <img src="<?=$this->basePath() . '/img/user.jpg'?>" alt="Bill" class="img-circle" width="40" /> Mike <span class="caret"></span>
+                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="Bill" class="img-circle" width="40" /> Mike <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="user-private-profile.html">Perfil</a></li>
@@ -49,118 +48,65 @@
             <div class="cover profile">
                 <div class="wrapper">
                     <div class="image">
-                        <img src="<?=$this->basePath() . '/img/background.jpg'?>" alt="people" />
+                        <img src="<?= $this->basePath() . '/img/background.jpg' ?>" alt="people" />
                     </div> 
                 </div>
                 <div class="cover-info">
-                    <div class="avatar">
-                        <img src="<?=$this->basePath() . '/img/user.jpg'?>" alt="people" />
-                    </div>
-                    <div class="name"><a href="#">Mike Savegnago</a></div>
+                    <div class="name"><a href="#">TITULO E CAPA DO EVENTO</a></div>
                     <ul class="cover-nav">
 
-                        <li class="active"><a href="/application/index/layout"><i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
+                        <li><a href="/application/index/layout"><i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
                         <li><a href="/application/index/sobre"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
-                        <li><a href="/application/eventos"><i class="fa fa-fw fa-users"></i> Eventos</a></li>
+                        <li class="active"><a href="/application/eventos"><i class="fa fa-fw fa-users"></i> Eventos</a></li>
 
                     </ul>
                 </div>
-            </div>
+            </div> 
 
-            <div class="timeline row" data-toggle="isotope">
+            <div class="row">
+                <div class="timeline row" data-toggle="isotope">
                 <div class="col-xs-12">
                     <div class="timeline-block">
                         <div class="panel panel-default share clearfix-xs">
                             <div class="panel-heading panel-heading-gray title" style="color:#666">
-                                O que está acontecendo?
+                                Mural do evento
                             </div>
                             <div class="panel-body">
                                 <textarea name="status" class="form-control share-text" rows="3" placeholder="Compartilhe algo conosco..."></textarea>
                             </div>
                             <div class="panel-footer share-buttons">
-                                <a href="#"><i class="fa fa-photo"></i></a>
+                                <a href="#"><i class="fa "></i></a>
                                 <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Post</button>
                             </div>
                         </div>
                     </div>
                 </div> 
             </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-gray">
+                            <i class="fa fa-users"></i> Paricipantes
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
 
-            <div class="media-body">
-                <div class="media-body-wrapper">
-                   <div class="panel panel-default">
-                        <div class="media-body">
-                            <div class="media-body-wrapper">
-                                <div class="panel panel-default">
-
-                                    <div class="panel-body">
-                                        <div class="media-left">
-                                            <a href="">
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
-                                                <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Editar</a></li>
-                                                    <li><a href="#">Deletar</a></li>
-                                                </ul>
+                                <div class="col-md-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="pull-right">
                                             </div>
-                                            <a href="" class="comment-author pull-left">Ana P.</a><br>
-                                            <div class="comment-date">09 de junho</div>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
-                                                velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">
-                                            </span>
+                                            <a href="#" class="h5">Ana P.</a>
                                         </div>
-
-                                    </div>
-                                    <div class="view-all-comments">
                                         <a href="#">
-                                            <i class="fa fa-comments-o"></i> Ver todos
+                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="image" class="img-responsive">
                                         </a>
-                                        <span>1 comentário</span>
-
                                     </div>
-                                    <ul class="comments">
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="">
-                                                    <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
-                                                    <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#">Editar</a></li>
-                                                        <li><a href="#">Deletar</a></li>
-                                                    </ul>
-                                                </div>
-                                                <a href="" class="comment-author pull-left">Ana P.</a>
-                                                <span>Gostei manolo</span>
-                                                <div class="comment-date">09 de junho</div>
-                                            </div>
-                                        </li>
-                                        <li class="comment-form">
-                                            <div class="input-group"> 
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
-                                                </span>
-
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="media-body">
                             <div class="media-body-wrapper">
@@ -186,7 +132,6 @@
                                             <div class="comment-date">09 de junho</div>
                                             <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
                                                 velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">
                                             </span>
                                         </div>
 
@@ -234,9 +179,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
-
         </div>
     </div>
 </div>
