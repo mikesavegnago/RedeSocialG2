@@ -76,10 +76,6 @@ class Perfil extends Usuario
             )
         ));
      
-  
-         // puxar os fields de endereco
-         
-        
         $this->add(array(
             'name' => 'submit',
             'type' => 'submit',

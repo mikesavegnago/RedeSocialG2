@@ -347,7 +347,7 @@ class Perfil extends Usuario
                 )
         );
 
-        $inputFilter->add($factory->createInput(array(
+        $input_filter->add($factory->createInput(array(
                 'name' => 'endereco',
                 'required' => true,
                 'validators' => array(
@@ -358,7 +358,7 @@ class Perfil extends Usuario
                 ),
             )));
     
-    $inputFilter->add($factory->createInput(array(
+    $input_filter->add($factory->createInput(array(
                 'name' => 'imagem',
                 'required' => true,
                 'validators' => array(
@@ -369,8 +369,8 @@ class Perfil extends Usuario
                 ),
             )));
     
-    $this->inputFilter = $inputFilter;
-            return $this->inputFilter;
+    $this->input_filter = $input_filter;
+            return $this->input_filter;
     }
 
     }
