@@ -70,18 +70,20 @@
             <div class="timeline row" data-toggle="isotope">
                 <div class="col-xs-12">
                     <div class="timeline-block">
-                        <div class="panel panel-default share clearfix-xs">
-                            <div class="panel-heading panel-heading-gray title" style="color:#666">
-                                O que está acontecendo?
+                        <form action="/application/murais/save" method="post">
+                            <div class="panel panel-default share clearfix-xs">
+                                <div class="panel-heading panel-heading-gray title" style="color:#666">
+                                    O que está acontecendo?
+                                </div>
+                                <div class="panel-body">
+                                    <textarea name="descricao" class="form-control share-text" rows="3" placeholder="Compartilhe algo conosco..."></textarea>
+                                </div>
+                                <div class="panel-footer share-buttons">
+                                    <a href="#"><input type="file" class="fa fa-photo"> </a>
+                                    <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Post</button>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                <textarea name="status" class="form-control share-text" rows="3" placeholder="Compartilhe algo conosco..."></textarea>
-                            </div>
-                            <div class="panel-footer share-buttons">
-                                <a href="#"><i class="fa fa-photo"></i></a>
-                                <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Post</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div> 
             </div>
