@@ -45,8 +45,7 @@ class MuraisController extends ActionController
         if ($request->isPost()) {
             $valores = $request->getPost();
             $file = $request->getFiles('foto');
-            $photo = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
-            var_dump($photo); exit;
+            $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $mural = new \Application\Entity\Mural();
             
             $filtros = $mural->getInputFilter();
@@ -54,7 +53,7 @@ class MuraisController extends ActionController
             $filtros = $mural->getInputFilter();
             $form->setData($valores);            
             
-            if (!$form->isValid()) {
+            if (!$form->isValid()){
                 $values = $form->getData();
                 
                 try{
