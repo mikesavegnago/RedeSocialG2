@@ -39,14 +39,12 @@ class MuraisController extends ActionController
     {
        // fazer com que o form /na parte de usuarios ja venha preechido quando clicado em cadsatrar perfiol
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $form = new \Application\Form\  Mural($em);
+        $form = new \Application\Form\Mural($em);
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            //var_dump($request);exit;
             $valores = $request->getPost();
             $file = $request->getFiles('foto');
-            var_dump($file);exit;
             $photo = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             var_dump($photo); exit;
             $mural = new \Application\Entity\Mural();
@@ -66,17 +64,17 @@ class MuraisController extends ActionController
                     exit;
                 }
                 
-                return $this->redirect()->toUrl('/');    
+                return $this->redirect()->toUrl('/application/index/layout');    
             }  
             
         }
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if ($id > 0) {
-            $usuario = $this->getService('Application\Service\Mural')->find($id);
-            $form->bind($usuario);
-        }
+//        $id = (int) $this->params()->fromRoute('id', 0);
+//        if ($id > 0) {
+//            $usuario = $this->getService('Application\Service\Mural')->find($id);
+//            $form->bind($usuario);
+//        }
 
-        return new ViewModel(array('form' => $form));
+        //return new ViewModel(array('form' => $form));
     }
 
 

@@ -22,8 +22,6 @@ class LoginController extends AbstractActionController
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');      
         $request = $this->getRequest();
 	$session = $this->getServiceLocator()->get('Session');
-
-        
         
         if ($request->isPost()) {
             $values = $request->getPost();
@@ -32,8 +30,8 @@ class LoginController extends AbstractActionController
 		$this->getServiceLocator()->get('Application\Service\Auth')->authenticate($values);
                 
                 if($session->offsetGet('role') == 'ADMIN'){
-                    // falta redirecionar para o lugar certo =)
-                     return $this->redirect()->toUrl('/application/index/opcoes');
+                    
+                     return $this->redirect()->toUrl('/application/index/layout');
                 }else{
                      return $this->redirect()->toUrl('/application/login/login');
                 }    
