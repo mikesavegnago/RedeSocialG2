@@ -360,11 +360,22 @@ class Perfil extends Usuario
     
     $input_filter->add($factory->createInput(array(
                 'name' => 'imagem',
-                'required' => true,
+                'required' => false,
                 'validators' => array(
                     array(
                         'name' => 'NotEmpty',
                         'options' => array('message' => 'O campo imagem não pode estar vazio')
+                    )
+                ),
+            )));
+    
+    $input_filter->add($factory->createInput(array(
+                'name' => 'permissao',
+                'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo permissao não pode estar vazio')
                     )
                 ),
             )));
