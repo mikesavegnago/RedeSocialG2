@@ -35,18 +35,16 @@ class Usuario extends Service
         $usuario->setNome($values['nome']);
         $usuario->setEmail($values['email']);
         $usuario->setSenha(md5($values['senha']));
-        $usuario->setSobrenome($values['sobrenome']);
-        $usuario->setCelular($values['celular']);
-        $usuario->setDataNascimento( new \DateTime($values['dataNascimento']));
-        $idade =  (new \DateTime())->format('Y') -  ($usuario->getDataNascimento()->format('Y')) ;
+        $idade = $values['data_nasc'];
+        $compara = explode("/", $idade);
+        $compara = (new \DateTime())->format('Y') - $compara[2];
         
-        if($idade < 16){
-            die('usuario não pode se cadastrar pois sua idade é menor que 16 anos');
+        if($compara < 16){
+            throw new EntityException('Você deve ser maior de 16 anos!');
         }
         
-        $usuario->setSexo($values['sexo']);
+        $usuario->setDataNascimento($values['data_nasc']);
         $usuario->setAutenticacao(true);
-        
         
         $this->getObjectManager()->persist($usuario);
         try{

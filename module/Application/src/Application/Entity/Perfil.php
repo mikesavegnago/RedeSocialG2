@@ -17,7 +17,6 @@ use Zend\InputFilter\InputFilter;
  */
 class Perfil extends Usuario
 {
-    
     /**
      * @ORM\Column (type="string")
      *

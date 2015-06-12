@@ -71,7 +71,9 @@ class UsuariosController extends ActionController
                     echo $e->getMessage(); 
                     exit;
                 }
-                return $this->redirect()->toUrl('/application/usuarios');    
+                $this->getService('Application\Service\Auth')
+                            ->authenticate($values);
+                return $this->redirect()->toUrl('/application/index/layout');    
             }                    
         }
         

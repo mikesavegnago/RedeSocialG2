@@ -15,8 +15,8 @@ use Zend\InputFilter\InputFilter;
  * @package  Entity
  * @author Paulo José Cella <paulocella@unochapeco.edu.br>
  */
-class Usuario extends Entity
-{
+class Usuario extends Entity {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,7 +25,6 @@ class Usuario extends Entity
      * @var integer
      */
     protected $id;
-    
 
     /**
      * @ORM\Column (type="string")
@@ -33,13 +32,6 @@ class Usuario extends Entity
      * @var string
      */
     protected $nome;
-    
-    /**
-     * @ORM\Column (type="string",nullable = true)
-     *
-     * @var string
-     */
-    protected $sobrenome;
 
     /**
      * @ORM\Column (type="string")
@@ -47,7 +39,7 @@ class Usuario extends Entity
      * @var string
      */
     protected $email;
-    
+
     /**
      * 
      * @ORM\Column (type="string",nullable = true)
@@ -55,7 +47,7 @@ class Usuario extends Entity
      * @var string
      */
     protected $celular;
-    
+
     /**
      * 
      * @ORM\Column (type="string")
@@ -64,15 +56,15 @@ class Usuario extends Entity
      * 
      */
     protected $senha;
-    
+
     /**
      * 
      * @ORM\Column (type="datetime",nullable = true)
      * 
      * @var datetime
      */
-    protected $dataNascimento;
-    
+    protected $data_nascimento;
+
     /**
      * 
      * @ORM\Column (type="string", nullable = true)
@@ -80,7 +72,7 @@ class Usuario extends Entity
      * @var string
      */
     protected $sexo;
-    
+
     /**
      * 
      * @ORM\Column (type="boolean")
@@ -88,132 +80,115 @@ class Usuario extends Entity
      * @var boolean
      */
     protected $autenticado;
-    
 
-    
-    
     /**
      * @return id
      */
     public function getId() {
         return $this->id;
     }
-    
+
     /**
      * @param $nome
      */
-    public function setNome($nome){
+    public function setNome($nome) {
         $this->nome = $nome;
     }
-    
+
     /**
      * @return string
      */
-    public function getNome(){
+    public function getNome() {
         return $this->nome;
     }
-    
-    /**
-     * @param $sobrenome
-     */
-    public function setSobrenome($sobrenome){
-        $this->sobrenome = $sobrenome;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getSobrenome(){
-        return $this->sobrenome;
-    }
-    
+
     /**
      * @param $email
      */
-    public function setEmail($email){
+    public function setEmail($email) {
         $this->email = $email;
     }
-    
+
     /**
      * @return string
      */
-    public function getEmail(){
+    public function getEmail() {
         return $this->email;
     }
-    
+
     /**
      * @param $celular
      */
-    public function setCelular($celular){
+    public function setCelular($celular) {
         $this->celular = $celular;
     }
-    
+
     /**
      * @return string
      */
-    public function getCelular(){
+    public function getCelular() {
         return $this->celular;
     }
-    
+
     /**
      * @param $senha
      */
-    public function setSenha($senha){
+    public function setSenha($senha) {
         $this->senha = $senha;
     }
-    
+
     /**
      * @return string
      */
-    public function getSenha(){
+    public function getSenha() {
         return $this->senha;
     }
-    
+
     /**
-     * @param $dataNascimento
+     * @param $data_nascimento
      */
-    public function setDataNascimento($dataNascimento){
-        $this->dataNascimento = $dataNascimento;
+    public function setDataNascimento($data_nascimento) {
+        $data_nascimento = str_replace('/', '-', $data_nascimento);
+        $data = $this->valid('data_nascimento', $data_nascimento);
+        $data = new \DateTime($data);
+        $this->data_nascimento = $data;
     }
-    
+
     /**
      * @return dateTime
      */
-    public function getDataNascimento(){
+    public function getDataNascimento() {
         return $this->dataNascimento;
     }
-    
+
     /**
      * @param $sexo
      */
-    public function setSexo($sexo){
+    public function setSexo($sexo) {
         $this->sexo = $sexo;
     }
-    
+
     /**
      * @return string
      */
-    public function getSexo(){
+    public function getSexo() {
         return $this->sexo;
     }
-    
+
     /**
      * @param $autenticacao
      */
-    public function setAutenticacao($autenticacao){
+    public function setAutenticacao($autenticacao) {
         $this->autenticado = $autenticacao;
     }
-    
+
     /**
      * @return boolean
      */
-    public function getAutenticacao(){
+    public function getAutenticacao() {
         return $this->autenticado;
     }
-    
 
-    
-    
     /**
      * Filtros
      *
@@ -250,7 +225,7 @@ class Usuario extends Entity
                         )
                 )
         );
- 
+
 
         $input_filter->add(
                 $factory->createInput(
@@ -281,42 +256,6 @@ class Usuario extends Entity
                                     'name' => 'NotEmpty',
                                     'options' => array(
                                         'message' => 'O campo login não '
-                                        . ' pode estar vazio'
-                                    )
-                                )
-                            )
-                        )
-                )
-        );
-        $input_filter->add(
-                $factory->createInput(
-                        array(
-                            'name' => 'sobrenome',
-                            'required' => false,
-                            'filters' => array(
-                                array(
-                                    'name' => 'StripTags'
-                                ),
-                                array(
-                                    'name' => 'StringTrim'
-                                ),
-                            ),
-                            'validators' => array(
-                                array(
-                                    'name' => 'StringLength',
-                                    'options' => array(
-                                        'encoding' => 'UTF-8',
-                                        'min' => 4,
-                                        'max' => 250,
-                                        'message' => 'O campo sobrenome deve ser'
-                                        . ' maior que 4 caracteres e menor que'
-                                        . ' 250 caracteres'
-                                    )
-                                ),
-                                array(
-                                    'name' => 'NotEmpty',
-                                    'options' => array(
-                                        'message' => 'O campo sobrenome não '
                                         . ' pode estar vazio'
                                     )
                                 )
@@ -362,6 +301,23 @@ class Usuario extends Entity
         );
 
         $input_filter->add(
+            $factory->createInput(
+                array (
+                    'name' => 'data_nasc',
+                    'required' => 'true',
+                    'validators' => array (
+                        array (
+                            'name' => 'date',
+                            'options' => array (
+                                'format' => "d/m/Y"
+                            )
+                        )
+                    )
+                )
+            )
+        );
+
+        $input_filter->add(
                 $factory->createInput(
                         array(
                             'name' => 'senha',
@@ -396,7 +352,7 @@ class Usuario extends Entity
                         )
                 )
         );
-        
+
         $input_filter->add(
                 $factory->createInput(
                         array(
@@ -432,11 +388,9 @@ class Usuario extends Entity
                         )
                 )
         );
-        
-          $this->input_filter = $input_filter;
+
+        $this->input_filter = $input_filter;
         return $this->input_filter;
     }
-    
-    
 
 }

@@ -16,12 +16,16 @@
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.css'))
                         ->prependStylesheet($this->basePath('css/font-awesome.css'))
                         ->prependStylesheet($this->basePath('css/skin-blue.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.css')) ?>
+                        ->prependStylesheet($this->basePath('css/bootstrap.css'))
+                        ->prependStylesheet($this->basePath('css/themes/base/jquery-ui.css')) ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/main.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
+            ->prependFile($this->basePath('js/jquery-ui.js'))
+            ->prependFile('http://malsup.github.com/jquery.form.js')
+            ->prependFile('http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js')
             ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
             ->prependFile($this->basePath('js/html5shiv.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
