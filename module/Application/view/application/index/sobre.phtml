@@ -133,9 +133,45 @@
                                     </li>
                                     <li class="padding-v-5">
                                         <div class="row">
-                                            <div class="col-sm-4"><span class="text-muted">Endereço</span></div>
+                                            <div class="col-sm-4"><span class="text-muted">Cidade</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="endereco" id="endereco" disabled 
+                                                <input type="text" name="cidade" id="cidade" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                   </li> 
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">UF</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="uf" id="uf" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                   </li> 
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Rua</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="rua" id="rua" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                   </li> 
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Número</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="numero" id="numero" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                   </li> 
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Bairro</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="bairro" id="bairro" disabled 
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
@@ -364,6 +400,21 @@
 </div>
 <script>
     $("#editarPerfil").click(function (){ 
+        $('#rua').removeAttr("disabled");
+        $('#rua').attr("style", '');
+        $('#rua').attr("class", 'form-control');
+        $('#numero').removeAttr("disabled");
+        $('#numero').attr("style", '');
+        $('#numero').attr("class", 'form-control');
+        $('#bairro').removeAttr("disabled");
+        $('#bairro').attr("style", '');
+        $('#bairro').attr("class", 'form-control');
+        $('#uf').removeAttr("disabled");
+        $('#uf').attr("style", '');
+        $('#uf').attr("class", 'form-control');
+        $('#cidade').removeAttr("disabled");
+        $('#cidade').attr("style", '');
+        $('#cidade').attr("class", 'form-control');
         $('#status_relacionemento').removeAttr("disabled");
         $('#status_relacionemento').attr("style", '');
         $('#status_relacionemento').attr("class", 'form-control');
@@ -385,9 +436,6 @@
         $('#sexo').removeAttr("disabled");
         $('#sexo').attr("style", '');
         $('#sexo').attr("class", 'form-control');
-        $('#endereco').removeAttr("disabled");
-        $('#endereco').attr("style", '');
-        $('#endereco').attr("class", 'form-control');
         $('#email').removeAttr("disabled");
         $('#email').attr("style", '');
         $('#email').attr("class", 'form-control');
