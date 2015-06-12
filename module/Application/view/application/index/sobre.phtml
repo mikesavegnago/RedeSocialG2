@@ -74,7 +74,7 @@
                             <a class="btn btn-white btn-xs pull-right" id="editarPerfil"><i class="fa fa-pencil"></i></a>
                             <i class="fa fa-fw fa-info-circle"></i> Informações do perfil
                         </div>
-                        <form action="/application/perfis/save" method="post">
+                        <form action="/application/perfis/save" method="post" enctype="multipart/form-data">
                             <div class="panel-body">
                                 <ul class="list-unstyled profile-about margin-none">
                                     <li class="padding-v-5">
@@ -83,6 +83,19 @@
                                             <div class="col-sm-8">
                                                 <input type="text" name="statusRelacionamento" id="status_relacionemento" disabled 
                                                        style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Fotinha</span></div>
+                                            <!--                                            <div class="col-sm-8">
+                                                                                           <a href="#"><input type="file" name="foto" enctype="multipart/form-data"  id="foto" class="fa fa-photo"> </a>
+                                                                                        </div>-->
+                                            <div class="panel-footer share-buttons">
+                                                <a href="#"><input type="file" name="foto" enctype="multipart/form-data"
+                                                                    style="background: #fff; border: #fff 0px solid" 
+                                                                    id="foto" class="fa fa-photo"> </a>
                                             </div>
                                         </div>
                                     </li>
@@ -139,7 +152,7 @@
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
-                                   </li> 
+                                    </li> 
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">UF</span></div>
@@ -148,7 +161,7 @@
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
-                                   </li> 
+                                    </li> 
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Rua</span></div>
@@ -157,7 +170,7 @@
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
-                                   </li> 
+                                    </li> 
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Número</span></div>
@@ -166,7 +179,7 @@
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
-                                   </li> 
+                                    </li> 
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Bairro</span></div>
@@ -175,24 +188,24 @@
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
-                                   </li> 
-<!--                                   //comentado pois o email ja vai esta na sessao-->
- <!--                                    <li class="padding-v-5">
-                                        <div class="row">
-                                            <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="email" id="email" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" 
-                                                       value="...@unochapeco.edu.br" />
-                                            </div>
-                                        </div>
-                                    </li>-->
+                                    </li> 
+                                    <!--                                   //comentado pois o email ja vai esta na sessao-->
+                                    <!--                                    <li class="padding-v-5">
+                                                                           <div class="row">
+                                                                               <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
+                                                                               <div class="col-sm-8">
+                                                                                   <input type="text" name="email" id="email" disabled 
+                                                                                          style="background: #fff; border: #fff 0px solid" 
+                                                                                          value="...@unochapeco.edu.br" />
+                                                                               </div>
+                                                                           </div>
+                                                                       </li>-->
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Quem Pode Ver</span></div>
                                             <div class="col-sm-8">
                                                 <select type="select" name="permissao" id="permissao" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" >
+                                                        style="background: #fff; border: #fff 0px solid" >
                                                     <option value="AMIGOS" selected>Amigos</option>      
                                                     <option value="TODOS" >Todos</option>
                                                 </select>
@@ -200,7 +213,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                         <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Salvar</button>
+                                        <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Salvar</button>
                                     </li>
                                 </ul>
                             </div>
@@ -399,7 +412,7 @@
     </div>
 </div>
 <script>
-    $("#editarPerfil").click(function (){ 
+    $("#editarPerfil").click(function () {
         $('#rua').removeAttr("disabled");
         $('#rua').attr("style", '');
         $('#rua').attr("class", 'form-control');
@@ -439,5 +452,8 @@
         $('#email').removeAttr("disabled");
         $('#email').attr("style", '');
         $('#email').attr("class", 'form-control');
+        $('#foto').removeAttr("disabled");
+        $('#foto').attr("style", '');
+        $('#foto').attr("class", 'form-control');
     });
 </script>
