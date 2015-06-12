@@ -51,7 +51,9 @@ class PerfisController extends ActionController
         
         if ($request->isPost()) {
             $valores = $request->getPost();
+            $valoresRequest=$valores;
             $perfil = new \Application\Entity\Perfil();
+  
             
             $filtros = $perfil->getInputFilter();
             $form->setInputFilter($filtros);
@@ -61,7 +63,7 @@ class PerfisController extends ActionController
             if (!$form->isValid()) {
                 $values = $form->getData();
                 try{
-                    $perfil = $this->getService('Application\Service\Perfil')->savePerfil($values);
+                    $perfil = $this->getService('Application\Service\Perfil')->savePerfil($values,$valoresRequest);
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
@@ -71,11 +73,11 @@ class PerfisController extends ActionController
             }  
             
         }
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if ($id > 0) {
-            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
-            $form->bind($usuario);
-        }
+//        $id = (int) $this->params()->fromRoute('id', 0);
+//        if ($id > 0) {
+//            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
+//            $form->bind($usuario);
+//        }
 
         return new ViewModel(
                 array('form' => $form,
