@@ -34,8 +34,11 @@ class Imagem extends Entity
     protected $idAlbum;
     
     //fazer one to many de imagem para comentario e de imagem para like
-   
 
+    /**
+     *
+     * @var blob
+     */
     protected $imagem;
 
 
