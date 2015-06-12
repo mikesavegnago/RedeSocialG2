@@ -18,6 +18,7 @@ class Endereco extends Service
 {
    public function findEndereco($values ,$em){
        
+       $em = $this->getObjectManager();
        $endereco = $em->find('\Application\Entity\Endereco',$values);
        
        return $endereco;
@@ -25,6 +26,8 @@ class Endereco extends Service
     
    public function saveEndereco($values)
     {
+       
+       //var_dump($values);exit;
 
         $endereco = new \Application\Entity\Endereco();
         $endereco->setRua($values['rua']);
