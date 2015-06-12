@@ -17,14 +17,6 @@ use Zend\InputFilter\InputFilter;
  */
 class Perfil extends Usuario
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    protected $id;
     
     /**
      * @ORM\Column (type="string")
@@ -173,6 +165,20 @@ class Perfil extends Usuario
      */
     public function setEndereco($endereco){
          $this->endereco = $endereco;
+    }    
+   
+    /**
+     * @return imagem
+     */
+    public function getImagem(){
+        return $this->imagem;
+    }
+    
+    /**
+     * @var imagem
+     */
+    public function setImagem($imagem){
+         $this->imagem = $imagem;
     }    
    
    /**
