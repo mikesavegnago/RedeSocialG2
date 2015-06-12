@@ -51,6 +51,8 @@ class PerfisController extends ActionController
         
         if ($request->isPost()) {
             $valores = $request->getPost();
+            $file = $request->getFiles('foto');
+            $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $valoresRequest=$valores;
             $perfil = new \Application\Entity\Perfil();
   
