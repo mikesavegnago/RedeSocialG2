@@ -16,36 +16,41 @@ use Core\Model\EntityException as EntityException;
 class Perfil extends Service {
 
     public function savePerfil($values) {
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-
+        $session = $this->getServiceManager()->get('Session');
+         $usuario = $session->offsetGet('user');
+         $em = $this->getObjectManager();
+         
         if ((int) $values['id'] > 0)
-            $perfil = $this->find($values['id']);
+            $perfil = $em->find($values['id']);
         else
             $perfil = new \Application\Entity\Perfil();
-        $perfil->setStatusRelacionamento($values['statusRelacionamento']);
-        $perfil->setProfissao($values['profissao']);
-        $perfil->setFormacao($values['formacao']);
-        $perfil->setOndeTrabalha($values['ondeTrabalha']);
-        //campos para endereco
-        //relacionamento com endereco
-        $endereco = $em->getRepository('\Application\Entity\Endereco')->findAll();
-        var_dump($endereco);
-        exit;
-
-        $perfil->setEndereco();
-
-//        protected 'endereco' => null
-//        protected 'perfil' => null
-//        
-        $perfil->setNome($values['nome']);
-        $perfil->setSobrenome($values['sobrenome']);
-        $perfil->setEmail($values['email']);
-        $perfil->setCelular($values['celular']);
-        $perfil->setSenha($values['senha']);
-        $perfil->setDataNascimento(new \DateTime($values['dataNascimento']));
-        $perfil->setSexo($values['sexo']);
-        $perfil->setAutenticacao(true);
-        $perfil->setRole($values['role']);
+        
+        
+         $perfil->setStatusRelacionamento($values['statusRelacionamento']);
+         $perfil->setOndeTrabalha($values['ondeTrabalha']);
+         $perfil->setFormacao($values['formacao']);
+         $perfil->setProfissao($values['profissao']);
+         $perfil->setPermissao($values['permissao']);
+         $perfil->setNome($usuario->getNome());
+         $perfil->setSobrenome($usuario->getSobrenome());
+         $perfil->setEmail($usuario->getEmail());
+         $perfil->setCelular($usuario->getCelular());
+         $perfil->setSenha($usuario->getSenha());
+         $perfil->setDataNascimento($usuario->getDataNascimento());
+         $perfil->setSexo($usuario->getSexo());
+         $perfil->setAutenticacao(true);
+         
+        //$endereco = $em->getRepository('\Application\Entity\Endereco')->findAll();
+//
+//        $perfil->setNome($values['nome']);
+//        $perfil->setSobrenome($values['sobrenome']);
+//        $perfil->setEmail($values['email']);
+//        $perfil->setCelular($values['celular']);
+//        $perfil->setSenha($values['senha']);
+//        $perfil->setDataNascimento(new \DateTime($values['dataNascimento']));
+//        $perfil->setSexo($values['sexo']);
+//        $perfil->setAutenticacao(true);
+//        $perfil->setRole($values['role']);
 
         $this->getObjectManager()->persist($perfil);
         try {

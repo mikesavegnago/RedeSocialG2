@@ -73,56 +73,101 @@
                             <a class="btn btn-white btn-xs pull-right" id="editarPerfil"><i class="fa fa-pencil"></i></a>
                             <i class="fa fa-fw fa-info-circle"></i> Informações do perfil
                         </div>
-                        <div class="panel-body">
-                            <ul class="list-unstyled profile-about margin-none">
-                                <li class="padding-v-5">
-                                    <div class="row">
-                                        <div class="col-sm-4"><span class="text-muted">Data de nascimento</span></div>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="data_nasc" disabled 
-                                                   style="background: #fff; border: #fff 0px solid" value="22/03/1995" />
+                        <form action="/application/perfis/save" method="post">
+                            <div class="panel-body">
+                                <ul class="list-unstyled profile-about margin-none">
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Status Relaciomento</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="statusRelacionamento" id="status_relacionemento" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="padding-v-5">
-                                    <div class="row">
-                                        <div class="col-sm-4"><span class="text-muted">Onde trabalha</span></div>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="onde_trabalha" disabled 
-                                                   style="background: #fff; border: #fff 0px solid" value="uno" />
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Data de nascimento</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="dataNascimento" id="data_nasc" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="padding-v-5">
-                                    <div class="row">
-                                        <div class="col-sm-4"><span class="text-muted">Gênero</span></div>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="sexo" disabled 
-                                                   style="background: #fff; border: #fff 0px solid" value="Masculino" />
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Onde trabalha</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="ondeTrabalha" id="onde_trabalha" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="padding-v-5">
-                                    <div class="row">
-                                        <div class="col-sm-4"><span class="text-muted">Endereço</span></div>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="endereco" disabled 
-                                                   style="background: #fff; border: #fff 0px solid" value="Mariopolis" />
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Profissão</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="profissao" id="profissao" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="padding-v-5">
-                                    <div class="row">
-                                        <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="email" disabled 
-                                                   style="background: #fff; border: #fff 0px solid" 
-                                                   value="mikesavegnago@unochapeco.edu.br" />
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Formação</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="formacao" id="formacao" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Gênero</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="sexo" id="sexo" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Endereço</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="endereco" id="endereco" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="email" id="email" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" 
+                                                       value="...@unochapeco.edu.br" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Quem Pode Ver</span></div>
+                                            <div class="col-sm-8">
+                                                <select type="select" name="permissao" id="permissao" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" 
+                                                       value="...@unochapeco.edu.br" >
+                                                    <option value="AMIGOS" selected>Amigos</option>      
+                                                    <option value="TODOS" >Todos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                         <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Salvar</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-gray">
@@ -318,6 +363,18 @@
 </div>
 <script>
     $("#editarPerfil").click(function (){ 
+        $('#status_relacionemento').removeAttr("disabled");
+        $('#status_relacionemento').attr("style", '');
+        $('#status_relacionemento').attr("class", 'form-control');
+        $('#profissao').removeAttr("disabled");
+        $('#profissao').attr("style", '');
+        $('#profissao').attr("class", 'form-control');
+        $('#formacao').removeAttr("disabled");
+        $('#formacao').attr("style", '');
+        $('#formacao').attr("class", 'form-control');
+        $('#permissao').removeAttr("disabled");
+        $('#permissao').attr("style", '');
+        $('#permissao').attr("class", 'form-control');
         $('#data_nasc').removeAttr("disabled");
         $('#data_nasc').attr("style", '');
         $('#data_nasc').attr("class", 'form-control');

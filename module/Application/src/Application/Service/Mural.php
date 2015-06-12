@@ -4,6 +4,7 @@ namespace Application\Service;
 
 use Core\Service\Service;
 use Core\Model\EntityException as EntityException;
+use Zend\Session\Container;
 
 /**
 * Service Save Entityes
@@ -16,8 +17,9 @@ use Core\Model\EntityException as EntityException;
 class Mural extends Service
 {
 
-    public function saveMural($values)
+    public function saveMural($values, $user)
     {
+       
         if( (int) $values['id'] > 0)
             $mural = $this->find($values['id']);
         else

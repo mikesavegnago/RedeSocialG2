@@ -56,11 +56,10 @@ class PerfisController extends ActionController
             $filtros = $perfil->getInputFilter();
             $form->setInputFilter($filtros);
             $filtros = $perfil->getInputFilter();
-            $form->setData($valores);            
+            $form->setData($valores);   
             
             if (!$form->isValid()) {
                 $values = $form->getData();
-                
                 try{
                     $perfil = $this->getService('Application\Service\Perfil')->savePerfil($values);
                 }catch(\Exception $e){
@@ -68,7 +67,7 @@ class PerfisController extends ActionController
                     exit;
                 }
                 
-                return $this->redirect()->toUrl('/');    
+                return $this->redirect()->toUrl('/application/index/sobre');    
             }  
             
         }
@@ -78,7 +77,10 @@ class PerfisController extends ActionController
             $form->bind($usuario);
         }
 
-        return new ViewModel(array('form' => $form,'formUsuario' => $formUsuario));
+        return new ViewModel(
+                array('form' => $form,
+            'formUsuario' => $formUsuario
+                ));
     }
 
 

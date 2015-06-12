@@ -42,12 +42,16 @@ class MuraisController extends ActionController
         $form = new \Application\Form\Mural($em);
         $request = $this->getRequest();
         
+        $session = $this->getServiceLocator()->get('Session');
+        
+        var_dump($session->offsetGet('user') );exit;
+        
         if ($request->isPost()) {
             $valores = $request->getPost();
             $file = $request->getFiles('foto');
             $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $mural = new \Application\Entity\Mural();
-            
+      
             $filtros = $mural->getInputFilter();
             $form->setInputFilter($filtros);
             $filtros = $mural->getInputFilter();
