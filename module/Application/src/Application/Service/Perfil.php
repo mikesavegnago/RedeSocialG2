@@ -15,7 +15,7 @@ use Core\Model\EntityException as EntityException;
  */
 class Perfil extends Service {
 
-    public function savePerfil($values) {
+    public function savePerfil($values ,$valores) {
         $session = $this->getServiceManager()->get('Session');
          $usuario = $session->offsetGet('user');
          $em = $this->getObjectManager();
@@ -25,7 +25,21 @@ class Perfil extends Service {
         else
             $perfil = new \Application\Entity\Perfil();
         
-        
+         $valuesCidade['id'] = null;
+         $valuesCidade['uf'] = $valores['uf'];
+         $valuesCidade['cidade'] = $valores['cidade'];
+         
+         $cidade = $this->getService('Application\Service\Cidade')->findWithDesc($valuesCidade);
+         $valuesEndereco['cidade'] = $cidade;
+         $valuesEndereco['id'] = null;
+         $valuesEndereco['numero'] = $valores['numero'];
+         $valuesEndereco['rua'] = $valores['rua'];
+         $valuesEndereco['bairro'] = $valores['bairro'];
+         $valuesEndereco['uf'] = $valores['uf'];
+         
+         $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($valuesEndereco);
+    
+         
          $perfil->setStatusRelacionamento($values['statusRelacionamento']);
          $perfil->setOndeTrabalha($values['ondeTrabalha']);
          $perfil->setFormacao($values['formacao']);
@@ -38,20 +52,9 @@ class Perfil extends Service {
          $perfil->setSenha($usuario->getSenha());
          $perfil->setDataNascimento($usuario->getDataNascimento());
          $perfil->setSexo($usuario->getSexo());
+         $perfil->setEndereco($endereco);
          $perfil->setAutenticacao(true);
          
-        //$endereco = $em->getRepository('\Application\Entity\Endereco')->findAll();
-//
-//        $perfil->setNome($values['nome']);
-//        $perfil->setSobrenome($values['sobrenome']);
-//        $perfil->setEmail($values['email']);
-//        $perfil->setCelular($values['celular']);
-//        $perfil->setSenha($values['senha']);
-//        $perfil->setDataNascimento(new \DateTime($values['dataNascimento']));
-//        $perfil->setSexo($values['sexo']);
-//        $perfil->setAutenticacao(true);
-//        $perfil->setRole($values['role']);
-
         $this->getObjectManager()->persist($perfil);
         try {
             $this->getObjectManager()->flush();
