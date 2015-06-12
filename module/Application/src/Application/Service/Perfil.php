@@ -16,6 +16,7 @@ use Core\Model\EntityException as EntityException;
 class Perfil extends Service {
 
     public function savePerfil($values ,$valores) {
+        
         $session = $this->getServiceManager()->get('Session');
          $usuario = $session->offsetGet('user');
          $em = $this->getObjectManager();
@@ -24,6 +25,7 @@ class Perfil extends Service {
             $perfil = $em->find($values['id']);
         else
             $perfil = new \Application\Entity\Perfil();
+        
         
          $valuesCidade['id'] = null;
          $valuesCidade['uf'] = $valores['uf'];
@@ -37,7 +39,14 @@ class Perfil extends Service {
          $valuesEndereco['bairro'] = $valores['bairro'];
          $valuesEndereco['uf'] = $valores['uf'];
          
+         $valuesImagem['id'] = null;
+         $valuesImagem['idAlbun'] = null;
+         $valuesImagem['imagem'] = $valores['foto'];
+         
+         
          $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($valuesEndereco);
+         $imagem = $this->getService('Application\Service\Imagem')->saveImagem($valuesImagem);
+         
     
          
          $perfil->setStatusRelacionamento($values['statusRelacionamento']);
@@ -52,6 +61,7 @@ class Perfil extends Service {
          $perfil->setSenha($usuario->getSenha());
          $perfil->setDataNascimento($usuario->getDataNascimento());
          $perfil->setSexo($usuario->getSexo());
+         $perfil->setImagem($imagem);
          $perfil->setEndereco($endereco);
          $perfil->setAutenticacao(true);
          
