@@ -55,12 +55,14 @@ class EventosController extends ActionController
     public function saveAction()
     {
 
-         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new \Application\Form\Evento($em);
         $request = $this->getRequest();
 
-         if ($request->isPost()) {
+         if($request->isPost()) {
             $valores = $request->getPost();
+            $file = $request->getFiles('capa');
+            $valores['capa'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $evento = new \Application\Entity\Evento();
             $filtros = $evento->getInputFilter();
             $form->setInputFilter($filtros);
@@ -81,7 +83,6 @@ class EventosController extends ActionController
             
         }
     }
-        
 
     /**
     *Função delete
