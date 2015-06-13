@@ -18,6 +18,13 @@ use Zend\InputFilter\InputFilter;
 class Perfil extends Usuario
 {
     /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    protected $id;
+    /**
      * @ORM\Column (type="string")
      *
      * @var string
@@ -79,6 +86,12 @@ class Perfil extends Usuario
      */
     public function getId() {
         return $this->id;
+   }
+    /**
+     * @return integer
+     */
+    public function setId($id) {
+        $this->id = $id;
    }
 
     /**
