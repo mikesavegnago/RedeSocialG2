@@ -28,6 +28,7 @@ class Perfil extends Service {
          $perfil = new \Application\Entity\Perfil();
        }
        
+       
          $valuesCidade['id'] = null;
          $valuesCidade['uf'] = $valores['uf'];
          $valuesCidade['cidade'] = $valores['cidade'];
@@ -49,7 +50,7 @@ class Perfil extends Service {
          $imagem = $this->getService('Application\Service\Imagem')->saveImagem($valuesImagem);
     
          
-         $perfil->setId($usuario->getId());
+         $perfil->setId($values['id']);
          $perfil->setStatusRelacionamento($values['statusRelacionamento']);
          $perfil->setOndeTrabalha($values['ondeTrabalha']);
          $perfil->setFormacao($values['formacao']);
@@ -58,14 +59,16 @@ class Perfil extends Service {
          $perfil->setNome($usuario->getNome());
          //$perfil->setSobrenome($usuario->getSobrenome());
          $perfil->setEmail($usuario->getEmail());
-         $perfil->setCelular($usuario->getCelular());
+         $perfil->setCelular($values['celular']);
          $perfil->setSenha($usuario->getSenha());
          $perfil->setDataNascimento($usuario->getDataNascimento());
-         $perfil->setSexo($usuario->getSexo());
+         $perfil->setSexo($values['sexo']);
          $perfil->setImagem($imagem);
          $perfil->setEndereco($endereco);
          $perfil->setAutenticacao(true);
          
+         
+         //var_dump($perfil);exit;
          
          
         $this->getObjectManager()->persist($perfil);
@@ -83,9 +86,19 @@ class Perfil extends Service {
      public function findPerfil($id)
     {
         $id = (int) $id;
-        $perfil = $this->getObjectManager()->find('Application\Entity\Perfil', $id);
+        $perfils = $this->getObjectManager()->getRepository('Application\Entity\Perfil')
+                ->findAll();
         
-        return $perfil;
+        foreach ($perfils as $perfil){
+            
+            if($perfil->getId()== $id){
+                $result = $perfil;
+            }
+        }
+        
+        return $result;
     }
 
+
+    
 }
