@@ -47,6 +47,12 @@ class Evento extends Entity
      * @var text
      */
     protected $descricao; 
+    /**
+     * @ORM\Column (type="text")
+     * 
+     * @var text
+     */
+    protected $titulo; 
 
     /**
      * 
@@ -92,6 +98,35 @@ class Evento extends Entity
     public function getPerfil(){
         return $this->perfil;
     }
+    
+    /**
+     * @param string $titulo
+     */
+    public function setTitulo($titulo) {
+        $this->titulo = $titulo;
+    }
+    
+    /**
+     * @return $titulo
+     * 
+     */
+    public function getTitulo(){
+        return $this->titulo;
+    }
+    /**
+     * @param string $descricao
+     */
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
+    
+    /**
+     * @return $descricao
+     * 
+     */
+    public function getDescricao(){
+        return $this->descricao;
+    }
 
 /**
      * @param string $dataEvento
@@ -136,6 +171,26 @@ class Evento extends Entity
 
         $input_filter->add($factory->createInput(array(
             'name' => 'descricao',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        ),
+                    ),
+                ),
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToUpper',
+                    'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            )));
+        
+        $input_filter->add($factory->createInput(array(
+            'name' => 'titulo',
             'required' => true,
             'validators' => array(
                 array(
