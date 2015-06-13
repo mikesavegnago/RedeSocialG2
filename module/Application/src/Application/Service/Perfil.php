@@ -8,7 +8,7 @@ use Core\Model\EntityException as EntityException;
 /**
  * Service Save Entityes
  *
- * @category Admin
+ * @category Application
  * @package  Service
  * @author   Paulo José Cella <paulocella@unochapeco.edu.br> 
  * @link     localhost 
@@ -21,12 +21,12 @@ class Perfil extends Service {
          $usuario = $session->offsetGet('user');
          $em = $this->getObjectManager();
          
-        if ((int) $values['id'] > 0)
-            $perfil = $em->find($values['id']);
-        else
-            $perfil = new \Application\Entity\Perfil();
-        
-        
+       if ((int) $values['id'] > 0){
+            $perfil = $this->findPerfil($values['id']);
+       }else{
+         $perfil = new \Application\Entity\Perfil();
+       }
+       
          $valuesCidade['id'] = null;
          $valuesCidade['uf'] = $valores['uf'];
          $valuesCidade['cidade'] = $valores['cidade'];
@@ -46,16 +46,16 @@ class Perfil extends Service {
          
          $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($valuesEndereco);
          $imagem = $this->getService('Application\Service\Imagem')->saveImagem($valuesImagem);
-         
     
          
+         $perfil->setId($usuario->getId());
          $perfil->setStatusRelacionamento($values['statusRelacionamento']);
          $perfil->setOndeTrabalha($values['ondeTrabalha']);
          $perfil->setFormacao($values['formacao']);
          $perfil->setProfissao($values['profissao']);
          $perfil->setPermissao($values['permissao']);
          $perfil->setNome($usuario->getNome());
-         $perfil->setSobrenome($usuario->getSobrenome());
+         //$perfil->setSobrenome($usuario->getSobrenome());
          $perfil->setEmail($usuario->getEmail());
          $perfil->setCelular($usuario->getCelular());
          $perfil->setSenha($usuario->getSenha());
@@ -65,6 +65,8 @@ class Perfil extends Service {
          $perfil->setEndereco($endereco);
          $perfil->setAutenticacao(true);
          
+         
+         
         $this->getObjectManager()->persist($perfil);
         try {
             $this->getObjectManager()->flush();
@@ -73,6 +75,15 @@ class Perfil extends Service {
             exit;
         }
 
+        return $perfil;
+    }
+    
+    
+     public function findPerfil($id)
+    {
+        $id = (int) $id;
+        $perfil = $this->getObjectManager()->find('Application\Entity\Perfil', $id);
+        
         return $perfil;
     }
 
