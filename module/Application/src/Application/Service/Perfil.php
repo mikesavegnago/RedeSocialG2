@@ -18,8 +18,9 @@ class Perfil extends Service {
     public function savePerfil($values, $valores) {
         
         $session = $this->getServiceManager()->get('Session');
-         $usuario = $session->offsetGet('user');
+         $usuario = $session->offsetGet('usuario');
          $em = $this->getObjectManager();
+         
          
        if ((int) $values['id'] > 0){
             $perfil = $this->findPerfil($values['id']);
