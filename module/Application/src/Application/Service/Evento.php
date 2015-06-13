@@ -18,19 +18,29 @@ class Evento extends Service {
     public function saveEvento($values){
         
          $session = $this->getServiceManager()->get('Session');
-         $usuario = $session->offsetGet('user');
+         $usuario = $session->offsetGet('usuario');
         
-        $perfil = $this->getObjectManager()->getRepository('\Application\Entity\Perfil')
-                ->findOneBy(array('email'=>$usuario->getEmail()));
-         
-        if ((int) $values['id'] > 0)
+         $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
+        
+        if(!isset($perfil)){
+            var_dump("voce deve cadastrar um perfil");
+        }
+        
+        if ((int) $values['id'] > 0){
             $evento = $em->find($values['id']);
-        else
+        }
+        else{
             $evento = new \Application\Entity\Evento();             
-    
+        }
+        
          $evento->setPerfil($perfil);
+         
+         
          $evento->setDescricao($values['descricao']);
-         $evento->setDataEvento($values['dataEvento']);
+         $evento->setTitulo($values['titulo']);
+         $evento->setCapa($values['capa']);
+         $evento->setDataEvento(new \DateTime($values['dataEvento']));
+         
          
          
         $this->getObjectManager()->persist($evento);
