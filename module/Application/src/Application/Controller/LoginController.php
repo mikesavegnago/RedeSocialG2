@@ -29,7 +29,7 @@ class LoginController extends AbstractActionController
 	    try {
 		$this->getServiceLocator()->get('Application\Service\Auth')->authenticate($values);
                 
-                if($session->offsetGet('role') == 'ADMIN'){
+                if($session->offsetGet('role') == 'USUARIO'){
                     
                      return $this->redirect()->toUrl('/application/index/layout');
                 }else{

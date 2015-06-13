@@ -4,9 +4,9 @@ namespace Application\Entity;
 
 use Core\Model\Entity as Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
-
 /**
  * @ORM\Entity
  * @ORM\Table (name = "usuario")
@@ -25,6 +25,20 @@ class Usuario extends Entity {
      * @var integer
      */
     protected $id;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="amigos")
+     **/
+    private $meus_amigos;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="meus_amigos")
+     * @ORM\JoinTable(name="amigos",
+     *      joinColumns={@ORM\JoinColumn(name="id_usuario", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="id_amigo", referencedColumnName="id")}
+     *      )
+     **/
+    private $amigos;
 
     /**
      * @ORM\Column (type="string")

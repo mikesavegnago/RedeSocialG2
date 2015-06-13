@@ -38,10 +38,10 @@ class Auth extends Service
         }
         $session = $this->getServiceManager()->get('Session');
 	$identity = $result->getIdentity();
-        $session->offsetSet('user', $identity);
+        $session->offsetSet('usuario', $identity);
         $autenticado = $identity->getAutenticacao();
         if($autenticado){
-            $session->offsetSet('role','ADMIN' );
+            $session->offsetSet('role','USUARIO' );
         }
         else{
             $session->offsetSet('role', 'VISITANTE');
@@ -58,7 +58,7 @@ class Auth extends Service
     {
         $Auth = new AuthenticationService();
         $session = $this->getServiceManager()->get('Session');
-        $session->offsetUnset('user');
+        $session->offsetUnset('usuario');
         $session->offsetUnset('role');
         $Auth->clearIdentity();
         return true;

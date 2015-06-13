@@ -17,12 +17,12 @@ return array(
     'acl' => array(
         'roles' => array(
             'VISITANTE' => null,
-            'ADMIN' => 'VISITANTE',
+            'USUARIO' => 'VISITANTE',
         ),
         'resources' => array(
             'Application\Controller\Index.index',
-            'Application\Controller\Index.opcoes',
-            'Application\Controller\Index.pagina',
+            'Application\Controller\Index.sobre',
+            'Application\Controller\Index.layout',
             'Application\Controller\Login.login',
             'Application\Controller\Login.logout',
             'Application\Controller\Usuarios.index',
@@ -46,7 +46,7 @@ return array(
             'Application\Controller\Imagens.index',
             'Application\Controller\Imagens.save',
             'Application\Controller\Imagens.delete',
-            'Application\Controller\Deslikes.delete',
+            'Application\Controller\Imagens.layout',
             'Application\Controller\Albuns.index',
             'Application\Controller\Albuns.save',
             'Application\Controller\Albuns.delete',
@@ -59,6 +59,7 @@ return array(
             'Application\Controller\Eventos.index',
             'Application\Controller\Eventos.save',
             'Application\Controller\Eventos.delete',
+            'Application\Controller\Eventos.evento',
             'Application\Controller\MuralEventos.index',
             'Application\Controller\MuralEventos.save',
             'Application\Controller\MuralEventos.delete',
@@ -68,24 +69,21 @@ return array(
             'Application\Controller\Ufs.index',
             'Application\Controller\Ufs.save',
             'Application\Controller\Ufs.delete',
-            'Application\Controller\Usuarios.index',
-            'Application\Controller\Usuarios.save',
-            'Application\Controller\Usuarios.delete',
         ),
         'privilege' => array(
             'VISITANTE' => array(
                 'allow' => array(
+                    'Application\Controller\Index.index',
                     'Application\Controller\Login.login',
-                    'Application\Controller\Login.logout'
+                    'Application\Controller\Usuarios.save',
                 )
             ),
-            'ADMIN' => array(
+            'USUARIO' => array(
                 'allow' => array(
-                    'Application\Controller\Index.index',
-                    'Application\Controller\Index.opcoes',
-                    'Application\Controller\Index.pagina',
+                    'Application\Controller\Login.logout',
+                    'Application\Controller\Index.sobre',
+                    'Application\Controller\Index.layout',
                     'Application\Controller\Usuarios.index',
-                    'Application\Controller\Usuarios.save',
                     'Application\Controller\Usuarios.delete',
                     'Application\Controller\Perfis.index',
                     'Application\Controller\Perfis.save',
@@ -105,7 +103,7 @@ return array(
                     'Application\Controller\Imagens.index',
                     'Application\Controller\Imagens.save',
                     'Application\Controller\Imagens.delete',
-                    'Application\Controller\Deslikes.delete',
+                    'Application\Controller\Imagens.layout',
                     'Application\Controller\Albuns.index',
                     'Application\Controller\Albuns.save',
                     'Application\Controller\Albuns.delete',
@@ -118,6 +116,7 @@ return array(
                     'Application\Controller\Eventos.index',
                     'Application\Controller\Eventos.save',
                     'Application\Controller\Eventos.delete',
+                    'Application\Controller\Eventos.evento',
                     'Application\Controller\MuralEventos.index',
                     'Application\Controller\MuralEventos.save',
                     'Application\Controller\MuralEventos.delete',
@@ -127,9 +126,6 @@ return array(
                     'Application\Controller\Ufs.index',
                     'Application\Controller\Ufs.save',
                     'Application\Controller\Ufs.delete',
-                    'Application\Controller\Usuarios.index',
-                    'Application\Controller\Usuarios.save',
-                    'Application\Controller\Usuarios.delete',
                 )
             ),
         )

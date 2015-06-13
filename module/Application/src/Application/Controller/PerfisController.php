@@ -26,8 +26,6 @@ class PerfisController extends ActionController
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $perfil= $em->getRepository('\Application\Entity\Perfil')->findAll();
         
-        var_dump($perfil);exit;
-        
         return new ViewModel();
     }
     
@@ -80,11 +78,11 @@ class PerfisController extends ActionController
             }  
             
         }
-//        $id = (int) $this->params()->fromRoute('id', 0);
-//        if ($id > 0) {
-//            $usuario = $this->getService('Admin\Service\Usuario')->find($id);
-//            $form->bind($usuario);
-//        }
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if ($id > 0) {
+            $perfil = $this->getService('Admin\Service\Perfil')->find($id);
+            $form->bind($perfil);
+        }
 
         return new ViewModel(
                 array('form' => $form,

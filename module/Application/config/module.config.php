@@ -1,5 +1,3 @@
-
-
 <?php
 
 // module/Application/conﬁg/module.config.php:
@@ -50,6 +48,16 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/application',
@@ -82,57 +90,22 @@ return array(
                     
                 ),
             ),
-            'index_paginacao' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/[page/:page]',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller' => 'Index',
-                        'action' => 'index',
-                        'module' => 'application',
-                        'page' => 1,
-                    ),
-                ),
-            ), 
         ),
     ),
     'service_manager' => array(
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+            'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+        ),
         'factories' => array(
             'Session' => function ($sm) {
                 return new Zend\Session\Container('SessionApplication');
             },
         )
     ),
-    
-//    'service_manager' => array(
-//        'factories' => array(
-//            'Session' => function ($sm) {
-//                return new Zend\Session\Container('SessionApplication');
-//            },
-//        )
-//    ),
-    
-                    
-//                    
-//    'service_manager' => array(
-//       'factories' => array(
-//           'Session' => function ($sm) {
-//               return new Zend\Session\Container('SessionApplication');
-//           },
-//       ),
-//       'abstract_factories' => array(
-//           'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
-//           'Zend\Log\LoggerAbstractServiceFactory',
-//       ),
-//       'aliases' => array(
-//           'translator' => 'MvcTranslator',
-//       ),
-//   ),
-//                    
-                    
-                    
-
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,
@@ -141,7 +114,7 @@ return array(
         'exception_template' => 'error/index',
         'template_map' => array(
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'application/login/index' => __DIR__ . '/../view/application/login/index.phtml',
+            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -151,8 +124,3 @@ return array(
     ),
    
 );
-         
-            
-            
-            
-            
