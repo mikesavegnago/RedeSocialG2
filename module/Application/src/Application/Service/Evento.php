@@ -15,11 +15,13 @@ use Core\Model\EntityException as EntityException;
  */
 class Evento extends Service {
 
-    public function saveEvento($values ,$valores) {
+    public function saveEvento($values){
         
-        $session = $this->getServiceManager()->get('Session');
-         $perfil = $session->offsetGet('user');
-         $em = $this->getObjectManager();
+         $session = $this->getServiceManager()->get('Session');
+         $usuario = $session->offsetGet('user');
+        
+        $perfil = $this->getObjectManager()->getRepository('\Application\Entity\Perfil')
+                ->findOneBy(array('email'=>$usuario->getEmail()));
          
         if ((int) $values['id'] > 0)
             $evento = $em->find($values['id']);
@@ -28,8 +30,7 @@ class Evento extends Service {
     
          $evento->setPerfil($perfil);
          $evento->setDescricao($values['descricao']);
-         $evento->setDataEvento($values['dataEvento']);    
-         var_dump($evento);exit;   
+         $evento->setDataEvento($values['dataEvento']);
          
          
         $this->getObjectManager()->persist($evento);
