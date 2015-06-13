@@ -26,12 +26,12 @@ class Evento extends Entity
      */
     protected $id;
     
-   // /**
-    // * @ORM\Column (type="string")
-    // *
-    // * @var string
-     //*/
-    //protected $capa;
+    /**
+     * @ORM\Column (type="string")
+     *
+     * @var string
+     */
+    protected $capa;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", cascade={"persist"})
@@ -64,19 +64,19 @@ class Evento extends Entity
     }
 
    
-   // /**
-   //  * @return string
-   //  */
-   // public function getCapa(){
-    //    return $this->capa;
-    //}
+    /**
+     * @return string
+     */
+    public function getCapa(){
+        return $this->capa;
+    }
     
-    ///**
-    // * @param $capa
-    // */
-    //public function setCapa($capa){
-       // $this->capa = $capa;
-    //}
+    /**
+     * @param $capa
+     */
+    public function setCapa($capa){
+        $this->capa = $capa;
+    }
 
     /**
      * @param string $perfil
@@ -134,7 +134,7 @@ class Evento extends Entity
                 )
         );
 
-        $inputFilter->add($factory->createInput(array(
+        $input_filter->add($factory->createInput(array(
             'name' => 'descricao',
             'required' => true,
             'validators' => array(
@@ -153,8 +153,13 @@ class Evento extends Entity
                     ),
                 ),
             )));
+        
+        $input_filter->add($factory->createInput(array(
+            'name' => 'capa',
+            'required' => false,
+            )));
 
-         $inputFilter->add($factory->createInput(array(
+         $input_filter->add($factory->createInput(array(
                         'name' => 'dataEvento',
                         'required' => true,
                         'validators' => array(
