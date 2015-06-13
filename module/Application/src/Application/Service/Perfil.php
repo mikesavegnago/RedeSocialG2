@@ -24,6 +24,9 @@ class Perfil extends Service {
          
        if ((int) $values['id'] > 0){
             $perfil = $this->findPerfil($values['id']);
+            if(!isset($perfil)){
+                $perfil = new \Application\Entity\Perfil();
+            }
        }else{
          $perfil = new \Application\Entity\Perfil();
        }
