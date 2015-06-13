@@ -54,8 +54,33 @@ class EventosController extends ActionController
     */
     public function saveAction()
     {
-       
-    }
+
+         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $form = new \Application\Form\Evento($em);
+        $request = $this->getRequest();
+
+         if ($request->isPost()) {
+            $valores = $request->getPost();
+            $evento = new \Application\Entity\Evento();
+            $filtros = $evento->getInputFilter();
+            $form->setInputFilter($filtros);
+            $form->setData($valores);
+
+           if (!$form->isValid()){
+                $values = $form->getData();
+                
+                try{
+                    $evento = $this->getService('Application\Service\Evento')->saveEvento($values);
+                }catch(\Exception $e){
+                    echo $e->getMessage(); 
+                    exit;
+                }
+                
+                return $this->redirect()->toUrl('/application/index/layout');    
+            }  
+            
+        }
+        
 
     /**
     *Função delete

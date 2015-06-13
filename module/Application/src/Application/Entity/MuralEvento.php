@@ -108,4 +108,70 @@ class MuralEvento extends Entity
    public function setImagem($imagem){
     $this -> imagem = $imagem; 
    }
+ /**
+    *
+    * @return Zend/InputFilter/InputFilter
+    */
+    public function getInputFilter(){
+        if (!$this->inputFilter) {
+
+            $inputFilter = new InputFilter();
+            $factory = new InputFactory();
+            $inputFilter->add($factory->createInput(array(
+            'name' => 'id',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'Int'),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+            'name' => 'texto',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        ),
+                    ),
+                ),
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToUpper',
+                    'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            )));
+    $inputFilter->add($factory->createInput(array(
+            'name' => 'imagem',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        ),
+                    ),
+                ),
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToUpper',
+                    'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            )));
+                        
+                      
+            $this->inputFilter = $inputFilter;
+        }
+        return $this->inputFilter;
+    }
+    
 }
+
+?>
+
+
+
