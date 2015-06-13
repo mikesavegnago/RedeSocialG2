@@ -40,6 +40,12 @@ class Mural extends Entity
      * @var blob
      */
     protected $foto;
+    /**
+     * @ORM\Column (type="datetime")
+     *
+     * @var Date
+     */
+    protected $data;
 
     /**
      * @ORM\Column (type="text")
@@ -76,6 +82,19 @@ class Mural extends Entity
     public function setFoto($foto){
         $this->foto = $foto;
     }
+    /**
+     * @return data
+     */
+    public function getData(){
+        return $this->data;
+    }
+    
+    /**
+     * @param $data
+     */
+    public function setData($data){
+        $this->data = $data;
+    }
 
     /**
      * @return blob
@@ -84,10 +103,6 @@ class Mural extends Entity
         return $this->foto;
     }
     
-
-
-
-
     /**
      * @return string
      */
