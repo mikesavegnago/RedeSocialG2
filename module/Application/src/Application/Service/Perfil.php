@@ -23,9 +23,10 @@ class Perfil extends Service {
          
          
        if ((int) $values['id'] > 0){
-            $perfil = $this->findPerfil($values['id']);
+            $perfil = $this->find($values['id']);
             if(!isset($perfil)){
                 $perfil = new \Application\Entity\Perfil();
+                $perfil->setId($values['id']);
             }
        }else{
          $perfil = new \Application\Entity\Perfil();
@@ -69,9 +70,6 @@ class Perfil extends Service {
          $perfil->setImagem($imagem);
          $perfil->setEndereco($endereco);
          $perfil->setAutenticacao(true);
-         
-         
-         //var_dump($perfil);exit;
          
          
         $this->getObjectManager()->persist($perfil);
