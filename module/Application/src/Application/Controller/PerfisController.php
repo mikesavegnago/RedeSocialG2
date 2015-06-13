@@ -23,6 +23,11 @@ class PerfisController extends ActionController
     public function indexAction()
     {
         
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $perfil= $em->getRepository('\Application\Entity\Perfil')->findAll();
+        
+        var_dump($perfil);exit;
+        
         return new ViewModel();
     }
     
@@ -60,7 +65,7 @@ class PerfisController extends ActionController
             $filtros = $perfil->getInputFilter();
             $form->setInputFilter($filtros);
             $filtros = $perfil->getInputFilter();
-            $form->setData($valores);   
+            $form->setData($valores);
             
             if (!$form->isValid()) {
                 $values = $form->getData();
