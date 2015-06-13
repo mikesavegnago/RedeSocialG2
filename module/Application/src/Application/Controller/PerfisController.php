@@ -36,8 +36,7 @@ class PerfisController extends ActionController
     */
     public function layoutAction()
     {
-        
-         return new ViewModel();
+        return new ViewModel();
     }
     
     /**
@@ -73,21 +72,13 @@ class PerfisController extends ActionController
                     echo $e->getMessage(); 
                     exit;
                 }
-                
-                return $this->redirect()->toUrl('/application/index/sobre');    
+                $id = (int) $this->params()->fromRoute('id', 0);
+                return $this->redirect()->toUrl('/application/index/sobre/id/'.$id);    
             }  
             
         }
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if ($id > 0) {
-            $perfil = $this->getService('Admin\Service\Perfil')->find($id);
-            $form->bind($perfil);
-        }
+        
 
-        return new ViewModel(
-                array('form' => $form,
-            'formUsuario' => $formUsuario
-                ));
     }
 
 

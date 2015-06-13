@@ -13,14 +13,16 @@
                     <div class="avatar">
                         <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="people" />
                     </div>
-                    <div class="name"><a href="#">Mike Savegnago</a></div>
+                    <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
                     <ul class="cover-nav">
-
-                        <li><a href="/application/index/layout"><i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
-                        <li class="active"><a href="/application/index/sobre/id/<?php echo $usuario->getId(); ?>"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
-                        <li><a href="/application/eventos"><i class="fa fa-fw fa-users"></i> Eventos</a></li>
-                        <li><a href="/application/imagens/layout"><i class="fa fa-fw fa-photo"></i> Fotos</a></li>
-                        
+                        <li><a href="/application/index/layout">
+                            <i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
+                        <li class="active"><a href="/application/index/sobre/perfil/<?php echo $perfil->getId(); ?>">
+                            <i class="fa fa-fw fa-user"></i> Perfil</a></li>
+                        <li><a href="/application/eventos/perfil/<?php echo $perfil->getId(); ?>">
+                            <i class="fa fa-fw fa-users"></i> Eventos</a></li>
+                        <li><a href="/application/imagens/layout/perfil/<?php echo $perfil->getId(); ?>">
+                            <i class="fa fa-fw fa-photo"></i> Fotos</a></li>
                     </ul>
                     <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
                         <li><a href=""><i class="fa fa-fw fa-plus"></i>Adicionar Contato</a></li>

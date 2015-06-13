@@ -86,13 +86,13 @@ class Perfil extends Service {
     }
     
     
-     public function findPerfil($id)
+     public function find($id)
     {
         $id = (int) $id;
-        $perfils = $this->getObjectManager()->getRepository('Application\Entity\Perfil')
+        $perfis = $this->getObjectManager()->getRepository('Application\Entity\Perfil')
                 ->findAll();
         
-        foreach ($perfils as $perfil){
+        foreach ($perfis as $perfil){
             
             if($perfil->getId()== $id){
                 $result = $perfil;
