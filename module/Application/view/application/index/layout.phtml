@@ -77,6 +77,9 @@
             <div class="col-xs-6">
             <div class="media-body">
                 <div class="media-body-wrapper">
+                    
+                <?php foreach($murais as $mural){?>
+                    
                    <div class="panel panel-default">
                         <div class="media-body">
                             <div class="media-body-wrapper">
@@ -99,10 +102,6 @@
                                                 </ul>
                                             </div>
                                             
-                                            <?php 
-                                                foreach($murais as $mural){
-                                            
-                                            ?>
                                             <a href="" class="comment-author pull-left"><?php echo $mural->getData()->format('d-m-y H:i:s'); ?></a><br>
                                             <div class="comment-date"><?php echo $mural->getData()->format('d-m-y'); ?></div>
                                             <span><?php echo $mural->getDescricao();?><br>
@@ -110,7 +109,7 @@
                                             </span>
                                         </div>
                                         
-                                                <?php } ?>
+                                                
 
                                     </div>
                                     <div class="view-all-comments">
@@ -120,6 +119,8 @@
                                         <span>1 comentário</span>
 
                                     </div>
+                                    
+                                    
                                     <ul class="comments">
                                         <li class="media">
                                             <div class="media-left">
@@ -156,6 +157,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                     <div class="panel panel-default">
                         <div class="media-body">
                             <div class="media-body-wrapper">
