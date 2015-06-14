@@ -119,12 +119,28 @@
                                                 <a href="#">
                                                     <i class="fa fa-comments-o"></i> Ver todos
                                                 </a>
-                                                <span>1 comentário</span>
-
+                                                <?php 
+                                                $nuComent = null;
+                                                
+                                                foreach($comentarios as $comentario) {
+                                                    if($comentario->getMural()->getId() == $mural->getId()){
+                                                         $nuComent++;
+                                                    }
+                                                        ?>
+                                                        
+                                                 <?php 
+                                                        
+                                                    } ?>
+                                                    <span> <?php echo $nuComent; ?> comentarios</span>
                                             </div>
 
 
                                             <ul class="comments">
+                                                
+                                                <?php foreach($comentarios as $comentario) {
+                                                    if($comentario->getMural()->getId() == $mural->getId()){
+                                                    ?>
+                                                
                                                 <li class="media">
                                                     <div class="media-left">
                                                         <a href="">
@@ -142,10 +158,12 @@
                                                             </ul>
                                                         </div>
                                                         <a href="" class="comment-author pull-left">Ana P.</a>
-                                                        <span>Gostei manolo</span>
+                                                        <span><?php echo $comentario->getComentario(); ?></span>
                                                         <div class="comment-date">09 de junho</div>
                                                     </div>
                                                 </li>
+                                                
+                                                    <?php }}?>
                                                 <form action="/application/comentarios/save/id/<?php echo $usuario->getId(); ?>" method="post"> 
                                                     <li class="comment-form">
                                                         <div class="input-group"> 
