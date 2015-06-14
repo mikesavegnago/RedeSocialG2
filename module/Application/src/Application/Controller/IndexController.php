@@ -28,8 +28,13 @@ class IndexController extends ActionController
         $murais = $em->getRepository('\Application\Entity\Mural')
                     ->findAll();
         
+        foreach( $murais as $mural){
+            $foto = $this->getService('Application\Service\Mural')->getFoto($mural->getFoto());
+            $mural->setFoto($foto);
+        }
+        
         //var_dump($murais);exit;
-
+        
         return new ViewModel(
                 array(
                     'murais' => $murais
