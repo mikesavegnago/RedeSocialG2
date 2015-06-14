@@ -43,14 +43,6 @@ class Comentario extends Entity
      */
     protected $perfil;
     
-    /**
-     * @ORM\ManyToOne(targetEntity="Imagem", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_imagem", referencedColumnName="id")
-     *
-     * @var \Admin\Entity\Imagem
-     */
-    protected $idImagem;
-    
    
 
     /**
@@ -89,20 +81,6 @@ class Comentario extends Entity
      */
     public function getPerfil(){
         return $this->perfil;
-    }
-    
-     /**
-     * @param integer $idImagem
-     */
-    public function setIdImagem($idImagem){
-        $this->idImagem = $idImagem;
-    }
-    
-    /**
-     * @return integer
-     */
-    public function getIdImagem(){
-        return $this->idImagem;
     }
     
     
