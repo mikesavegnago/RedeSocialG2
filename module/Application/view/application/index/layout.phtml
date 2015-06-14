@@ -78,7 +78,9 @@
             <div class="media-body">
                 <div class="media-body-wrapper">
                     
-                <?php foreach($murais as $mural){?>
+                <?php foreach($murais as $mural){
+                    ?>
+                    
                     
                    <div class="panel panel-default">
                         <div class="media-body">
@@ -98,7 +100,7 @@
                                                 </a>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href="#">Editar</a></li>
-                                                    <li><a href="#">Deletar</a></li>
+                                                    <li><a href="/application/murais/delete/id/<?php echo $mural->getId();?>">Deletar</a></li>
                                                 </ul>
                                             </div>
                                             
@@ -158,7 +160,7 @@
                         </div>
                     </div>
                     <?php } ?>
-                    <div class="panel panel-default">
+<!--                    <div class="panel panel-default">
                         <div class="media-body">
                             <div class="media-body-wrapper">
                                 <div class="panel panel-default">
@@ -230,7 +232,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             </div>
