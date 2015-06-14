@@ -27,6 +27,7 @@ class ComentariosController extends ActionController
 //         return new ViewModel(array(
 //             'comentarios' => $comentarios
 //         ));
+         return new ViewModel();
     }
     
 
