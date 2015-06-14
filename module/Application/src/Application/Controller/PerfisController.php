@@ -72,8 +72,9 @@ class PerfisController extends ActionController
                     echo $e->getMessage(); 
                     exit;
                 }
+                
                 $id = (int) $this->params()->fromRoute('id', 0);
-                return $this->redirect()->toUrl('/application/index/sobre/id/'.$id);    
+                return $this->redirect()->toUrl('/application/index/sobre/perfil/'.$id);    
             }  
             
         }
