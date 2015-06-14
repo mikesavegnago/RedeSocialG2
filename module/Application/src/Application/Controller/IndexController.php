@@ -22,7 +22,21 @@ class IndexController extends ActionController
     
     public function layoutAction()
     {
-        return new ViewModel();
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $session = $this->getServiceLocator()->get('Session');
+        
+        $murais = $em->getRepository('\Application\Entity\Mural')
+                    ->findAll();
+        
+        //var_dump($murais);exit;
+
+        return new ViewModel(
+                array(
+                    'murais' => $murais
+                )
+        );
+        
+        //return new ViewModel();
     }
     
     public function sobreAction()
