@@ -13,7 +13,7 @@
                     <div class="avatar">
                         <img src="<?=$this->basePath() . '/img/user.jpg'?>" alt="people" />
                     </div>
-                    <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
+                        <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
                     <ul class="cover-nav">
                         <li class="active"><a href="/application/index/layout"><i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
                         <li><a href="/application/index/sobre/perfil/<?php echo $usuario->getId(); ?>"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
@@ -98,13 +98,19 @@
                                                     <li><a href="#">Deletar</a></li>
                                                 </ul>
                                             </div>
-                                            <a href="" class="comment-author pull-left">Ana P.</a><br>
-                                            <div class="comment-date">09 de junho</div>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
-                                                velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
+                                            
+                                            <?php 
+                                                foreach($murais as $mural){
+                                            
+                                            ?>
+                                            <a href="" class="comment-author pull-left"><?php echo $mural->getData()->format('d-m-y H:i:s'); ?></a><br>
+                                            <div class="comment-date"><?php echo $mural->getData()->format('d-m-y'); ?></div>
+                                            <span><?php echo $mural->getDescricao();?><br>
                                                 <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">
                                             </span>
                                         </div>
+                                        
+                                                <?php } ?>
 
                                     </div>
                                     <div class="view-all-comments">
