@@ -146,15 +146,18 @@
                                                 <div class="comment-date">09 de junho</div>
                                             </div>
                                         </li>
-                                        <li class="comment-form">
-                                            <div class="input-group"> 
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
-                                                </span>
+                                        <form action="/application/comentarios/save/id/<?php echo $usuario->getId();?>" method="post"> 
+                                            <li class="comment-form">
+                                                <div class="input-group"> 
+                                                    <input type="text" class="form-control">
+                                                    <button type="submit" class="btn btn-primary ">Comentar</button>
+                                                    <span class="input-group-btn">
+                                                        <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
+                                                    </span>
 
-                                            </div>
-                                        </li>
+                                                </div>
+                                            </li>
+                                        </form>
                                     </ul>
                                 </div>
                             </div>
