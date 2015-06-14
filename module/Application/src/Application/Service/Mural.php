@@ -64,5 +64,23 @@ class Mural extends Service
             }
         }
     }
+    
+    
+    public function getFoto($foto)
+    {
+//        if ((int) $id <= 0)
+//            throw new \InvalidArgumentException('Parâmetros inválidos');
+//        $fotoMural = $this->getEm()->find('Application\Entity\Mural', (int) $id);
+//        if (!$user)
+//            throw new NoResultException('Mural não existe');
+//        $base = null;
+        if ($foto != null) {
+            $stream = stream_get_contents($foto);
+            $foto = base64_decode($stream);
+        }
+        
+        return $foto;
+    }
+
 
 }
