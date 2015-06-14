@@ -102,7 +102,61 @@ class Comentario extends Entity
     public function getIdImagem(){
         return $this->idImagem;
     }
+    
+    
+      public function getArrayCopy() {
+        return get_object_vars($this);
+    }
 
+    /**
+     * Filtros
+     *
+     * @return Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter() {
+        $input_filter = new InputFilter();
+        $factory = new InputFactory();
+
+         $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'comentario',
+                            'required' => true,
+                            'filters' => array(
+                                array(
+                                    'name' => 'StripTags'
+                                ),
+                                array(
+                                    'name' => 'StringTrim'
+                                ),
+                            ),
+                            'validators' => array(
+                                array(
+                                    'name' => 'StringLength',
+                                    'options' => array(
+                                        'encoding' => 'UTF-8',
+                                        'min' => 1,
+                                        'max' => 255,
+                                        'message' => 'O campo comentario deve ser'
+                                        . ' maior que 1 caracteres e menor que'
+                                        . ' 255 caracteres'
+                                    )
+                                ),
+                                array(
+                                    'name' => 'NotEmpty',
+                                    'options' => array(
+                                        'message' => 'O campo comentario não '
+                                        . ' pode estar vazio'
+                                    )
+                                ),
+                            ),
+                        )
+                )
+        );
+    
+        $this->input_filter = $input_filter;
+        return $this->input_filter;
+}
 }
 
 ?>
