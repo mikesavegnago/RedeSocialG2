@@ -36,6 +36,14 @@ class Comentario extends Entity
     protected $comentario;
     
     /**
+     * @ORM\ManyToOne(targetEntity="Mural")
+     * @ORM\JoinColumn(name="id_mural", referencedColumnName="id")
+     *
+     * @var \Admin\Entity\Mural
+     */
+    protected $mural;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
      * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
      *
@@ -66,6 +74,22 @@ class Comentario extends Entity
     
     public function getComentario(){
         return $this->comentario;
+    }
+    
+    /**
+     * @param  $mural
+     */
+    public function setMural($mural) {
+        $this->mural= $mural;
+    }
+
+    /**
+     * @return $mural
+     * 
+     */
+    
+    public function getMural(){
+        return $this->mural;
     }
     
     /**
