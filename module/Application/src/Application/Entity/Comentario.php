@@ -25,6 +25,8 @@ class Comentario extends Entity
      * @var integer
      */
     protected $id;
+    
+    protected $input_filter;
 
    /**
     *  @ORM\Column(type="string")
