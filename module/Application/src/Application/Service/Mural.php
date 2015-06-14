@@ -82,5 +82,21 @@ class Mural extends Service
         return $foto;
     }
 
+    
+    public function find($id)
+    {
+        $id = (int) $id;
+        $mural = $this->getObjectManager()->getRepository('Application\Entity\Mural')
+                ->findAll();
+        
+        foreach ($mural as $mural){
+            
+            if($mural->getId()== $id){
+                $result = $mural;
+            }
+        }
+        
+        return $result;
+    }
 
 }
