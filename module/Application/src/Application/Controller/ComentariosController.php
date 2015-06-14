@@ -21,12 +21,12 @@ class ComentariosController extends ActionController
     */
     public function indexAction()
     {
-        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $comentarios= $em->getRepository('\Application\Entity\Comentarios')->findAll();
-        
-         return new ViewModel(array(
-             'comentarios' => $comentarios
-         ));
+//        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+//        $comentarios= $em->getRepository('\Application\Entity\Comentarios')->findAll();
+//        
+//         return new ViewModel(array(
+//             'comentarios' => $comentarios
+//         ));
     }
     
 
@@ -38,7 +38,7 @@ class ComentariosController extends ActionController
     public function saveAction()
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $form = new Form($this->getObjectManager());
+        $form = new  \Application\Form\Comentario();
         $request = $this->getRequest();
         
         if ($request->isPost()) {
@@ -48,10 +48,8 @@ class ComentariosController extends ActionController
             $form->setInputFilter($filtros);
             $form->setData($valores);
             
-            
-            if (!$form->isValid()) {
+            if ($form->isValid()) {
                 $values = $form->getData();
-                var_dump($values);exit;
                 
                 try{
                     $comentario = $this->getService('Application\Service\Comentario')
@@ -60,8 +58,6 @@ class ComentariosController extends ActionController
                     echo $e->getMessage(); 
                     exit;
                 }
-                $this->getService('Application\Service\Auth')
-                            ->authenticate($values);
                 return $this->redirect()->toUrl('/application/index/layout');    
             }                    
         }
@@ -93,6 +89,6 @@ class ComentariosController extends ActionController
             echo $e->getMessage(); exit;
         }
 
-        return $this->redirect()->toUrl('/application/comentarios');
+        return $this->redirect()->toUrl('/application/index/layout');
     }
 }
