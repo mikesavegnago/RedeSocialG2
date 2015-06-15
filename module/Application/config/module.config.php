@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 // module/Application/conﬁg/module.config.php:
 return array(
@@ -11,6 +11,7 @@ return array(
             'Application\Controller\Imagens' => 'Application\Controller\ImagensController',
             'Application\Controller\Eventos' => 'Application\Controller\EventosController',
             'Application\Controller\Usuarios' => 'Application\Controller\UsuariosController',
+            'Application\Controller\Likes' => 'Application\Controller\LikesController',
             'Application\Controller\Comentarios' => 'Application\Controller\ComentariosController',
             'Application\Controller\Cidades' => 'Application\Controller\CidadesController',
             'Application\Controller\Ufs' => 'Application\Controller\UfsController',
