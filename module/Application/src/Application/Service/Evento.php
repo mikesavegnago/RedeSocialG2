@@ -19,10 +19,11 @@ class Evento extends Service
         
         $session = $this->getServiceManager()->get('Session');
         $usuario = $session->offsetGet('usuario');
-
-        $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
-        var_dump($perfil); exit;
-        if(!isset($perfil)){
+        
+        
+        try {
+             $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
+        } catch (\Exception $e) {
             throw new EntityException("voce deve cadastrar um perfil");
         }
         
