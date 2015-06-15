@@ -70,7 +70,7 @@ class Evento extends Entity
     }
    
     /**
-     * @param blob $capa
+     * @param  $capa
      *
      */
     public function setCapa($capa)
@@ -78,7 +78,7 @@ class Evento extends Entity
         $this->capa = $capa;
     }
     /**
-     * @return blob
+     * @return string
      */
     public function getCapa()
     {
@@ -143,8 +143,6 @@ class Evento extends Entity
     public function getDataEvento(){
         return $this->dataEvento;
     }
-
-
 
 
     /**
