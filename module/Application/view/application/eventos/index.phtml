@@ -36,7 +36,6 @@
                         </div>
                         
                         <?php foreach($eventos as $evento) {
-     //var_dump($evento->getPerfil()->getNome());exit;
                             ?>
                         
                         <div class="panel-body">
@@ -58,8 +57,8 @@
                                             <img src="<?php echo $evento->getCapa(); ?>" alt="image" class="img-responsive">
                                         </a>
                                         <ul class="icon-list icon-list-block">
-                                            <li><i class="fa fa-calendar fa-fw"></i> <a href="/application/eventos/evento">1 semana</a></li>
-                                            <li><i class="fa fa-users fa-fw"></i> <a href="/application/eventos/evento"> 2 Participantes</a></li>
+                                            <li><i class="fa fa-calendar fa-fw"></i> <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>">1 semana</a></li>
+                                            <li><i class="fa fa-users fa-fw"></i> <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>"> 2 Participantes</a></li>
                                         </ul>
                                     </div>
                                 </div>
