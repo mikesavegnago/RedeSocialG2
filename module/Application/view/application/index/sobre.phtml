@@ -4,14 +4,12 @@
         <div class="st-content"> 
 
             <div class="cover profile">
-                <div class="wrapper">
-                    <div class="image">
-                        <img src="<?= $this->basePath() . '/img/background.jpg' ?>" alt="people" />
-                    </div> 
+                <div class="wrapper"> 
+                        <img src="<?= $this->basePath() . $perfil->getCapa(); ?>" alt="people" />
                 </div>
                 <div class="cover-info">
                     <div class="avatar">
-                        <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="people" />
+                        <img src="<?= $this->basePath() . $perfil->getFoto(); ?>" alt="people" />
                     </div>
                     <div class="name"><a href="#"><?php echo $perfil->getNome(); ?></a></div>
                     <ul class="cover-nav">
@@ -51,10 +49,37 @@
                                 <ul class="list-unstyled profile-about margin-none">
                                     <li class="padding-v-5">
                                         <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Nome</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="nome" id="nome" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getNome(); ?>" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="email" id="email" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getEmail(); ?>" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5" id="senhaNone" style="display: none">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Senha</span></div>
+                                            <div class="col-sm-8">
+                                                <input type="password" name="senha" id="senha" 
+                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5">
+                                        <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Status Relaciomento</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="statusRelacionamento" id="status_relacionemento" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getStatusRelacionamento(); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -62,7 +87,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Foto Perfil</span></div>
                                             <div class="panel-footer share-buttons">
-                                                <a href="#"><input type="file" disabled name="foto_perfil"
+                                                <a href="#"><input type="file" name="foto_perfil"
                                                                     id="foto_perfil" > </a>
                                             </div>
                                         </div>
@@ -71,7 +96,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Foto da Capa</span></div>
                                             <div class="panel-footer share-buttons">
-                                                <a href="#"><input type="file" disabled name="foto_capa"
+                                                <a href="#"><input type="file" name="foto_capa"
                                                                     id="foto_capa" > </a>
                                             </div>
                                         </div>
@@ -80,8 +105,8 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Data de nascimento</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="dataNascimento" id="data_nasc" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                <input type="text" name="data_nasc" id="data_nasc" disabled 
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getDataNascimento(); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -90,7 +115,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Onde trabalha</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="ondeTrabalha" id="onde_trabalha" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getOndeTrabalha(); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -99,7 +124,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Celular</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="celular" id="celular" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getCelular(); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -108,7 +133,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Profissão</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="profissao" id="profissao" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getProfissao(); ?>"/>
                                             </div>
                                         </div>
                                     </li>
@@ -117,7 +142,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Formação</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="formacao" id="formacao" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getFormacao(); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -126,7 +151,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Gênero</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="sexo" id="sexo" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getSexo(); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -135,7 +160,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Cidade</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="cidade" id="cidade" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getCidade()->getDescricao(); } ?>" />
                                             </div>
                                         </div>
                                     </li> 
@@ -144,7 +169,7 @@
                                             <div class="col-sm-4"><span class="text-muted">UF</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="uf" id="uf" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getUf()->getDescricao(); } ?>" />
                                             </div>
                                         </div>
                                     </li> 
@@ -153,7 +178,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Rua</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="rua" id="rua" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getRua(); }?>" />
                                             </div>
                                         </div>
                                     </li> 
@@ -162,7 +187,7 @@
                                             <div class="col-sm-4"><span class="text-muted">Número</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="numero" id="numero" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getNumero(); }?>"  />
                                             </div>
                                         </div>
                                     </li> 
@@ -171,26 +196,15 @@
                                             <div class="col-sm-4"><span class="text-muted">Bairro</span></div>
                                             <div class="col-sm-8">
                                                 <input type="text" name="bairro" id="bairro" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="" />
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getBairro(); } ?>" />
                                             </div>
                                         </div>
-                                    </li> 
-                                    <!--                                   //comentado pois o email ja vai esta na sessao-->
-                                    <!--                                    <li class="padding-v-5">
-                                                                           <div class="row">
-                                                                               <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
-                                                                               <div class="col-sm-8">
-                                                                                   <input type="text" name="email" id="email" disabled 
-                                                                                          style="background: #fff; border: #fff 0px solid" 
-                                                                                          value="...@unochapeco.edu.br" />
-                                                                               </div>
-                                                                           </div>
-                                                                       </li>-->
-                                    <li class="padding-v-5">
+                                    </li>
+                                    <li class="padding-v-5" id="quemVe" style="display: none">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Quem Pode Ver</span></div>
                                             <div class="col-sm-8">
-                                                <select type="select" name="permissao" id="permissao" disabled 
+                                                <select type="select" name="permissao" id="permissao" 
                                                         style="background: #fff; border: #fff 0px solid" >
                                                     <option value="AMIGOS" selected>Amigos</option>      
                                                     <option value="TODOS" >Todos</option>
@@ -428,7 +442,7 @@
         $('#permissao').attr("class", 'form-control');
         $('#data_nasc').removeAttr("disabled");
         $('#data_nasc').attr("style", '');
-        $('#data_nasc').attr("class", 'form-control');
+        $('#data_nasc').attr("class", 'form-control date');
         $('#onde_trabalha').removeAttr("disabled");
         $('#onde_trabalha').attr("style", '');
         $('#onde_trabalha').attr("class", 'form-control');
@@ -442,5 +456,16 @@
         $('#celular').removeAttr("disabled");
         $('#celular').attr("style", '');
         $('#celular').attr("class", 'form-control');
+        $('#nome').removeAttr("disabled");
+        $('#nome').attr("style", '');
+        $('#nome').attr("class", 'form-control');
+        $('#email').removeAttr("disabled");
+        $('#email').attr("style", '');
+        $('#email').attr("class", 'form-control');
+        $('#fotoPerfil').attr("style", '');
+        $('#fotoCapa').attr("style", '');
+        $('#quemVe').attr("style", '');
+        $('#senhaNone').attr("style", '');
+        $('#senha').attr("class", 'form-control');
     });
 </script>

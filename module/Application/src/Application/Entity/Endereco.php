@@ -28,21 +28,21 @@ class Endereco extends Entity
     protected $id;
     
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      *
      * @var string
      */
     protected $rua;
     
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      * 
      * @var string
      */
     protected $numero;
 
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      * 
      * @var string
      */

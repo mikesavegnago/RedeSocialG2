@@ -66,9 +66,9 @@ class Uf extends Service
         $uf = $this->getObjectManager()->getRepository('\Application\Entity\Uf')
                 ->findOneBy(array('descricao'=>$desc));
         
-        if(count($uf)<= 0){
+        if(!$uf){
             $values['uf'] = $desc;
-            $uf = $this->saveUfs($values);
+            $uf = $this->saveUfs($values['uf']);
         }
         return $uf;
     }

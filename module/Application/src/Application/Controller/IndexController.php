@@ -29,14 +29,7 @@ class IndexController extends ActionController
                     ->findAll();
         $comentarios = $em->getRepository('\Application\Entity\Comentario')
                     ->findAll();
-        
-        
-        foreach( $murais as $mural){
-            $foto = $this->getService('Application\Service\Mural')->getFoto($mural->getFoto());
-            $mural->setFoto($foto);
-        }
-        
-        
+         
         return new ViewModel(
                 array(
                     'murais' => $murais,

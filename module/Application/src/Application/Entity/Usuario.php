@@ -9,7 +9,9 @@ use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
 /**
  * @ORM\Entity
- * @ORM\Table (name = "usuario")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\Table(name="usuario")
+ * @ORM\DiscriminatorMap({"usuario" = "Usuario", "peril" = "Perfil"})
  *
  * @category Application
  * @package  Entity
@@ -88,16 +90,6 @@ class Usuario extends Entity {
     protected $sexo;
 
     /**
-     * 
-     * @ORM\Column (type="boolean")
-     * 
-     * @var boolean
-     */
-    protected $autenticado;
-    
-    
-
-    /**
      * @return id
      */
     public function getId() {
@@ -150,7 +142,7 @@ class Usuario extends Entity {
      * @param $senha
      */
     public function setSenha($senha) {
-        $this->senha = $senha;
+        $this->senha = md5($senha);
     }
 
     /**
@@ -191,19 +183,7 @@ class Usuario extends Entity {
         return $this->sexo;
     }
 
-    /**
-     * @param $autenticacao
-     */
-    public function setAutenticacao($autenticacao) {
-        $this->autenticado = $autenticacao;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getAutenticacao() {
-        return $this->autenticado;
-    }
+   
 
     /**
      * Filtros

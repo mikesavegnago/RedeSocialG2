@@ -1,20 +1,20 @@
 <?php
+
 namespace Application\Form;
 
 use Zend\Form\Element;
 use Zend\Form\Form;
 
 /**
-* Form Usuario
-*
-* @category Prime
-* @package  Form
-* @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
-*/
-class Perfil extends Usuario
-{
-    public function __construct($em)
-    {
+ * Form Usuario
+ *
+ * @category Prime
+ * @package  Form
+ * @author   Mike Savegnago <mikesavegnago@unochapeco.edu.br>
+ */
+class Perfil extends Usuario {
+
+    public function __construct($em) {
         parent::__construct('perfil');
         $this->setAttribute('method', 'post');
         $this->setAttribute('action', '');
@@ -23,7 +23,7 @@ class Perfil extends Usuario
             'type' => 'hidden',
             'name' => 'id'
         ));
-       
+
         $this->add(array(
             'name' => 'statusRelacionamento',
             'type' => 'text',
@@ -36,7 +36,7 @@ class Perfil extends Usuario
                 'class' => 'form-control'
             )
         ));
-        
+
         $this->add(array(
             'name' => 'profissao',
             'type' => 'text',
@@ -49,7 +49,7 @@ class Perfil extends Usuario
                 'class' => 'form-control'
             )
         ));
-        
+
         $this->add(array(
             'name' => 'formacao',
             'type' => 'text',
@@ -62,8 +62,8 @@ class Perfil extends Usuario
                 'class' => 'form-control'
             )
         ));
-        
-         $this->add(array(
+
+        $this->add(array(
             'name' => 'ondeTrabalha',
             'type' => 'text',
             'options' => array(
@@ -75,7 +75,27 @@ class Perfil extends Usuario
                 'class' => 'form-control'
             )
         ));
-     
+        $this->add(array(
+            'name' => 'foto_perfil',
+            'type' => 'file',
+            'options' => array(
+                'label' => 'foto*'),
+            'attributes' => array(
+                'placeholder' => 'Informe o nome',
+                'id' => 'foto',
+                'enctype' => 'multipart/form-data',)
+        ));
+        $this->add(array(
+            'name' => 'foto_capa',
+            'type' => 'file',
+            'options' => array(
+                'label' => 'foto*'),
+            'attributes' => array(
+                'placeholder' => 'Informe o nome',
+                'id' => 'foto',
+                'enctype' => 'multipart/form-data',)
+        ));
+
         $this->add(array(
             'name' => 'submit',
             'type' => 'submit',
@@ -84,6 +104,6 @@ class Perfil extends Usuario
                 'class' => 'btn btn-primary'
             )
         ));
-        
     }
+
 }

@@ -97,7 +97,7 @@ class Mural extends Entity
     }
 
     /**
-     * @return blob
+     * @return string
      */
     public function getFoto(){
         return $this->foto;

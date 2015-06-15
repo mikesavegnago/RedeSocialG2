@@ -36,7 +36,7 @@ class Cidade extends Entity
     */
     protected $uf;
     /**
-    *@ORM\Column(type="string")
+    *@ORM\Column(type="string", nullable=true)
     *
     *@var string
     */

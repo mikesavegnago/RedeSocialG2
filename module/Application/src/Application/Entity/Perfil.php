@@ -25,14 +25,14 @@ class Perfil extends Usuario
      */
     protected $id;
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      *
      * @var string
      */
     protected $statusRelacionamento;
 
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      * 
      * @var string
      */
@@ -40,7 +40,7 @@ class Perfil extends Usuario
     
     /**
      * 
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      * 
      * @var string
      */
@@ -48,7 +48,7 @@ class Perfil extends Usuario
     
     /**
      * 
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      * 
      * @var string
      * 
@@ -57,7 +57,7 @@ class Perfil extends Usuario
     
     /**
      * 
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      * 
      * @var string
      * 
@@ -85,6 +85,14 @@ class Perfil extends Usuario
      * @var string
      */
     protected $capa;
+    
+    /**
+     * 
+     * @ORM\Column (type="boolean")
+     * 
+     * @var boolean
+     */
+    protected $autenticado;
     
     
     /**
@@ -216,6 +224,20 @@ class Perfil extends Usuario
     {
         return $this->capa;
     }  
+    
+    /**
+    * @param $autenticacao
+    */
+    public function setAutenticacao($autenticacao) {
+        $this->autenticado = $autenticacao;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getAutenticacao() {
+        return $this->autenticado;
+    }
    
    /**
      * Filtros

@@ -72,7 +72,6 @@ class Cidade extends Service
     */
     public function save($values)
     {
-        
         $uf = $this->getService('Application\Service\Uf')->findWithDesc($values['uf']);
         $cidade = new \Application\Entity\Cidade();
         $cidade->setDescricao($values['cidade']);
@@ -100,7 +99,7 @@ class Cidade extends Service
         $cidade = $this->getObjectManager()->getRepository('\Application\Entity\Cidade')
                 ->findOneBy(array('descricao'=>$value['cidade']));
         
-        if(count($cidade)<= 0){
+        if(!$cidade){
             $cidade = $this->save($value);
         }
         return $cidade;

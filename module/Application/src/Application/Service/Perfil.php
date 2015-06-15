@@ -18,60 +18,50 @@ class Perfil extends Service
     /**
      * @var string
      */
-    protected $entity = '\Admin\Entity\Perfil';
+    protected $entity = '\Application\Entity\Perfil';
 
-    public function savePerfil($values, $valores) {
+    public function savePerfil($values) {
         
         $session = $this->getServiceManager()->get('Session');
-         $usuario = $session->offsetGet('usuario');
-         $em = $this->getObjectManager();
-         
-         
-       if ((int) $values['id'] > 0){
-            $perfil = $this->find($values['id']);
-            if(!isset($perfil)){
-                $perfil = new \Application\Entity\Perfil();
-                $perfil->setId($values['id']);
-            }
-       }else{
-         $perfil = new \Application\Entity\Perfil();
-       } 
-         $valuesCidade['id'] = null;
-         $valuesCidade['uf'] = $valores['uf'];
-         $valuesCidade['cidade'] = $valores['cidade'];
-         
-         $cidade = $this->getService('Application\Service\Cidade')->findWithDesc($valuesCidade);
-         $valuesEndereco['cidade'] = $cidade;
-         $valuesEndereco['id'] = null;
-         $valuesEndereco['numero'] = $valores['numero'];
-         $valuesEndereco['rua'] = $valores['rua'];
-         $valuesEndereco['bairro'] = $valores['bairro'];
-         $valuesEndereco['uf'] = $valores['uf'];
-         
-         $valuesImagem['id'] = null;
-         $valuesImagem['idAlbun'] = null;
-         $valuesImagem['imagem'] = $valores['foto'];
-         
-         
-         $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($valuesEndereco);
-         $imagem = $this->getService('Application\Service\Imagem')->saveImagem($valuesImagem);
-    
-         
-         $perfil->setId($values['id']);
-         $perfil->setStatusRelacionamento($values['statusRelacionamento']);
-         $perfil->setOndeTrabalha($values['ondeTrabalha']);
-         $perfil->setFormacao($values['formacao']);
-         $perfil->setProfissao($values['profissao']);
-         $perfil->setPermissao($values['permissao']);
-         $perfil->setNome($usuario->getNome());
-         $perfil->setEmail($usuario->getEmail());
-         $perfil->setCelular($values['celular']);
-         $perfil->setSenha($usuario->getSenha());
-         $perfil->setDataNascimento($usuario->getDataNascimento());
-         $perfil->setSexo($values['sexo']);
-         $perfil->setImagem($imagem);
-         $perfil->setEndereco($endereco);
-         $perfil->setAutenticacao(true);
+        $usuario = $session->offsetGet('usuario');
+        $em = $this->getObjectManager();
+        
+        if ($values['id'] > 0 ) {
+        $perfil = $this->find($values['id']);
+        } else { 
+            $perfil = new \Application\Entity\Perfil();
+        }
+        if ($values['cidade']) {
+            $cidade = $this->getService('Application\Service\Cidade')->findWithDesc($values);
+        }
+        if ($values['endereco']) {
+            $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($values['endereco']);
+        }
+        $idade = $values['data_nasc'];
+        $compara = explode("/", $idade);
+        $compara = (new \DateTime())->format('Y') - $compara[2];
+        
+        if($compara < 16){
+            return false;
+        }
+        
+        $perfil->setAutenticacao(true);
+        $perfil->setStatusRelacionamento($values['statusRelacionamento']);
+        $perfil->setOndeTrabalha($values['ondeTrabalha']);
+        $perfil->setFormacao($values['formacao']);
+        $perfil->setProfissao($values['profissao']);
+        $perfil->setPermissao($values['permissao']);
+        $perfil->setNome($values['nome']);
+        $perfil->setEmail($values['email']);
+        $perfil->setCelular($values['celular']);
+        if ($values['senha']) {
+            $perfil->setSenha($values['senha']);
+        }
+        $perfil->setDataNascimento($values['data_nasc']);
+        $perfil->setSexo($values['sexo']);
+        $perfil->setFoto($values['foto_perfil']);
+        $perfil->setCapa($values['foto_capa']);
+        $perfil->setEndereco($endereco);
          
          
         $this->getObjectManager()->persist($perfil);
@@ -87,9 +77,9 @@ class Perfil extends Service
     
     public function find($values){
        $em = $this->getObjectManager();
-       $usuario = $em->find ('\Application\Entity\Perfil',$values);
+       $perfil = $this->getEm()->find($this->entity, (int) $values);
        
-       return $usuario;
+       return $perfil;
    }
 
 

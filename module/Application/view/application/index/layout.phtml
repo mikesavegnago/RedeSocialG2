@@ -5,13 +5,11 @@
 
             <div class="cover profile">
                 <div class="wrapper">
-                    <div class="image">
-                        <img src="<?= $this->basePath() . '/img/background.jpg' ?>" alt="people" />
-                    </div> 
+                        <img src="<?= $this->basePath() . $usuario->getCapa();?>" alt="people" />
                 </div>
                 <div class="cover-info">
                     <div class="avatar">
-                        <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="people" />
+                        <img src="<?= $this->basePath() . $usuario->getFoto(); ?>" alt="people" />
                     </div>
                     <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
                     <ul class="cover-nav">
@@ -36,8 +34,8 @@
                                     <textarea name="descricao" class="form-control share-text" rows="3" placeholder="Compartilhe algo conosco..."></textarea>
                                 </div>
                                 <div class="panel-footer share-buttons">
-                                    <a href="#"><input type="file" name="foto" enctype="multipart/form-data"  id="foto" class="fa fa-photo"> </a>
-                                    <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Post</button>
+                                    <a href="#"><input type="file" name="foto" enctype="multipart/form-data"  id="foto"> </a>
+                                    <button type="submit" class="btn btn-primary btn-xs pull-right display-block" >Post</button>
                                 </div>
                             </div>
                         </form>
@@ -45,43 +43,10 @@
                 </div> 
             </div>
 
-            <div class="col-xs-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading panel-heading-gray">
-                        <i class="fa fa-fw fa-user"></i> Amigos
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="media-left">
-                                    <a href="">
-                                        <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <a href="" class="comment-author pull-left">Ana P.</a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <input type="button" class="btn btn-success" value="Aceitar">
-                                <input type="button" class="btn btn-danger" value="Recusar">
-                            </div>
-                        </div>
-                        <div class="row" style="text-align: center;">
-                            Você não tem novas amizades.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-6">
+            <div class="col-xs-12">
                 <div class="media-body">
-                    <div class="media-body-wrapper">
-
-                        <?php foreach ($murais as $mural) {
-                            ?>
-
-
+                    <div class="media-body-wrapper"> 
+                        <?php foreach ($murais as $mural) { ?> 
                             <div class="panel panel-default">
                                 <div class="media-body">
                                     <div class="media-body-wrapper">
@@ -90,7 +55,7 @@
                                             <div class="panel-body">
                                                 <div class="media-left">
                                                     <a href="">
-                                                        <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
+                                                        <img src="<?= $this->basePath() . $mural->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
@@ -99,16 +64,15 @@
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
                                                         <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="#">Editar</a></li>
                                                             <li><a href="/application/murais/delete/id/<?php echo $mural->getId(); ?>">Deletar</a></li>
                                                         </ul>
                                                     </div>
 
-                                                    <a href="" class="comment-author pull-left"><?php echo $mural->getPerfil()?></a><br>
+                                                    <a href="" class="comment-author pull-left"><?php echo $mural->getPerfil()->getNome();?></a><br>
                                                     <div class="comment-date"><?php echo $mural->getData()->format('d/m/y'); ?></div>
                                                     <span><?php echo $mural->getDescricao(); ?><br>
-                                                        <!--<img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">-->
-                                                        <div id="imagem"> <?php echo $mural->getFoto(); ?> </div>
+                                                        <img src="<?php echo $this->basePath() . $mural->getFoto(); ?>" class="foto-mural img-thumbnail">
+                                                        
                                                     </span>
                                                 </div>
 
@@ -117,24 +81,10 @@
                                             </div>
                                             <div class="view-all-comments">
                                                 <a href="#">
-                                                    <i class="fa fa-comments-o"></i> Ver todos
+                                                    <i class="fa fa-like"></i> Like
                                                 </a>
-                                                <?php 
-                                                $nuComent = null;
-                                                
-                                                foreach($comentarios as $comentario) {
-                                                    if($comentario->getMural()->getId() == $mural->getId()){
-                                                         $nuComent++;
-                                                    }
-                                                        ?>
-                                                        
-                                                 <?php 
-                                                        
-                                                    } ?>
-                                                    <span> <?php echo $nuComent; ?> comentarios</span>
                                             </div>
-
-
+                                            
                                             <ul class="comments">
                                                 
                                                 <?php foreach($comentarios as $comentario) {
@@ -144,7 +94,7 @@
                                                 <li class="media">
                                                     <div class="media-left">
                                                         <a href="">
-                                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
+                                                            <img src="<?= $this->basePath() . $comentario->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
                                                         </a>
                                                     </div>
                                                     <div class="media-body">
@@ -153,11 +103,10 @@
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
                                                             <ul class="dropdown-menu" role="menu">
-                                                                <li><a href="#">Editar</a></li>
                                                                 <li><a href="#">Deletar</a></li>
                                                             </ul>
                                                         </div>
-                                                        <a href="" class="comment-author pull-left">Ana P.</a>
+                                                        <a href="" class="comment-author pull-left"><?php echo $comentario->getPerfil()->getNome(); ?></a>
                                                         <span><?php echo $comentario->getComentario(); ?></span>
                                                         <div class="comment-date">09 de junho</div>
                                                     </div>
@@ -169,9 +118,9 @@
                                                         <div class="input-group"> 
                                                             <input type="hidden" id="id" name="id" value="<?php echo $mural->getId();?>" class="form-control">
                                                             <input type="text" id="comentario" name="comentario" class="form-control">
-                                                            <button type="submit" href="#" class="btn btn-primary">Comentar</button>
+                                                            
                                                             <span class="input-group-btn">
-                                                                <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
+                                                                <button type="submit" href="#" class="btn btn-default"><i class="fa fa-comment"></i></button>
                                                             </span>
                                                         </div>
                                                     </li>
@@ -182,79 +131,7 @@
                                 </div>
                             </div>
                         <?php } ?>
-                        <!--                    <div class="panel panel-default">
-                                                <div class="media-body">
-                                                    <div class="media-body-wrapper">
-                                                        <div class="panel panel-default">
                         
-                                                            <div class="panel-body">
-                                                                <div class="media-left">
-                                                                    <a href="">
-                                                                        <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
-                                                                        <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                                            <i class="fa fa-pencil"></i>
-                                                                        </a>
-                                                                        <ul class="dropdown-menu" role="menu">
-                                                                            <li><a href="#">Editar</a></li>
-                                                                            <li><a href="#">Deletar</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <a href="" class="comment-author pull-left">Ana P.</a><br>
-                                                                    <div class="comment-date">09 de junho</div>
-                                                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
-                                                                        velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
-                                                                        <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">
-                                                                    </span>
-                                                                </div>
-                        
-                                                            </div>
-                                                            <div class="view-all-comments">
-                                                                <a href="#">
-                                                                    <i class="fa fa-comments-o"></i> Ver todos
-                                                                </a>
-                                                                <span>1 comentário</span>
-                        
-                                                            </div>
-                                                            <ul class="comments">
-                                                                <li class="media">
-                                                                    <div class="media-left">
-                                                                        <a href="">
-                                                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
-                                                                            <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                                                <i class="fa fa-pencil"></i>
-                                                                            </a>
-                                                                            <ul class="dropdown-menu" role="menu">
-                                                                                <li><a href="#">Editar</a></li>
-                                                                                <li><a href="#">Deletar</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <a href="" class="comment-author pull-left">Ana P.</a>
-                                                                        <span>Gostei manolo</span>
-                                                                        <div class="comment-date">09 de junho</div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="comment-form">
-                                                                    <div class="input-group"> 
-                                                                        <input type="text" class="form-control">
-                                                                        <span class="input-group-btn">
-                                                                            <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
-                                                                        </span>
-                        
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>-->
                     </div>
                 </div>
             </div>

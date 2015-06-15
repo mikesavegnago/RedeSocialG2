@@ -53,9 +53,16 @@ class PerfisController extends ActionController
         
         if ($request->isPost()) {
             $valores = $request->getPost();
-            $file = $request->getFiles('foto');
-            $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
-            $valoresRequest=$valores;
+            $fotoPerfil = $request->getFiles('foto_perfil');
+            if ($fotoPerfil) {
+                $valores['foto_perfil'] = $this->getService('Application\Service\UpLoadImagem')
+                        ->uploadPhoto($fotoPerfil);
+            }
+            $fotoCapa = $request->getFiles('foto_capa');
+            if ($fotoCapa) {
+                $valores['foto_capa'] = $this->getService('Application\Service\UpLoadImagem')
+                        ->uploadPhoto($fotoCapa);
+            }
             $perfil = new \Application\Entity\Perfil();
   
             
@@ -67,14 +74,23 @@ class PerfisController extends ActionController
             if (!$form->isValid()) {
                 $values = $form->getData();
                 try{
-                    $perfil = $this->getService('Application\Service\Perfil')->savePerfil($values,$valoresRequest);
+                    $perfil = $this->getService('Application\Service\Perfil')->savePerfil($values);
+                    if(!$perfil){
+                        $this->flashMessenger()->addErrorMessage('Você deve ser maior de 16 anos!');
+                        return $this->redirect()->toUrl('/');
+                    }
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;
                 }
                 
-                $id = (int) $this->params()->fromRoute('id', 0);
-                return $this->redirect()->toUrl('/application/index/sobre/perfil/'.$id);    
+                $session = $this->getServiceLocator()->get('Session');
+                $usuario = $session->offsetGet('usuario');
+                if(!$usuario){
+                    $this->getService('Application\Service\Auth')
+                            ->authenticate($values);
+                }
+                return $this->redirect()->toUrl('/application/index/sobre/perfil/'.$perfil->getId());    
             }  
             
         }

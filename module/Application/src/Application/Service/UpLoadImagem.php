@@ -20,12 +20,12 @@ class UpLoadImagem extends Service
         $target_path = getcwd() . '/public/fotos/';
         $target_path = $target_path . basename($file['name']);
         $validator_img = new \Zend\Validator\File\IsImage(array('image/jpg', 'image/png', 'image/jpeg'));
-        move_uploaded_file($file['tmp_name'], $target_path);
         if (!$validator_img->isValid($target_path))
             throw new InvalidMagicMimeFileException('O arquivo enviado não é uma imagem válida');
         $rand = uniqid();
         $origem = $target_path;
         $novo = '/fotos/' . $rand . basename($file['name']);
+        move_uploaded_file($file['tmp_name'], getcwd() . '/public/' . $novo);
         return $novo;
     }
 }

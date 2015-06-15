@@ -73,5 +73,15 @@ abstract class Service implements ServiceManagerAwareInterface {
         $role = $this->getService('Session')->offsetGet('role');
         return $role;
     }
+    
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function  getEm()
+    {
+        $this->em = $this->getServiceManager()->get('Doctrine\Orm\EntityManager');
+
+        return $this->em;
+    }
 
 }
