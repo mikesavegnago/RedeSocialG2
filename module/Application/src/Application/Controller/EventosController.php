@@ -22,15 +22,19 @@ class EventosController extends ActionController
     */
     public function indexAction()
     {
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $perfil = (int) $this->params()->fromRoute('perfil', 0);
-        if ($perfil > 0) {            
-            $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        if ($perfil > 0) {
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
         }
-
+        
+        $eventos = $em->getRepository('\Application\Entity\Evento')->findAll();
+        
+        
         return new ViewModel(
             array(
-                'perfil' => $perfil
+                'perfil' => $perfil,
+                'eventos' => $eventos
             )
         );
     }
@@ -42,15 +46,15 @@ class EventosController extends ActionController
     */
     public function eventoAction()
     {
-        $perfil = (int) $this->params()->fromRoute('perfil', 0);
-        if ($perfil > 0) {            
-            $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-            $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $evento = (int) $this->params()->fromRoute('id', 0);
+        if ($evento > 0) {
+            $evento = $em->getRepository('\Application\Entity\Evento')->find($evento);
         }
-
+       
         return new ViewModel(
             array(
-                'perfil' => $perfil
+                'evento' => $evento
             )
         );
     }
