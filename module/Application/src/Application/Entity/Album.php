@@ -39,7 +39,6 @@ class Album extends Entity
      * 
      * @var text
      */
-
     protected $descricao; 
 
 /**
