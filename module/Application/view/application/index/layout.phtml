@@ -67,6 +67,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
+                                                    <?php if ($mural->getPerfil()->getId() == $usuario->getId()) {?>
                                                     <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
                                                         <a href="#" data-toggle="dropdown" class="toggle-button">
                                                             <i class="fa fa-pencil"></i>
@@ -75,7 +76,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                                                             <li><a href="/application/murais/delete/id/<?php echo $mural->getId(); ?>">Deletar</a></li>
                                                         </ul>
                                                     </div>
-
+                                                    <?php } ?>
                                                     <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>" class="comment-author pull-left"><?php echo $mural->getPerfil()->getNome();?></a><br>
                                                     <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($mural->getData()->format('Y-m-d')) ); ?></div>
                                                     <span><?php echo $mural->getDescricao(); ?><br>
@@ -89,9 +90,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
 
                                             </div>
                                             <div class="view-all-comments">
-                                                <a href="#">
-                                                    <i class="fa fa-like"></i> Like
-                                                </a>
+                                                
                                             </div>
 
                                             <ul class="comments">
@@ -107,18 +106,10 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                                                         </a>
                                                     </div>
                                                     <div class="media-body">
-                                                        <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
-                                                            <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                                <i class="fa fa-pencil"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu" role="menu">
-                                                                <li><a href="#">Deletar</a></li>
-                                                            </ul>
-                                                        </div>
                                                         <a href="/application/index/sobre/perfil/<?php echo $comentario->getPerfil()->getId(); ?>" class="comment-author pull-left">
                                                             <?php echo $comentario->getPerfil()->getNome(); ?></a>
                                                         <span><?php echo $comentario->getComentario(); ?></span>
-                                                        <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($comentario->getData()->format('Y-m-d')) ); ?></div>
+                                                        <div class="comment-date"><?php  echo strftime( '%A, %d de %B de %Y', strtotime($comentario->getData()->format('Y-m-d')) ); ?></div>
                                                     </div>
                                                 </li>
 

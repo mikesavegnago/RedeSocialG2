@@ -79,18 +79,4 @@ class Evento extends Service
             return $select->getQuery()->getResult();
     }
 
-    public function fetchAllParticipantes($id)
-    {
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getObjectManager();
-        $select = $em->createQueryBuilder()
-            ->select('Perfil.id')
-            ->from('Application\Entity\Perfil', 'Perfil')
-            ->join('Perfil.evento', 'Evento')
-            ->where('Evento.id = ?1')
-            ->setParameter(1, $id);
-    echo var_dump($select->getQuery()->getArrayResult()); exit;
-          return $select->getQuery()->getResult();
-    }
-
 }

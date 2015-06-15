@@ -52,7 +52,7 @@ class Comentario extends Entity
     protected $perfil;
 
     /**
-     * @ORM\Column (type="datetime")
+     * @ORM\Column (type="datetime", nullable=true)
      *
      * @var Date
      */

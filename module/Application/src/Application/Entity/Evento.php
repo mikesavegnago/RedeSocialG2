@@ -70,6 +70,10 @@ class Evento extends Entity
      * @var datetime
      */
     protected $dataEvento;
+    
+    public function __construct() {
+        $this->perfil = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * @return integer

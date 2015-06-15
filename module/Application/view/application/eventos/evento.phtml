@@ -23,7 +23,15 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                     </ul>
 
                     <?php
-                        if ($evento->getPerfilCriador()->getId() != $usuario->getId()){
+                    foreach($participantes as $participante) { 
+                         if ($participante->getId() == $usuario->getId()) {
+                             $participa = true;
+                         } else {
+                             $participa = false;
+                         }
+                             
+                    }
+                        if ($evento->getPerfilCriador()->getId() != $usuario->getId() && !$participa){
                     ?>
                     <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
                         <li><a href="/application/eventos/participar/evento/<?=$evento->getId();?>"><i class="fa fa-fw fa-plus"></i>Participar do evento</a></li>
@@ -67,10 +75,10 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                                         <div class="panel-body">
                                             <div class="pull-right">
                                             </div>
-                                            <a href="#" class="h5">Ana P.</a>
+                                            <a href="/application/index/sobre/perfil/<?php echo $participante->getId(); ?>" class="h5"><?php echo $participante->getNome(); ?></a>
                                         </div>
-                                        <a href="#">
-                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="image" class="img-responsive">
+                                        <a href="/application/index/sobre/perfil/<?php echo $participante->getId(); ?>">
+                                            <img src="<?= $this->basePath() . $participante->getFoto(); ?>" alt="image" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>

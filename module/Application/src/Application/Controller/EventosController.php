@@ -38,6 +38,8 @@ class EventosController extends ActionController
 
         $eventos = $em->getRepository('\Application\Entity\Evento')
                         ->findBy(array('perfil_criador' => $perfil->getId()));
+        
+        
         return new ViewModel(
             array(
                 'perfil' => $perfil,
@@ -69,7 +71,7 @@ class EventosController extends ActionController
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
         }
 
-        $participantes = $this->getService('Application\Service\Evento')->fetchAllParticipantes($evento->getId());
+        $participantes = $evento->getPerfil();
         
         return new ViewModel(
             array(

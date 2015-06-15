@@ -23,7 +23,7 @@ class Like extends Service {
          
          $like = new \Application\Entity\Like();
         
-         //preencher dados de like
+         
          
         $this->getObjectManager()->persist($like);
         try {

@@ -216,49 +216,11 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                                         </div>
                                     </li>
                                     <li>
-                                        <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Salvar</button>
+                                        <button type="submit" id="salvar" class="btn btn-primary btn-xs pull-right" style="display: none">Salvar</button>
                                     </li>
                                 </ul>
                             </div>
                         </form>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-gray">
-                            <i class="fa fa-fw fa-photo"></i> Albuns
-                        </div>
-                        <div class="panel-body">
-
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-gray">
-                            <i class="fa fa-bookmark"></i> Eventos
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-
-                                <div class="col-md-4">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="pull-right">
-                                                <a href="#" class="btn btn-success btn-xs"><i class="fa fa-check-circle"></i></a>
-                                            </div>
-                                            <a href="#" class="h5">Festa da paula</a>
-                                            <div class="text-muted">
-                                                <small><i class="fa fa-calendar"></i> 24/10/2015</small>
-                                            </div>
-                                        </div>
-                                        <a href="#">
-                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="image" class="img-responsive">
-                                        </a>
-                                        <ul class="icon-list icon-list-block">
-                                            <li><i class="fa fa-calendar fa-fw"></i> <a href="#">1 semana</a></li>
-                                            <li><i class="fa fa-users fa-fw"></i> <a href="#"> 2 Participantes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -297,9 +259,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
 
                                             </div>
                                             <div class="view-all-comments">
-                                                <a href="#">
-                                                    <i class="fa fa-like"></i> Like
-                                                </a>
+                                               
                                             </div>
 
                                             <ul class="comments">
@@ -409,6 +369,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
         $('#fotoCapa').attr("style", '');
         $('#quemVe').attr("style", '');
         $('#senhaNone').attr("style", '');
+        $('#salvar').attr("style", '');
         $('#senha').attr("class", 'form-control');
     });
 </script>

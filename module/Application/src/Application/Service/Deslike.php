@@ -13,7 +13,7 @@ use Core\Model\EntityException as EntityException;
  * @author   Paulo José Cella <paulocella@unochapeco.edu.br> 
  * @link     localhost 
  */
-class Desike extends Service {
+class Deslike extends Service {
 
     public function saveDeslike($values) {
         
@@ -23,8 +23,6 @@ class Desike extends Service {
          
          $deslike = new \Application\Entity\Deslike();
         
-         //preencher dados de like
-         
         $this->getObjectManager()->persist($deslike);
         try {
             $this->getObjectManager()->flush();

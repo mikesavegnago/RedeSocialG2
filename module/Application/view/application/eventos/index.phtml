@@ -86,8 +86,8 @@
                                             <div class="pull-right">
                                                 <a href="#" class="btn btn-success btn-xs"><i class="fa fa-check-circle"></i></a>
                                             </div>
-                                            <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>/perfil/<?php echo $perfil->getId(); ?>" class="h5"><?php echo $evento->getTitulo(); ?></a>
-
+                                            <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>/perfil/<?php echo $perfil->getId(); ?>" class="h5">
+                                                <?php echo $evento->getTitulo(); ?></a>
                                         </div>
                                         <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>/perfil/<?php echo $perfil->getId(); ?>">
                                             <img src="<?php echo $evento->getCapa(); ?>" alt="image" class="img-responsive">
@@ -98,7 +98,9 @@
                                                  echo $evento->getDataEvento()->format('d/m/Y');
                                                 ?>
                                                 </a></li>
-                                            <li><i class="fa fa-users fa-fw"></i> <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>/perfil/<?php echo $perfil->getId(); ?>"> 2 Participantes</a></li>
+                                            <li><i class="fa fa-users fa-fw"></i> 
+                                                <a href="/application/eventos/evento/id/<?php echo $evento->getId();?>/perfil/<?php echo $perfil->getId(); ?>"> 
+                                                <?=count($evento->getPerfil())?> Participantes</a></li>
                                         </ul>
                                     </div>
                                 </div>
