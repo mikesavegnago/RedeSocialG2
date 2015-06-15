@@ -76,7 +76,7 @@ return array(
                 'allow' => array(
                     'Application\Controller\Index.index',
                     'Application\Controller\Login.login',
-                    'Application\Controller\Usuarios.save',
+                    'Application\Controller\Perfis.save',
                 )
             ),
             'USUARIO' => array(
