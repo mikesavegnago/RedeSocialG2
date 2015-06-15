@@ -20,6 +20,7 @@ class Evento extends Service
         $session = $this->getServiceManager()->get('Session');
         $usuario = $session->offsetGet('usuario');
         
+        $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
         
         try {
              $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
@@ -40,6 +41,7 @@ class Evento extends Service
          $evento->setDescricao($values['descricao']);
          $evento->setTitulo($values['titulo']);
          $evento->setCapa($values['capa']);
+         $values['dataEvento'] = str_replace('/','-', $values['dataEvento']);
          $evento->setDataEvento(new \DateTime($values['dataEvento']));
          
          
