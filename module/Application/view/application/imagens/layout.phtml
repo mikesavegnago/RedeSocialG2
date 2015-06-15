@@ -1,4 +1,4 @@
-<?php  $usuario = $this->session()->offsetGet('usuario');?>
+<?php  $usuario = $this->session()->offsetGet('usuario'); ?>
 <div class="st-container"> 
     <div class="st-pusher" id="content"> 
         <div class="st-content"> 
@@ -35,6 +35,9 @@
                             <i class="fa fa-photo"></i> Albuns
                         </div>
                         
+                        <?php foreach($albuns as $album){
+                            ?>
+                        
                         <div class="panel-body">
                             <div class="row">
 
@@ -44,15 +47,17 @@
                                             <div class="pull-right">
                                                 <a href="#" class="btn btn-success btn-xs"><i class="fa fa-photo"></i></a>
                                             </div>
-                                            <a href="/application/eventos/evento" class="h5">Festa da paula</a>
+                                            <a href="/application/eventos/evento" class="h5"><?php echo $album->getDescricao(); ?></a>
                                         </div>
-                                        <a href="/application/imagens/index<?php //echo $album->getId();?>">
-                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="image" class="img-responsive">
+                                        <a href="/application/imagens/index<?php echo $album->getId();?>">
+                                            <img src="<?php echo $album->getImagem();?>" alt="image" class="img-responsive">
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -64,11 +69,13 @@
                         
                         <div class="panel-body">
                             <div class="row">
-                                <form action="/application/albuns/save/id/<?php echo $perfil->getId();?>" method="post">
+                                <form action="/application/albuns/save/id/<?php echo $perfil->getId();?>" method="post" enctype="multipart/form-data">
                                 <div class="col-md-6"> 
                                     <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Descrição">
+                                    <a href="#"><input type="file" name="imagem"  id="imagem" > </a>
                                 </div>
                                     <input type="submit" class="btn btn-primary"  style="float: right">
+                                    
                                 </form>
                             </div>
                         </div>
