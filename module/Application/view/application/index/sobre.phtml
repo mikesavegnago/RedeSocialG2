@@ -25,8 +25,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                             <i class="fa fa-fw fa-photo"></i> Fotos</a></li>
                     </ul>
                     <?php
-                    var_dump($usuario->getAmigos()); exit;
-                        if ($perfil->getId() != $usuario->getId()){
+                        if ($perfil->getId() != $usuario->getId() && !$amigo){
                     ?>
                     <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
                         <li><a href="/application/perfis/adicionar/perfil/<?=$perfil->getid();?>"><i class="fa fa-fw fa-plus"></i>Adicionar Contato</a></li>

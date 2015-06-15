@@ -48,12 +48,15 @@ class IndexController extends ActionController
 
     public function sobreAction()
     {
+        $session = $this->getServiceLocator()->get('Session');
+        $usuario = $session->offsetGet('usuario');
         $perfil = (int) $this->params()->fromRoute('perfil', 0);
+
         if ($perfil > 0) {
             $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
         }
-
+        $amigos = $this->getService('Application\Service\Perfil')->findAmigo($perfil->getId());
         $murais = $em->getRepository('\Application\Entity\Mural')
                     ->findBy(array('perfil' => $perfil->getId()));
         $comentarios = '';
@@ -65,7 +68,8 @@ class IndexController extends ActionController
             array(
                 'murais' => $murais,
                 'comentarios' =>$comentarios,
-                'perfil' => $perfil
+                'perfil' => $perfil,
+                'amigo'=> $amigos
             )
         );
     }

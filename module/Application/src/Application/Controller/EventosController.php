@@ -27,18 +27,26 @@ class EventosController extends ActionController
         if ($perfil > 0) {
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
         }
-        
-        $eventos = $em->getRepository('\Application\Entity\Evento')->findAll();
-        
-        
+        $eventos = $this->getService('Application\Service\Evento')->fetchAllEventos($perfil->getId());
+        $todos_eventos ='';
+        if ($eventos) {
+            foreach ($eventos as $evento) {
+                $todos_eventos = $em->getRepository('\Application\Entity\Evento')
+                        ->findBy(array('id' => $evento->getId()));
+            }
+        }
+
+        $eventos = $em->getRepository('\Application\Entity\Evento')
+                        ->findBy(array('perfil_criador' => $perfil->getId()));
         return new ViewModel(
             array(
                 'perfil' => $perfil,
-                'eventos' => $eventos
+                'eventos' => $eventos,
+                'todos_eventos' => $todos_eventos
             )
         );
     }
-    
+
     /**
     *Função index
     *
@@ -51,14 +59,28 @@ class EventosController extends ActionController
         if ($evento > 0) {
             $evento = $em->getRepository('\Application\Entity\Evento')->find($evento);
         }
-       
+
+        $murais = $em->getRepository('\Application\Entity\MuralEvento')
+                    ->findBy(array('evento' => array($evento->getId())),array('id' => 'DESC'));
+
+        $perfil = (int) $this->params()->fromRoute('perfil', 0);
+        if ($perfil > 0) {
+            $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+            $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
+        }
+
+        $participantes = $this->getService('Application\Service\Evento')->fetchAllParticipantes($evento->getId());
+        
         return new ViewModel(
             array(
-                'evento' => $evento
+                'evento' => $evento,
+                'perfil' => $perfil,
+                'murais' => $murais,
+                'participantes' => $participantes
             )
         );
     }
-    
+
     /**
     *Função para criar o layout
     *
@@ -68,7 +90,7 @@ class EventosController extends ActionController
     {
          return new ViewModel();
     }
-    
+
     /**
     *Função save
     *
@@ -91,28 +113,39 @@ class EventosController extends ActionController
 
            if (!$form->isValid()){
                 $values = $form->getData();
-                
+
                 try{
                     $evento = $this->getService('Application\Service\Evento')->saveEvento($values);
                 }catch(\Exception $e){
-                    echo $e->getMessage(); 
+                    echo $e->getMessage();
                     exit;
                 }
-                
-                return $this->redirect()->toUrl('/application/index/layout');    
-            }  
-            
+
+                return $this->redirect()->toUrl('/application/index/layout');
+            }
+
         }
     }
 
     /**
-    *Função delete
+    *Função Participar
     *
     *@return void
     */
-    public function deleteAction()
+    public function participarAction()
     {
-    
+        $session = $this->getServiceLocator()->get('Session');
+        $usuario = $session->offsetGet('usuario');
+
+        $evento = (int) $this->params()->fromRoute('evento', 0);
+
+        /* @var $em \Doctrine\ORM\EntityManager */
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        $em->getConnection()->executeQuery(
+                sprintf('INSERT INTO participantes_evento (evento, perfil) VALUES (%s,%s)', $evento, $usuario->getId())
+                );
+        return $this->redirect()->toUrl('/application/eventos/evento/id/'.$evento.'/perfil/'.$usuario->getId());
     }
-    
+
 }

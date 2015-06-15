@@ -27,29 +27,36 @@ class MuralEvento extends Entity
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", cascade={"persist"})
-     * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Evento", cascade={"persist"})
+     * @ORM\JoinColumn(name="evento", referencedColumnName="id")
      *
-     * @var \Admin\Entity\Usuario
+     * @var \Admin\Entity\Evento
      */
     protected $evento;
-    
+
           /**
      * @ORM\Column (type="text")
-     * 
+     *
      * @var text
      */
-     protected $texto; 
+     protected $texto;
 
       /**
-     * @ORM\Column (type="string")
-     * 
+     * @ORM\Column (type="string", nullable=true)
+     *
      * @var string
-     */    
-    protected $imagem; 
+     */
+    protected $imagem;
 
-    
-    
+    /**
+     * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
+     *
+     * @var \Admin\Entity\Perfil
+     */
+    protected $perfil;
+
+
     /**
      * @return integer
      */
@@ -81,13 +88,13 @@ class MuralEvento extends Entity
         return $this-> texto;
 
     }
- 
+
      /**
      * @param $texto
      */
 
    public function setTexto($texto){
-    $this -> texto = $texto; 
+    $this -> texto = $texto;
 
    }
 
@@ -106,9 +113,24 @@ class MuralEvento extends Entity
      */
 
    public function setImagem($imagem){
-    $this -> imagem = $imagem; 
+    $this -> imagem = $imagem;
    }
- /**
+
+   /**
+     * @param $perfil
+     */
+    public function setPerfil($perfil){
+        $this->perfil = $perfil;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPerfil(){
+        return $this->perfil;
+    }
+
+     /**
     *
     * @return Zend/InputFilter/InputFilter
     */
@@ -143,32 +165,13 @@ class MuralEvento extends Entity
                     ),
                 ),
             )));
-    $inputFilter->add($factory->createInput(array(
-            'name' => 'imagem',
-            'required' => true,
-            'validators' => array(
-                array(
-                    'name' => 'StringLength',
-                    'options' => array(
-                        'encoding' => 'UTF-8',
-                        ),
-                    ),
-                ),
-            'filters' => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
-                array('name' => 'StringToUpper',
-                    'options' => array('encoding' => 'UTF-8')
-                    ),
-                ),
-            )));
-                        
-                      
+
+
             $this->inputFilter = $inputFilter;
         }
         return $this->inputFilter;
     }
-    
+
 }
 
 ?>

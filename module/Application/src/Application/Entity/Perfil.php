@@ -33,37 +33,50 @@ class Perfil extends Usuario
 
     /**
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
      */
     protected $profissao;
-    
+
     /**
-     * 
+     * @ORM\OneToMany(targetEntity="Evento", mappedBy="evento")
+     **/
+    private $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evento", inversedBy="children")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     *
+     * @var Evento
+     */
+    protected $evento;
+
+    /**
+     *
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
      */
     protected $formacao;
-    
+
     /**
-     * 
+     *
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
-     * 
+     *
      */
     protected $ondeTrabalha;
-    
+
     /**
-     * 
+     *
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
-     * 
+     *
      */
     protected $permissao;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Endereco", cascade={"persist"})
      * @ORM\JoinColumn(name="id_endereco", referencedColumnName="id")
@@ -74,27 +87,27 @@ class Perfil extends Usuario
 
     /**
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
      */
     protected $foto;
-    
+
     /**
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
      */
     protected $capa;
-    
+
     /**
-     * 
+     *
      * @ORM\Column (type="boolean")
-     * 
+     *
      * @var boolean
      */
     protected $autenticado;
-    
-    
+
+
     /**
      * @return integer
      */
@@ -110,26 +123,26 @@ class Perfil extends Usuario
 
     /**
      * @return string
-     * 
+     *
      */
     public function getStatusRelacionamento(){
         return $this->statusRelacionamento;
     }
-    
+
     /**
      * @param string $statusRelacionamento
      */
     public function setStatusRelacionamento($statusRelacionamento){
         $this->statusRelacionamento = $statusRelacionamento;
     }
-    
+
     /**
      * @return string
      */
     public function getProfissao(){
         return $this->profissao;
     }
-    
+
     /**
      * @param $profissao
      */
@@ -142,57 +155,57 @@ class Perfil extends Usuario
     public function getPermissao(){
         return $this->permissao;
     }
-    
+
     /**
      * @param $permissao
      */
     public function setPermissao($permissao){
         $this->permissao = $permissao;
     }
-    
+
     /**
      * @return string
      */
     public function getFormacao(){
         return $this->formacao;
     }
-    
+
     /**
-     * @param  $formacao 
+     * @param  $formacao
      */
     public function setFormacao($formacao){
         $this->formacao = $formacao;
     }
-    
+
     /**
      * @return string
      */
     public function getOndeTrabalha(){
         return $this->ondeTrabalha;
     }
-    
+
     /**
      * @param $ondeTrabalha
      */
     public function setOndeTrabalha($ondeTrabalha){
         $this->ondeTrabalha = $ondeTrabalha;
     }
-    
+
     /**
      * @return integer
      */
     public function getEndereco(){
         return $this->endereco;
     }
-    
-    
+
+
     /**
      * @var endereco
      */
     public function setEndereco($endereco){
          $this->endereco = $endereco;
-    }    
-   
+    }
+
     /**
      * @param blob $foto
      *
@@ -208,7 +221,7 @@ class Perfil extends Usuario
     {
         return $this->foto;
     }
-    
+
     /**
      * @param string $capa
      *
@@ -223,8 +236,8 @@ class Perfil extends Usuario
     public function getCapa()
     {
         return $this->capa;
-    }  
-    
+    }
+
     /**
     * @param $autenticacao
     */
@@ -238,7 +251,7 @@ class Perfil extends Usuario
     public function getAutenticacao() {
         return $this->autenticado;
     }
-   
+
    /**
      * Filtros
      *
@@ -262,7 +275,7 @@ class Perfil extends Usuario
                 )
         );
 
-      
+
   $input_filter->add(
                 $factory->createInput(
                         array(
@@ -421,7 +434,7 @@ class Perfil extends Usuario
                     )
                 ),
             )));
-    
+
     $input_filter->add($factory->createInput(array(
                 'name' => 'imagem',
                 'required' => false,
@@ -432,7 +445,7 @@ class Perfil extends Usuario
                     )
                 ),
             )));
-    
+
     $input_filter->add($factory->createInput(array(
                 'name' => 'permissao',
                 'required' => true,
@@ -443,7 +456,7 @@ class Perfil extends Usuario
                     )
                 ),
             )));
-    
+
     $this->input_filter = $input_filter;
             return $this->input_filter;
     }

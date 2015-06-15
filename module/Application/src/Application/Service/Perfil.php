@@ -115,4 +115,22 @@ class Perfil extends Service
             return;
         }
     }
+
+    public function findAmigo($id)
+    {
+        /* @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->getObjectManager();
+        $select = $em->createQueryBuilder()
+            ->select('p,a')
+            ->from('Application\Entity\Usuario', 'p')
+            ->innerJoin('p.amigos', 'a')
+            ->where("a.id = ?1")
+            ->setParameter(1, $id);
+        if ($select->getQuery()->getResult()) {
+            $resultado = $select->getQuery()->getSingleResult();
+            return $resultado->getAmigos();
+        } else {
+            return;
+        }
+    }
 }

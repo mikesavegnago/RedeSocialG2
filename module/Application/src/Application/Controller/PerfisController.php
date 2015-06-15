@@ -90,22 +90,8 @@ class PerfisController extends ActionController
                             ->authenticate($values);
                 }
                 return $this->redirect()->toUrl('/application/index/sobre/perfil/'.$perfil->getId());
-            }
-
+            } 
         }
-
-
-    }
-
-
-    /**
-    *Função delete
-    *
-    *@return void
-    */
-    public function deleteAction()
-    {
-
     }
 
     /**

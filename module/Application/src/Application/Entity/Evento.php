@@ -25,10 +25,10 @@ class Evento extends Entity
      * @var integer
      */
     protected $id;
-    
+
     /**
      * @ORM\Column (type="string", nullable=true)
-     * 
+     *
      * @var string
      */
     protected $capa;
@@ -39,36 +39,45 @@ class Evento extends Entity
      *
      * @var \Admin\Entity\Usuario
      */
-    protected $perfil;   
+    protected $perfil_criador;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Usuario")
+    * @ORM\JoinTable(name="participantes_evento",
+    *      joinColumns={@ORM\JoinColumn(name="evento", referencedColumnName="id")},
+    *      inverseJoinColumns={@ORM\JoinColumn(name="perfil", referencedColumnName="id")}
+    *      )
+    **/
+    protected $perfil;
 
     /**
      * @ORM\Column (type="text")
-     * 
+     *
      * @var text
      */
-    protected $descricao; 
+    protected $descricao;
     /**
      * @ORM\Column (type="text")
-     * 
+     *
      * @var text
      */
-    protected $titulo; 
+    protected $titulo;
 
     /**
-     * 
+     *
      * @ORM\Column (type="datetime",nullable = true)
-     * 
+     *
      * @var datetime
      */
-    protected $dataEvento;     
-    
+    protected $dataEvento;
+
     /**
      * @return integer
      */
     public function getId() {
         return $this->id;
     }
-   
+
     /**
      * @param  $capa
      *
@@ -91,25 +100,40 @@ class Evento extends Entity
     public function setPerfil($perfil) {
         $this->perfil = $perfil;
     }
-    
+
     /**
      * @return perfil
-     * 
+     *
      */
     public function getPerfil(){
         return $this->perfil;
     }
-    
+
+    /**
+     * @param string $perfil
+     */
+    public function setPerfilCriador($perfil_criador) {
+        $this->perfil_criador = $perfil_criador;
+    }
+
+    /**
+     * @return Perfil
+     *
+     */
+    public function getPerfilCriador(){
+        return $this->perfil_criador;
+    }
+
     /**
      * @param string $titulo
      */
     public function setTitulo($titulo) {
         $this->titulo = $titulo;
     }
-    
+
     /**
      * @return $titulo
-     * 
+     *
      */
     public function getTitulo(){
         return $this->titulo;
@@ -120,10 +144,10 @@ class Evento extends Entity
     public function setDescricao($descricao) {
         $this->descricao = $descricao;
     }
-    
+
     /**
      * @return $descricao
-     * 
+     *
      */
     public function getDescricao(){
         return $this->descricao;
@@ -135,10 +159,10 @@ class Evento extends Entity
     public function setDataEvento($dataEvento) {
         $this->dataEvento = $dataEvento;
     }
-    
+
     /**
      * @return dataEvento
-     * 
+     *
      */
     public function getDataEvento(){
         return $this->dataEvento;
@@ -187,7 +211,7 @@ class Evento extends Entity
                     ),
                 ),
             )));
-        
+
         $input_filter->add($factory->createInput(array(
             'name' => 'titulo',
             'required' => true,
@@ -207,7 +231,7 @@ class Evento extends Entity
                     ),
                 ),
             )));
-        
+
         $input_filter->add($factory->createInput(array(
             'name' => 'capa',
             'required' => false,
@@ -227,12 +251,12 @@ class Evento extends Entity
                             array('name' => 'StringTrim'),
                         ),
             )));
-    
+
     $this->input_filter = $input_filter;
             return $this->input_filter;
     }
 
     }
 
-   
+
 

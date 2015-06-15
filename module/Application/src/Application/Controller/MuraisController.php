@@ -36,7 +36,6 @@ class MuraisController extends ActionController {
      * @return void
      */
     public function saveAction() {
-        // fazer com que o form /na parte de usuarios ja venha preechido quando clicado em cadsatrar perfiol
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new \Application\Form\Mural($em);
         $request = $this->getRequest();
@@ -85,6 +84,5 @@ class MuraisController extends ActionController {
 
         return $this->redirect()->toUrl('/application/index/layout');
     }
-
 
 }

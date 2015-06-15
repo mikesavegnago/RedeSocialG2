@@ -1,44 +1,58 @@
-<?php //var_dump($evento); ?>
-
+<?php $usuario = $this->session()->offsetGet('usuario');
+setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
+?>
 <div class="st-container">
-    <div class="st-pusher" id="content"> 
-        <div class="st-content"> 
+    <div class="st-pusher" id="content">
+        <div class="st-content">
 
             <div class="cover profile">
                 <div class="wrapper">
-                    <div class="image">
                         <img src="<?php echo $evento->getCapa() ?>" alt="people" />
-                    </div> 
                 </div>
                 <div class="cover-info">
                     <div class="name"><a href="#"><?php  echo $evento->getTitulo(); ?></a></div>
                     <ul class="cover-nav">
-                        <li><a href="/application/index/layout"><i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
-                        <li><a href="/application/index/sobre"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
-                        <li class="active"><a href="/application/eventos"><i class="fa fa-fw fa-users"></i> Eventos</a></li>
-                        <li><a href="/application/imagens/layout"><i class="fa fa-fw fa-photo"></i> Fotos</a></li>
-                    </ul>   
+                        <li><a href="/application/index/layout">
+                            <i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
+                        <li><a href="/application/index/sobre/perfil/<?php echo $perfil->getId(); ?>">
+                            <i class="fa fa-fw fa-user"></i> Perfil</a></li>
+                        <li class="active"><a href="/application/eventos/index/perfil/<?php echo $perfil->getId(); ?>">
+                            <i class="fa fa-fw fa-users"></i> Eventos</a></li>
+                        <li><a href="/application/imagens/layout/perfil/<?php echo $perfil->getId(); ?>">
+                            <i class="fa fa-fw fa-photo"></i> Fotos</a></li>
+                    </ul>
+
+                    <?php
+                        if ($evento->getPerfilCriador()->getId() != $usuario->getId()){
+                    ?>
+                    <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
+                        <li><a href="/application/eventos/participar/evento/<?=$evento->getId();?>"><i class="fa fa-fw fa-plus"></i>Participar do evento</a></li>
+                    </ul>
+                    <?php } ?>
                 </div>
-            </div> 
+            </div>
 
             <div class="row">
                 <div class="timeline row" data-toggle="isotope">
                 <div class="col-xs-12">
                     <div class="timeline-block">
-                        <div class="panel panel-default share clearfix-xs">
-                            <div class="panel-heading panel-heading-gray title" style="color:#666">
-                                Mural do evento
+                        <form action="/application/mural-eventos/save" method="post" enctype="multipart/form-data">
+                            <input type="hidden" id="id" value="<?php  echo $evento->getId(); ?>" name="id">
+                            <div class="panel panel-default share clearfix-xs">
+                                <div class="panel-heading panel-heading-gray title" style="color:#666">
+                                     <i class="fa fa-comments-o"></i> Mural do evento
+                                </div>
+                                <div class="panel-body">
+                                    <textarea name="descricao" class="form-control share-text" rows="3" placeholder="Compartilhe algo conosco..."></textarea>
+                                </div>
+                                <div class="panel-footer share-buttons">
+                                    <a href="#"><input type="file" name="foto" enctype="multipart/form-data"  id="foto"> </a>
+                                    <button type="submit" class="btn btn-primary btn-xs pull-right display-block" >Post</button>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                <textarea name="status" class="form-control share-text" rows="3" placeholder="Compartilhe algo conosco..."></textarea>
-                            </div>
-                            <div class="panel-footer share-buttons">
-                                <a href="#"><i class="fa "></i></a>
-                                <button type="submit" class="btn btn-primary btn-xs pull-right display-block" href="#">Post</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </div> 
+                </div>
             </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
@@ -47,7 +61,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-
+                                <?php foreach($participantes as $participante) { ?>
                                 <div class="col-md-3">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
@@ -60,82 +74,87 @@
                                         </a>
                                     </div>
                                 </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-gray">
+                            <i class="fa fa-user"></i> Criado por:
+                        </div>
                         <div class="media-body">
                             <div class="media-body-wrapper">
                                 <div class="panel panel-default">
 
                                     <div class="panel-body">
                                         <div class="media-left">
-                                            <a href="">
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
+                                            <a href="/application/index/sobre/perfil/<?php echo $evento->getPerfilCriador()->getId(); ?>">
+                                                <img src="<?= $this->basePath() . $evento->getPerfilCriador()->getFoto(); ?>" class="media-object foto-usuario">
                                             </a>
                                         </div>
                                         <div class="media-body">
                                             <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
-                                                <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Editar</a></li>
-                                                    <li><a href="#">Deletar</a></li>
-                                                </ul>
+
                                             </div>
-                                            <a href="" class="comment-author pull-left"><?php echo $evento->getPerfil()->getNome();?></a><br>
-                                            <div class="comment-date"><?php echo $evento->getDataEvento()->format('d-m-Y');?></div>
-                                            <span> <?php echo $evento->getDescricao();?> </span>    
+                                            <a href="/application/index/sobre/perfil/<?php echo $evento->getPerfilCriador()->getId(); ?>" class="comment-author pull-left">
+                                                <?php echo $evento->getPerfilCriador()->getNome();?></a><br>
+                                            <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($evento->getDataEvento()->format('Y-m-d')) );?></div>
+                                            <span> <?php echo $evento->getDescricao();?> </span>
                                         </div>
 
                                     </div>
-<!--                                    <div class="view-all-comments">
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i> Ver todos
-                                        </a>
-                                        <span>1 comentário</span>
-
-                                    </div>
-                                    <ul class="comments">
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="">
-                                                    <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
-                                                    <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#">Editar</a></li>
-                                                        <li><a href="#">Deletar</a></li>
-                                                    </ul>
-                                                </div>
-                                                <a href="" class="comment-author pull-left">Ana P.</a>
-                                                <span>Gostei manolo</span>
-                                                <div class="comment-date">09 de junho</div>
-                                            </div>
-                                        </li>
-                                        <li class="comment-form">
-                                            <div class="input-group"> 
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
-                                                </span>
-
-                                            </div>
-                                        </li>
-                                    </ul>-->
                                 </div>
                             </div>
                         </div>
                     </div>
             </div>
+            <div class="col-xs-6">
+                <div class="media-body">
+                    <div class="media-body-wrapper">
+                        <?php foreach ($murais as $mural) { ?>
+                            <div class="panel panel-default">
+                                <div class="media-body">
+                                    <div class="media-body-wrapper">
+                                        <div class="panel panel-default">
+
+                                            <div class="panel-body">
+                                                <div class="media-left">
+                                                    <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>">
+                                                        <img src="<?= $this->basePath() . $mural->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
+                                                        <a href="#" data-toggle="dropdown" class="toggle-button">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="/application/mural-eventos/delete/id/<?php echo $mural->getId(); ?>">Deletar</a></li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>" class="comment-author pull-left"><?php echo $mural->getPerfil()->getNome();?></a><br>
+
+                                                    <span><?php echo $mural->getTexto(); ?><br>
+                                                    <?php if ($mural->getImagem()) { ?>
+                                                        <img src="<?php echo $this->basePath() . $mural->getImagem(); ?>" class="foto-mural img-thumbnail">
+                                                    <?php } ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
