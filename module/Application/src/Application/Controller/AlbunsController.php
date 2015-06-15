@@ -22,6 +22,7 @@ class AlbunsController extends ActionController
     */
     public function indexAction()
     {
+        
         $perfil = (int) $this->params()->fromRoute('perfil', 0);
         if ($perfil > 0) {            
             $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -72,25 +73,21 @@ class AlbunsController extends ActionController
     *@return void
     */
     public function saveAction()
-    {
-
+    {        
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new \Application\Form\Album($em);
         $request = $this->getRequest();
-
-        var_dump($request);exit;
-         if($request->isPost()) {
+        
+         if($request->isPost()){
             $valores = $request->getPost();
-            $file = $request->getFiles('imagem');
-            $valores['imagem'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $album = new \Application\Entity\Album();
             $filtros = $album->getInputFilter();
             $form->setInputFilter($filtros);
             $form->setData($valores);
+            
 
-           if (!$form->isValid()){
+           if ($form->isValid()){
                 $values = $form->getData();
-                
                 try{
                     $album = $this->getService('Application\Service\Album')->saveAlbum($values);
                 }catch(\Exception $e){
@@ -122,7 +119,6 @@ class AlbunsController extends ActionController
         }
 
         return $this->redirect()->toUrl('/application/index/layout');
-    }
     }
     
 }
