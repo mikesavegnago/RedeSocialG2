@@ -36,6 +36,17 @@ class Album extends Form
                 'class' => 'form-control'
             )
         ));
+
+           $this->add(array(
+            'name' => 'imagem',
+            'type' => 'file',
+            'options' => array(
+                'label' => 'imagem*'),
+            'attributes' => array(
+               // 'placeholder' => 'Informe o nome',
+                'id' => 'imagem',
+                'enctype' => 'multipart/form-data',)
+        ));
         
         
     }

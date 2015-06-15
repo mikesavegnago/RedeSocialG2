@@ -37,6 +37,7 @@ class Album extends Service {
          
          
          $album->setDescricao($values['descricao']);
+         $album->setImagem($values['imagem']);
                            
          
          
@@ -50,6 +51,23 @@ class Album extends Service {
 
         return $album;
     }
+
+    public function removerAlbum($values)
+    {
+        
+        $em = $this->getObjectManager();
+        
+        if ($values > 0) {
+            $album = $em->find('\Application\Entity\Album',$values);
+            $em->remove($album);
+
+            try {
+                $em->flush();
+            } catch (\Exception $e) {
+            }
+        }
+    }
+
 
     
 

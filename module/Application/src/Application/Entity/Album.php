@@ -13,7 +13,7 @@ use Zend\InputFilter\InputFilter;
  * 
  * @category Application
  * @package  Entity
- * @author Paulo José Cella <paulocella@unochapeco.edu.br>
+ * @author Ana Paula Binda <anapaulasif@unochapeco.edu.br>
  */
 class Album extends Entity
 {
@@ -42,6 +42,14 @@ class Album extends Entity
 
     protected $descricao; 
 
+/**
+     * @ORM\Column (type="string", nullable=true)
+     * 
+     * @var string
+     */
+    protected $imagem; 
+
+
     
     /**
      * @return integer
@@ -64,6 +72,37 @@ class Album extends Entity
     public function getPerfil(){
         return $this->perfil;
     }
+
+    /**
+     * @param string $descricao
+     */
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
+    
+    /**
+     * @return descricao
+     * 
+     */
+    public function getDescricao(){
+        return $this->descricao;
+    }
+
+       /**
+     * @param string $imagem
+     */
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
+    
+    /**
+     * @return imagem
+     * 
+     */
+    public function getImagem(){
+        return $this->imagem;
+    }
+
 
 
 
@@ -110,6 +149,19 @@ class Album extends Entity
                     ),
                 ),
             )));
+
+         $input_filter->add($factory->createInput(array(
+                'name' => 'imagem',
+                'required' => false,
+                'validators' => array(
+                    array(
+                        'name' => 'NotEmpty',
+                        'options' => array('message' => 'O campo imagem não pode estar vazio')
+                    )
+                ),
+            )));
+
+
 
 
             $this->input_filter = $input_filter;

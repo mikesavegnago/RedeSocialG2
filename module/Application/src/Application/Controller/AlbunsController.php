@@ -81,8 +81,8 @@ class AlbunsController extends ActionController
         var_dump($request);exit;
          if($request->isPost()) {
             $valores = $request->getPost();
-            // $file = $request->getFiles('capa');
-            // $valores['capa'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
+            $file = $request->getFiles('imagem');
+            $valores['imagem'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $album = new \Application\Entity\Album();
             $filtros = $album->getInputFilter();
             $form->setInputFilter($filtros);
@@ -111,7 +111,18 @@ class AlbunsController extends ActionController
     */
     public function deleteAction()
     {
-    
+
+    $id = $this->params()->fromRoute('id', 0);
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        
+        try {
+            $this->getService('Application\Service\Album')->removerAlbum($id);
+        } catch(\Exception $e) {
+            echo $e->getMessage(); exit;
+        }
+
+        return $this->redirect()->toUrl('/application/index/layout');
+    }
     }
     
 }
