@@ -27,7 +27,10 @@ class Perfil extends Service
         $em = $this->getObjectManager();
 
         if ($values['id'] > 0 ) {
-        $perfil = $this->find($values['id']);
+            $perfil = $this->find($values['id']);
+            if(!isset($perfil)){
+               $perfil = new \Application\Entity\Perfil();
+            }
         } else {
             $perfil = new \Application\Entity\Perfil();
         }
@@ -44,7 +47,7 @@ class Perfil extends Service
         if($compara < 16){
             return false;
         }
-
+        
         $perfil->setAutenticacao(true);
         $perfil->setStatusRelacionamento($values['statusRelacionamento']);
         $perfil->setOndeTrabalha($values['ondeTrabalha']);
@@ -54,8 +57,10 @@ class Perfil extends Service
         $perfil->setNome($values['nome']);
         $perfil->setEmail($values['email']);
         $perfil->setCelular($values['celular']);
-        if ($values['senha']) {
+        if ($values['senha'] != '' && $values['senha']) {
             $perfil->setSenha($values['senha']);
+        }else{
+            $perfil->setSenha($usuario->getSenha());
         }
         $perfil->setDataNascimento($values['data_nasc']);
         $perfil->setSexo($values['sexo']);
@@ -66,8 +71,7 @@ class Perfil extends Service
             $perfil->setCapa($values['foto_capa']);
         }
         $perfil->setEndereco($endereco);
-
-
+        
         $this->getObjectManager()->persist($perfil);
         try {
             $this->getObjectManager()->flush();
@@ -82,7 +86,6 @@ class Perfil extends Service
     public function find($values){
        $em = $this->getObjectManager();
        $perfil = $this->getEm()->find($this->entity, (int) $values);
-
        return $perfil;
    }
 
