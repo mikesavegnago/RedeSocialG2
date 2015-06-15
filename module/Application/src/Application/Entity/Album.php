@@ -103,9 +103,6 @@ class Album extends Entity
         return $this->imagem;
     }
 
-
-
-
 /**
      * Filtros
      *
