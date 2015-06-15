@@ -25,16 +25,16 @@ class Comentario extends Entity
      * @var integer
      */
     protected $id;
-    
+
     protected $input_filter;
 
    /**
     *  @ORM\Column(type="string")
-    * 
+    *
      * @var comentario
      */
     protected $comentario;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Mural")
      * @ORM\JoinColumn(name="id_mural", referencedColumnName="id")
@@ -42,7 +42,7 @@ class Comentario extends Entity
      * @var \Admin\Entity\Mural
      */
     protected $mural;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
      * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
@@ -50,8 +50,13 @@ class Comentario extends Entity
      * @var \Admin\Entity\Perfil
      */
     protected $perfil;
-    
-   
+
+    /**
+     * @ORM\Column (type="datetime")
+     *
+     * @var Date
+     */
+    protected $data;
 
     /**
      * @return integer
@@ -69,13 +74,28 @@ class Comentario extends Entity
 
     /**
      * @return string
-     * 
+     *
      */
-    
+
     public function getComentario(){
         return $this->comentario;
     }
-    
+
+    /**
+     * @return data
+     */
+    public function getData(){
+        return $this->data;
+    }
+
+    /**
+     * @param
+     */
+    public function setData(){
+        $agora =  new \DateTime('now', new \DateTimeZone('America/Sao_Paulo'));
+        $this->data = $agora;
+    }
+
     /**
      * @param  $mural
      */
@@ -85,13 +105,13 @@ class Comentario extends Entity
 
     /**
      * @return $mural
-     * 
+     *
      */
-    
+
     public function getMural(){
         return $this->mural;
     }
-    
+
     /**
      * @param string $perfil
      */
@@ -101,13 +121,13 @@ class Comentario extends Entity
 
     /**
      * @return perfil
-     * 
+     *
      */
     public function getPerfil(){
         return $this->perfil;
     }
-    
-    
+
+
       public function getArrayCopy() {
         return get_object_vars($this);
     }
@@ -157,7 +177,7 @@ class Comentario extends Entity
                         )
                 )
         );
-    
+
         $this->input_filter = $input_filter;
         return $this->input_filter;
 }

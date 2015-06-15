@@ -1,7 +1,9 @@
-<?php $usuario = $this->session()->offsetGet('usuario'); ?>
-<div class="st-container"> 
-    <div class="st-pusher" id="content"> 
-        <div class="st-content"> 
+<?php $usuario = $this->session()->offsetGet('usuario');
+setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
+?>
+<div class="st-container">
+    <div class="st-pusher" id="content">
+        <div class="st-content">
 
             <div class="cover profile">
                 <div class="wrapper">
@@ -40,13 +42,13 @@
                             </div>
                         </form>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div class="col-xs-12">
                 <div class="media-body">
-                    <div class="media-body-wrapper"> 
-                        <?php foreach ($murais as $mural) { ?> 
+                    <div class="media-body-wrapper">
+                        <?php foreach ($murais as $mural) { ?>
                             <div class="panel panel-default">
                                 <div class="media-body">
                                     <div class="media-body-wrapper">
@@ -54,7 +56,7 @@
 
                                             <div class="panel-body">
                                                 <div class="media-left">
-                                                    <a href="">
+                                                    <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>">
                                                         <img src="<?= $this->basePath() . $mural->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
                                                     </a>
                                                 </div>
@@ -68,11 +70,12 @@
                                                         </ul>
                                                     </div>
 
-                                                    <a href="" class="comment-author pull-left"><?php echo $mural->getPerfil()->getNome();?></a><br>
-                                                    <div class="comment-date"><?php echo $mural->getData()->format('d/m/y'); ?></div>
+                                                    <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>" class="comment-author pull-left"><?php echo $mural->getPerfil()->getNome();?></a><br>
+                                                    <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($mural->getData()->format('Y-m-d')) ); ?></div>
                                                     <span><?php echo $mural->getDescricao(); ?><br>
+                                                    <?php if ($mural->getFoto()) { ?>
                                                         <img src="<?php echo $this->basePath() . $mural->getFoto(); ?>" class="foto-mural img-thumbnail">
-                                                        
+                                                    <?php } ?>
                                                     </span>
                                                 </div>
 
@@ -84,16 +87,16 @@
                                                     <i class="fa fa-like"></i> Like
                                                 </a>
                                             </div>
-                                            
+
                                             <ul class="comments">
-                                                
+
                                                 <?php foreach($comentarios as $comentario) {
                                                     if($comentario->getMural()->getId() == $mural->getId()){
                                                     ?>
-                                                
+
                                                 <li class="media">
                                                     <div class="media-left">
-                                                        <a href="">
+                                                        <a href="/application/index/sobre/perfil/<?php echo $comentario->getPerfil()->getId(); ?>">
                                                             <img src="<?= $this->basePath() . $comentario->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
                                                         </a>
                                                     </div>
@@ -106,19 +109,20 @@
                                                                 <li><a href="#">Deletar</a></li>
                                                             </ul>
                                                         </div>
-                                                        <a href="" class="comment-author pull-left"><?php echo $comentario->getPerfil()->getNome(); ?></a>
+                                                        <a href="/application/index/sobre/perfil/<?php echo $comentario->getPerfil()->getId(); ?>" class="comment-author pull-left">
+                                                            <?php echo $comentario->getPerfil()->getNome(); ?></a>
                                                         <span><?php echo $comentario->getComentario(); ?></span>
-                                                        <div class="comment-date">09 de junho</div>
+                                                        <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($comentario->getData()->format('Y-m-d')) ); ?></div>
                                                     </div>
                                                 </li>
-                                                
+
                                                     <?php }}?>
-                                                <form action="/application/comentarios/save/id/<?php echo $usuario->getId(); ?>" method="post"> 
+                                                <form action="/application/comentarios/save/id/<?php echo $usuario->getId(); ?>" method="post">
                                                     <li class="comment-form">
-                                                        <div class="input-group"> 
+                                                        <div class="input-group">
                                                             <input type="hidden" id="id" name="id" value="<?php echo $mural->getId();?>" class="form-control">
                                                             <input type="text" id="comentario" name="comentario" class="form-control">
-                                                            
+
                                                             <span class="input-group-btn">
                                                                 <button type="submit" href="#" class="btn btn-default"><i class="fa fa-comment"></i></button>
                                                             </span>
@@ -131,7 +135,7 @@
                                 </div>
                             </div>
                         <?php } ?>
-                        
+
                     </div>
                 </div>
             </div>

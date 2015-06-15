@@ -7,7 +7,7 @@
 <div id="loggit">
         <h1> Prime</h1>
         <h3>Por favor, faça seu <strong>login</strong> ou <strong>Registre-se</strong></h3>
-    
+
         <form action="/application/login/login" id="logForm" method="post" class="form-horizontal">
                 <div class="form-group">
                         <div class="col-xs-12">
@@ -35,7 +35,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg">Login</button>
                         </div>
                 </div>
-                
+
         </form>
         <form action="/application/perfis/save" id="regForm" method="post" class="form-horizontal">
                 <div class="form-group">
@@ -53,7 +53,7 @@
                             <input type="text" id="data_nasc" name="data_nasc" class="form-control input-lg date" placeholder="Data de Nascimento" autocomplete="off" required>
                         </div>
                     </div>
-                </div>    
+                </div>
                 <div class="form-group">
                     <div class="col-xs-12">
                         <?php if ($this->flashMessenger()->getErrorMessages()) { ?>
@@ -94,15 +94,15 @@
                         </div>
                 </div>
         </form>
-</div>  
+</div>
 
 </div>
 <script type="text/javascript">
-    
+
         $(document).ready(function() {
                 $('.formNotice span').click(function() {
                         $("#logForm").toggle();
                         $("#regForm").toggle();
-                });   
+                });
         });
 </script>

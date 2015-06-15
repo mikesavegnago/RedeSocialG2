@@ -25,7 +25,7 @@ class Mural extends Entity
      * @var integer
      */
     protected $id;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Perfil", cascade={"persist"})
      * @ORM\JoinColumn(name="id_perfil", referencedColumnName="id")
@@ -33,13 +33,14 @@ class Mural extends Entity
      * @var \Admin\Entity\Perfil
      */
     protected $perfil;
-       
+
     /**
-     * @ORM\Column (type="string")
+     * @ORM\Column (type="string", nullable=true)
      *
      * @var string
      */
     protected $foto;
+    
     /**
      * @ORM\Column (type="datetime")
      *
@@ -49,33 +50,33 @@ class Mural extends Entity
 
     /**
      * @ORM\Column (type="text")
-     * 
+     *
      * @var text
      */
     protected $descricao;
-    
-    
+
+
     /**
      * @return id
      */
     public function getId() {
         return $this->id;
     }
-    
+
     /**
      * @param $perfil
      */
     public function setPerfil($perfil){
         $this->perfil = $perfil;
     }
-    
+
     /**
      * @return string
      */
     public function getPerfil(){
         return $this->perfil;
     }
-    
+
     /**
      * @param $foto
      */
@@ -88,7 +89,7 @@ class Mural extends Entity
     public function getData(){
         return $this->data;
     }
-    
+
     /**
      * @param $data
      */
@@ -102,23 +103,23 @@ class Mural extends Entity
     public function getFoto(){
         return $this->foto;
     }
-    
+
     /**
      * @return string
      */
     public function getDescricao(){
         return $this->descricao;
     }
-    
+
     /**
      * @param $descricao
      */
     public function setDescricao($descricao){
         $this->descricao = $descricao;
     }
-    
 
-    
+
+
     /**
 	*
 	* @return Zend/InputFilter/InputFilter
@@ -154,13 +155,13 @@ class Mural extends Entity
 					),
 				),
 			)));
-                        
-                      
+
+
 			$this->inputFilter = $inputFilter;
 		}
 		return $this->inputFilter;
 	}
-    
+
 }
 
 ?>

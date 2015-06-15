@@ -27,12 +27,12 @@ class Usuario extends Entity {
      * @var integer
      */
     protected $id;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="amigos")
      **/
     private $meus_amigos;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="meus_amigos")
      * @ORM\JoinTable(name="amigos",
@@ -51,40 +51,40 @@ class Usuario extends Entity {
 
     /**
      * @ORM\Column (type="string")
-     * 
+     *
      * @var string
      */
     protected $email;
 
     /**
-     * 
+     *
      * @ORM\Column (type="string",nullable = true)
-     * 
+     *
      * @var string
      */
     protected $celular;
 
     /**
-     * 
+     *
      * @ORM\Column (type="string")
-     * 
+     *
      * @var string
-     * 
+     *
      */
     protected $senha;
 
     /**
-     * 
+     *
      * @ORM\Column (type="datetime",nullable = true)
-     * 
+     *
      * @var datetime
      */
     protected $data_nascimento;
 
     /**
-     * 
+     *
      * @ORM\Column (type="string", nullable = true)
-     * 
+     *
      * @var string
      */
     protected $sexo;
@@ -94,6 +94,13 @@ class Usuario extends Entity {
      */
     public function getId() {
         return $this->id;
+    }
+
+    /**
+     * @return id
+     */
+    public function getAmigos() {
+        return $this->amigos;
     }
 
     /**
@@ -166,7 +173,7 @@ class Usuario extends Entity {
      * @return dateTime
      */
     public function getDataNascimento() {
-        return $this->dataNascimento;
+        return $this->data_nascimento;
     }
 
     /**
@@ -183,7 +190,7 @@ class Usuario extends Entity {
         return $this->sexo;
     }
 
-   
+
 
     /**
      * Filtros

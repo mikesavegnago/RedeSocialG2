@@ -32,25 +32,25 @@
 
     </head>
     <body style="background: url('img/background.jpg'); background-size: 100%;">
-        <?php $usuario = $this->session()->offsetGet('usuario'); 
+        <?php $usuario = $this->session()->offsetGet('usuario');
             if ($usuario) {
         ?>
         <div class="navbar navbar-main navbar-primary navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav"> 
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a href="#sidebar-chat" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-comments"></i></a>
-                <a class="navbar-brand" href="index.html">Prime</a>
+                <a class="navbar-brand" href="/application/index/layout">Prime</a>
             </div>
 
             <div class="collapse navbar-collapse" id="main-nav">
-                <ul class="nav navbar-nav"> 
+                <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Página inicial</a>
+                        <a href="/application/index/layout">Página inicial</a>
                     </li>
                     <form class="navbar-form navbar-left hidden-xs" role="search">
                         <div class="search-2">
@@ -66,21 +66,22 @@
                 <ul class="nav navbar-nav  navbar-right ">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="Bill" class="img-circle" width="40" /> Mike <span class="caret"></span>
+                            <img src="<?= $this->basePath() . $usuario->getFoto(); ?>" alt="Bill" class="img-circle" width="40" />
+                            <?php echo $usuario->getNome(); ?><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="user-private-profile.html">Perfil</a></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="/application/index/sobre/perfil/<?php echo $usuario->getId();?>">Perfil</a></li>
+                            <li><a href="/application/login/logout">Logout</a></li>
                         </ul>
                     </li>
 
                 </ul>
-            </div> 
+            </div>
         </div>
         </div>
         <?php } ?>
         <div class="container">
-            <?php echo $this->content; ?>  
+            <?php echo $this->content; ?>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
     </body>

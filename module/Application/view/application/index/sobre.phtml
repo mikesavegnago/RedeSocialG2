@@ -1,10 +1,12 @@
-<?php $usuario = $this->session()->offsetGet('usuario'); ?>
-<div class="st-container">  
-    <div class="st-pusher" id="content"> 
-        <div class="st-content"> 
+<?php $usuario = $this->session()->offsetGet('usuario');
+setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
+?>
+<div class="st-container">
+    <div class="st-pusher" id="content">
+        <div class="st-content">
 
             <div class="cover profile">
-                <div class="wrapper"> 
+                <div class="wrapper">
                         <img src="<?= $this->basePath() . $perfil->getCapa(); ?>" alt="people" />
                 </div>
                 <div class="cover-info">
@@ -22,22 +24,23 @@
                         <li><a href="/application/imagens/layout/perfil/<?php echo $perfil->getId(); ?>">
                             <i class="fa fa-fw fa-photo"></i> Fotos</a></li>
                     </ul>
-                    <?php 
-                        if ($perfil->getid() != $usuario->getId()){ 
+                    <?php
+                    var_dump($usuario->getAmigos()); exit;
+                        if ($perfil->getId() != $usuario->getId()){
                     ?>
                     <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
-                        <li><a href=""><i class="fa fa-fw fa-plus"></i>Adicionar Contato</a></li>
+                        <li><a href="/application/perfis/adicionar/perfil/<?=$perfil->getid();?>"><i class="fa fa-fw fa-plus"></i>Adicionar Contato</a></li>
                     </ul>
                     <?php } ?>
                 </div>
-            </div> 
+            </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-gray">
-                            <?php 
-                                if ($perfil->getid() == $usuario->getId()){ 
+                            <?php
+                                if ($perfil->getid() == $usuario->getId()){
                             ?>
                             <a class="btn btn-white btn-xs pull-right" id="editarPerfil"><i class="fa fa-pencil"></i></a>
                             <?php } ?>
@@ -51,7 +54,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Nome</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="nome" id="nome" disabled 
+                                                <input type="text" name="nome" id="nome" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getNome(); ?>" />
                                             </div>
                                         </div>
@@ -60,7 +63,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">E-mail</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="email" id="email" disabled 
+                                                <input type="text" name="email" id="email" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getEmail(); ?>" />
                                             </div>
                                         </div>
@@ -69,7 +72,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Senha</span></div>
                                             <div class="col-sm-8">
-                                                <input type="password" name="senha" id="senha" 
+                                                <input type="password" name="senha" id="senha"
                                                        style="background: #fff; border: #fff 0px solid" value="" />
                                             </div>
                                         </div>
@@ -78,7 +81,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Status Relaciomento</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="statusRelacionamento" id="status_relacionemento" disabled 
+                                                <input type="text" name="statusRelacionamento" id="status_relacionemento" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getStatusRelacionamento(); ?>" />
                                             </div>
                                         </div>
@@ -105,8 +108,8 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Data de nascimento</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="data_nasc" id="data_nasc" disabled 
-                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getDataNascimento(); ?>" />
+                                                <input type="text" name="data_nasc" id="data_nasc" disabled
+                                                       style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getDataNascimento()->format('d/m/Y'); ?>" />
                                             </div>
                                         </div>
                                     </li>
@@ -114,7 +117,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Onde trabalha</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="ondeTrabalha" id="onde_trabalha" disabled 
+                                                <input type="text" name="ondeTrabalha" id="onde_trabalha" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getOndeTrabalha(); ?>" />
                                             </div>
                                         </div>
@@ -123,7 +126,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Celular</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="celular" id="celular" disabled 
+                                                <input type="text" name="celular" id="celular" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getCelular(); ?>" />
                                             </div>
                                         </div>
@@ -132,7 +135,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Profissão</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="profissao" id="profissao" disabled 
+                                                <input type="text" name="profissao" id="profissao" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getProfissao(); ?>"/>
                                             </div>
                                         </div>
@@ -141,7 +144,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Formação</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="formacao" id="formacao" disabled 
+                                                <input type="text" name="formacao" id="formacao" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getFormacao(); ?>" />
                                             </div>
                                         </div>
@@ -150,7 +153,7 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Gênero</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="sexo" id="sexo" disabled 
+                                                <input type="text" name="sexo" id="sexo" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php echo $perfil->getSexo(); ?>" />
                                             </div>
                                         </div>
@@ -159,43 +162,43 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Cidade</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="cidade" id="cidade" disabled 
+                                                <input type="text" name="cidade" id="cidade" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getCidade()->getDescricao(); } ?>" />
                                             </div>
                                         </div>
-                                    </li> 
+                                    </li>
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">UF</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="uf" id="uf" disabled 
+                                                <input type="text" name="uf" id="uf" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getUf()->getDescricao(); } ?>" />
                                             </div>
                                         </div>
-                                    </li> 
+                                    </li>
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Rua</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="rua" id="rua" disabled 
+                                                <input type="text" name="rua" id="rua" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getRua(); }?>" />
                                             </div>
                                         </div>
-                                    </li> 
+                                    </li>
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Número</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="numero" id="numero" disabled 
+                                                <input type="text" name="numero" id="numero" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getNumero(); }?>"  />
                                             </div>
                                         </div>
-                                    </li> 
+                                    </li>
                                     <li class="padding-v-5">
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Bairro</span></div>
                                             <div class="col-sm-8">
-                                                <input type="text" name="bairro" id="bairro" disabled 
+                                                <input type="text" name="bairro" id="bairro" disabled
                                                        style="background: #fff; border: #fff 0px solid" value="<?php if ($perfil->getEndereco()) { echo $perfil->getEndereco()->getBairro(); } ?>" />
                                             </div>
                                         </div>
@@ -204,9 +207,9 @@
                                         <div class="row">
                                             <div class="col-sm-4"><span class="text-muted">Quem Pode Ver</span></div>
                                             <div class="col-sm-8">
-                                                <select type="select" name="permissao" id="permissao" 
+                                                <select type="select" name="permissao" id="permissao"
                                                         style="background: #fff; border: #fff 0px solid" >
-                                                    <option value="AMIGOS" selected>Amigos</option>      
+                                                    <option value="AMIGOS" selected>Amigos</option>
                                                     <option value="TODOS" >Todos</option>
                                                 </select>
                                             </div>
@@ -259,153 +262,93 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="media-body">
-                            <div class="media-body-wrapper">
-                                <div class="panel panel-default">
+                    <?php foreach ($murais as $mural) { ?>
+                            <div class="panel panel-default">
+                                <div class="media-body">
+                                    <div class="media-body-wrapper">
+                                        <div class="panel panel-default">
 
-                                    <div class="panel-body">
-                                        <div class="media-left">
-                                            <a href="">
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
-                                                <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Editar</a></li>
-                                                    <li><a href="#">Deletar</a></li>
-                                                </ul>
-                                            </div>
-                                            <a href="" class="comment-author pull-left">Ana P.</a><br>
-                                            <div class="comment-date">09 de junho</div>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
-                                                velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">
-                                            </span>
-                                        </div>
-
-                                    </div>
-                                    <div class="view-all-comments">
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i> Ver todos
-                                        </a>
-                                        <span>1 comentário</span>
-
-                                    </div>
-                                    <ul class="comments">
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="">
-                                                    <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
-                                                    <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                        <i class="fa fa-pencil"></i>
+                                            <div class="panel-body">
+                                                <div class="media-left">
+                                                    <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>">
+                                                        <img src="<?= $this->basePath() . $mural->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
                                                     </a>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#">Editar</a></li>
-                                                        <li><a href="#">Deletar</a></li>
-                                                    </ul>
                                                 </div>
-                                                <a href="" class="comment-author pull-left">Ana P.</a>
-                                                <span>Gostei manolo</span>
-                                                <div class="comment-date">09 de junho</div>
-                                            </div>
-                                        </li>
-                                        <li class="comment-form">
-                                            <div class="input-group"> 
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
-                                                </span>
+                                                <div class="media-body">
+                                                    <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
+                                                        <a href="#" data-toggle="dropdown" class="toggle-button">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="/application/murais/delete/id/<?php echo $mural->getId(); ?>">Deletar</a></li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>" class="comment-author pull-left"><?php echo $mural->getPerfil()->getNome();?></a><br>
+                                                    <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($mural->getData()->format('Y-m-d')) ); ?></div>
+                                                    <span><?php echo $mural->getDescricao(); ?><br>
+                                                        <?php if ($mural->getFoto()){ ?>
+                                                        <img src="<?php echo $this->basePath() . $mural->getFoto(); ?>" class="foto-mural img-thumbnail">
+                                                        <?php } ?>
+                                                    </span>
+                                                </div>
+
+
 
                                             </div>
-                                        </li>
-                                    </ul>
+                                            <div class="view-all-comments">
+                                                <a href="#">
+                                                    <i class="fa fa-like"></i> Like
+                                                </a>
+                                            </div>
+
+                                            <ul class="comments">
+
+                                                <?php foreach($comentarios as $comentario) {
+                                                    if($comentario->getMural()->getId() == $mural->getId()){
+                                                    ?>
+
+                                                <li class="media">
+                                                    <div class="media-left">
+                                                        <a href="/application/index/sobre/perfil/<?php echo $comentario->getPerfil()->getId(); ?>">
+                                                            <img src="<?= $this->basePath() . $comentario->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
+                                                            <a href="#" data-toggle="dropdown" class="toggle-button">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu" role="menu">
+                                                                <li><a href="#">Deletar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <a href="/application/index/sobre/perfil/<?php echo $comentario->getPerfil()->getId(); ?>" class="comment-author pull-left">
+                                                            <?php echo $comentario->getPerfil()->getNome(); ?></a>
+                                                        <span><?php echo $comentario->getComentario(); ?></span>
+                                                        <div class="comment-date"><?php echo strftime( '%A, %d de %B de %Y', strtotime($comentario->getData()->format('Y-m-d')) ); ?></div>
+                                                    </div>
+                                                </li>
+
+                                                    <?php }}?>
+                                                <form action="/application/comentarios/save/id/<?php echo $usuario->getId(); ?>" method="post">
+                                                    <li class="comment-form">
+                                                        <div class="input-group">
+                                                            <input type="hidden" id="id" name="id" value="<?php echo $mural->getId();?>" class="form-control">
+                                                            <input type="text" id="comentario" name="comentario" class="form-control">
+
+                                                            <span class="input-group-btn">
+                                                                <button type="submit" href="#" class="btn btn-default"><i class="fa fa-comment"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </form>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="media-body">
-                            <div class="media-body-wrapper">
-                                <div class="panel panel-default">
-
-                                    <div class="panel-body">
-                                        <div class="media-left">
-                                            <a href="">
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-right dropdown" data-show-hover="li" style="display: block; z-index: 99999;">
-                                                <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Editar</a></li>
-                                                    <li><a href="#">Deletar</a></li>
-                                                </ul>
-                                            </div>
-                                            <a href="" class="comment-author pull-left">Ana P.</a><br>
-                                            <div class="comment-date">09 de junho</div>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
-                                                velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
-                                                <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">
-                                            </span>
-                                        </div>
-
-                                    </div>
-                                    <div class="view-all-comments">
-                                        <a href="#">
-                                            <i class="fa fa-comments-o"></i> Ver todos
-                                        </a>
-                                        <span>1 comentário</span>
-
-                                    </div>
-                                    <ul class="comments">
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="">
-                                                    <img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="media-object foto-usuario">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="pull-right dropdown" data-show-hover="li" style="display: block;">
-                                                    <a href="#" data-toggle="dropdown" class="toggle-button">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#">Editar</a></li>
-                                                        <li><a href="#">Deletar</a></li>
-                                                    </ul>
-                                                </div>
-                                                <a href="" class="comment-author pull-left">Ana P.</a>
-                                                <span>Gostei manolo</span>
-                                                <div class="comment-date">09 de junho</div>
-                                            </div>
-                                        </li>
-                                        <li class="comment-form">
-                                            <div class="input-group"> 
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <a href="" class="btn btn-default"><i class="fa fa-comment"></i></a>
-                                                </span>
-
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <?php } ?>
 
             </div>
         </div>

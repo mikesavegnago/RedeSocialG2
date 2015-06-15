@@ -25,9 +25,9 @@ class MuraisController extends ActionController {
      *
      * @return void
      */
-    public function indexAction() 
+    public function indexAction()
      {
-                
+
     }
 
     /**
@@ -45,13 +45,15 @@ class MuraisController extends ActionController {
         if ($request->isPost()) {
             $valores = $request->getPost();
             $file = $request->getFiles('foto');
-            $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
+            if ($file['name'] != '') {
+                $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
+            }
             $mural = new \Application\Entity\Mural();
             $filtros = $mural->getInputFilter();
             $form->setInputFilter($filtros);
             $filtros = $mural->getInputFilter();
             $form->setData($valores);
-            
+
             if (!$form->isValid()) {
                 $values = $form->getData();
                 try {
@@ -74,7 +76,7 @@ class MuraisController extends ActionController {
     public function deleteAction() {
         $id = $this->params()->fromRoute('id', 0);
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        
+
         try {
             $this->getService('Application\Service\Mural')->removerMural($id);
         } catch(\Exception $e) {
@@ -83,6 +85,6 @@ class MuraisController extends ActionController {
 
         return $this->redirect()->toUrl('/application/index/layout');
     }
-    
+
 
 }

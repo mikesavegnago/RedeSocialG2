@@ -19,37 +19,52 @@ class IndexController extends ActionController
     {
         return new ViewModel();
     }
-    
+
     public function layoutAction()
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $session = $this->getServiceLocator()->get('Session');
-        
-        $murais = $em->getRepository('\Application\Entity\Mural')
-                    ->findAll();
+        $usuario = $session->offsetGet('usuario');
+        $amigos = $this->getService('Application\Service\Perfil')->fetchAllAmigos($usuario->getId());
+        if ($amigos) {
+            foreach ($amigos as $amigo) {
+                $murais = $em->getRepository('\Application\Entity\Mural')
+                        ->findBy(array('perfil' => array($usuario->getId(), $amigo->getId())),array('data' => 'DESC'));
+            }
+        } else {
+            $murais = $em->getRepository('\Application\Entity\Mural')
+                    ->findBy(array('perfil' => array($usuario->getId())),array('data' => 'DESC'));
+        }
         $comentarios = $em->getRepository('\Application\Entity\Comentario')
                     ->findAll();
-         
+
         return new ViewModel(
                 array(
                     'murais' => $murais,
                     'comentarios' =>$comentarios
                 )
         );
-        
-        //return new ViewModel();
     }
-    
+
     public function sobreAction()
     {
         $perfil = (int) $this->params()->fromRoute('perfil', 0);
-        if ($perfil > 0) {            
+        if ($perfil > 0) {
             $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
         }
 
+        $murais = $em->getRepository('\Application\Entity\Mural')
+                    ->findBy(array('perfil' => $perfil->getId()));
+        $comentarios = '';
+        foreach ($murais as $mural) {
+            $comentarios = $em->getRepository('\Application\Entity\Comentario')
+                    ->findBy(array('mural' => $mural->getId()), array('data' => 'DESC'));
+        }
         return new ViewModel(
             array(
+                'murais' => $murais,
+                'comentarios' =>$comentarios,
                 'perfil' => $perfil
             )
         );

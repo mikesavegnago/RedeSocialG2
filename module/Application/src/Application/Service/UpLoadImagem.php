@@ -7,7 +7,7 @@ use Doctrine\ORM\NoResultException;
 use Zend\Validator\Exception\InvalidMagicMimeFileException;
 
 /**
- * 
+ *
  *
  * @category Application
  * @package Service
@@ -19,8 +19,7 @@ class UpLoadImagem extends Service
     public function uploadPhoto($file) {
         $target_path = getcwd() . '/public/fotos/';
         $target_path = $target_path . basename($file['name']);
-        $validator_img = new \Zend\Validator\File\IsImage(array('image/jpg', 'image/png', 'image/jpeg'));
-        if (!$validator_img->isValid($target_path))
+        if ($file['type'] != 'image/jpg' && $file['type'] != 'image/png' && $file['type'] != 'image/jpeg')
             throw new InvalidMagicMimeFileException('O arquivo enviado não é uma imagem válida');
         $rand = uniqid();
         $origem = $target_path;
