@@ -41,9 +41,10 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                             <?php
                                 if ($perfil->getid() == $usuario->getId()){
                             ?>
-                            <a class="btn btn-white btn-xs pull-right" id="editarPerfil"><i class="fa fa-pencil"></i></a>
                             <?php } ?>
+                            
                             <i class="fa fa-fw fa-info-circle"></i> Informações do perfil
+                             <a class="btn btn-white btn-xs pull-right" id="editarPerfil"><i class="fa fa-pencil"></i></a>
                         </div>
                         <form action="/application/perfis/save/id/<?php echo $usuario->getId(); ?>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="id" value=" <?php echo $usuario->getId(); ?>">
