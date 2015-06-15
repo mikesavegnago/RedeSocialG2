@@ -1,3 +1,4 @@
+
 <?php $usuario = $this->session()->offsetGet('usuario');
 setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
 ?>
@@ -5,13 +6,14 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
     <div class="st-pusher" id="content">
         <div class="st-content">
 
+
             <div class="cover profile">
                 <div class="wrapper">
                         <img src="<?= $this->basePath() . $usuario->getCapa();?>" alt="people" />
                 </div>
                 <div class="cover-info">
                     <div class="avatar">
-                        <img src="<?= $this->basePath() . $usuario->getFoto(); ?>" alt="people" />
+                        <img src="<?= $this->basePath() . $usuario->getCapa(); ?>" alt="people" />
                     </div>
                     <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
                     <ul class="cover-nav">
@@ -23,7 +25,7 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                     </ul>
                 </div>
             </div>
-
+            
             <div class="timeline row" data-toggle="isotope">
                 <div class="col-xs-12">
                     <div class="timeline-block">
@@ -47,8 +49,10 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
 
             <div class="col-xs-12">
                 <div class="media-body">
-                    <div class="media-body-wrapper">
-                        <?php foreach ($murais as $mural) { ?>
+                    <div class="media-body-wrapper"> 
+                        <?php foreach ($murais as $mural) {
+                             //var_dump($mural);exit;
+                            ?> 
                             <div class="panel panel-default">
                                 <div class="media-body">
                                     <div class="media-body-wrapper">
@@ -56,8 +60,10 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
 
                                             <div class="panel-body">
                                                 <div class="media-left">
+
                                                     <a href="/application/index/sobre/perfil/<?php echo $mural->getPerfil()->getId(); ?>">
                                                         <img src="<?= $this->basePath() . $mural->getPerfil()->getFoto(); ?>" class="media-object foto-usuario">
+
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
