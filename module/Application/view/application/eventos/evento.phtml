@@ -1,3 +1,5 @@
+<?php //var_dump($evento); ?>
+
 <div class="st-container">
     <div class="st-pusher" id="content"> 
         <div class="st-content"> 
@@ -5,11 +7,11 @@
             <div class="cover profile">
                 <div class="wrapper">
                     <div class="image">
-                        <img src="<?= $this->basePath() . '/img/background.jpg' ?>" alt="people" />
+                        <img src="<?php echo $evento->getCapa() ?>" alt="people" />
                     </div> 
                 </div>
                 <div class="cover-info">
-                    <div class="name"><a href="#">TITULO E CAPA DO EVENTO</a></div>
+                    <div class="name"><a href="#"><?php  echo $evento->getTitulo(); ?></a></div>
                     <ul class="cover-nav">
                         <li><a href="/application/index/layout"><i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
                         <li><a href="/application/index/sobre"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
@@ -84,15 +86,13 @@
                                                     <li><a href="#">Deletar</a></li>
                                                 </ul>
                                             </div>
-                                            <a href="" class="comment-author pull-left">Ana P.</a><br>
-                                            <div class="comment-date">09 de junho</div>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis perspiciatis praesentium quaerat repudiandae soluta? Cum doloribus esse et eum facilis impedit officiis omnis optio, placeat, quia quo reprehenderit sunt
-                                                velit? Asperiores cumque deserunt eveniet hic reprehenderit sit, ut voluptatum?<br>
-                                            </span>
+                                            <a href="" class="comment-author pull-left"><?php echo $evento->getPerfil()->getNome();?></a><br>
+                                            <div class="comment-date"><?php echo $evento->getDataEvento()->format('d-m-Y');?></div>
+                                            <span> <?php echo $evento->getDescricao();?> </span>    
                                         </div>
 
                                     </div>
-                                    <div class="view-all-comments">
+<!--                                    <div class="view-all-comments">
                                         <a href="#">
                                             <i class="fa fa-comments-o"></i> Ver todos
                                         </a>
@@ -130,7 +130,7 @@
 
                                             </div>
                                         </li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
                             </div>
                         </div>
