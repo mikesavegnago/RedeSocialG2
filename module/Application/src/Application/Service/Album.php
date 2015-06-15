@@ -40,6 +40,7 @@ class Album extends Service {
          }                  
          
         $this->getObjectManager()->persist($album);
+        
         try {
             $this->getObjectManager()->flush();
         } catch (\Exception $e) {
