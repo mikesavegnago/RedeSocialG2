@@ -86,11 +86,16 @@ setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
                                                     </span>
                                                 </div>
 
-
-
                                             </div>
                                             <div class="view-all-comments">
-                                                
+                                                <a href="/application/likes/save/id/<?php echo $mural->getId(); ?>">
+                                                    <i class="fa fa-like"></i> Like
+                                                </a>
+                                            </div>
+                                            <div class="view-all-comments">
+                                                <a href="/application/deslikes/save/id/<?php echo $mural->getId(); ?>">
+                                                    <i class="fa fa-like"></i> Deslike
+                                                </a>
                                             </div>
 
                                             <ul class="comments">
