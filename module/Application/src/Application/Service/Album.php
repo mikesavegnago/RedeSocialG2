@@ -34,18 +34,16 @@ class Album extends Service {
         }
         
          $album->setPerfil($perfil);
-         
-         
          $album->setDescricao($values['descricao']);
-         $album->setImagem($values['imagem']);
-                           
-         
+         if($values['imagem'] != ''){
+            $album->setImagem($values['imagem']);
+         }                  
          
         $this->getObjectManager()->persist($album);
         try {
             $this->getObjectManager()->flush();
         } catch (\Exception $e) {
-            throw new EntityException('Erro ao salvar dados' . $e);
+            throw new EntityException('Erro ao salvar album' . $e);
             exit;
         }
 
