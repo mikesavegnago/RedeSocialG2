@@ -27,7 +27,7 @@ class Evento extends Entity
     protected $id;
     
     /**
-     * @ORM\Column (type="blob")
+     * @ORM\Column (type="blob", nullable=true)
      * 
      * @var blob
      */
@@ -68,20 +68,21 @@ class Evento extends Entity
     public function getId() {
         return $this->id;
     }
-
    
     /**
-     * @return string
+     * @param blob $capa
+     *
      */
-    public function getCapa(){
-        return $this->capa;
-    }
-    
-    /**
-     * @param $capa
-     */
-    public function setCapa($capa){
+    public function setCapa($capa)
+    {
         $this->capa = $capa;
+    }
+    /**
+     * @return blob
+     */
+    public function getCapa()
+    {
+        return $this->capa;
     }
 
     /**

@@ -94,6 +94,20 @@ class Usuario extends Entity {
      * @var boolean
      */
     protected $autenticado;
+    
+    /**
+     * @ORM\Column (type="blob", nullable=true)
+     * 
+     * @var blob
+     */
+    protected $foto;
+    
+    /**
+     * @ORM\Column (type="blob", nullable=true)
+     * 
+     * @var blob
+     */
+    protected $capa;
 
     /**
      * @return id
@@ -201,6 +215,38 @@ class Usuario extends Entity {
      */
     public function getAutenticacao() {
         return $this->autenticado;
+    }
+    
+    /**
+     * @param blob $foto
+     *
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+    }
+    /**
+     * @return blob
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+    
+    /**
+     * @param blob $capa
+     *
+     */
+    public function setCapa($capa)
+    {
+        $this->capa = $capa;
+    }
+    /**
+     * @return blob
+     */
+    public function getCapa()
+    {
+        return $this->capa;
     }
 
     /**

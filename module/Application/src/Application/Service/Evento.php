@@ -13,17 +13,17 @@ use Core\Model\EntityException as EntityException;
  * @author   Ana Paula Binda <anapaulasif@unochapeco.edu.br> 
  * @link     localhost 
  */
-class Evento extends Service {
-
+class Evento extends Service 
+{
     public function saveEvento($values){
         
-         $session = $this->getServiceManager()->get('Session');
-         $usuario = $session->offsetGet('usuario');
-        
-         $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
-        
+        $session = $this->getServiceManager()->get('Session');
+        $usuario = $session->offsetGet('usuario');
+
+        $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
+        var_dump($perfil); exit;
         if(!isset($perfil)){
-            var_dump("voce deve cadastrar um perfil");
+            throw new EntityException("voce deve cadastrar um perfil");
         }
         
         if ((int) $values['id'] > 0){

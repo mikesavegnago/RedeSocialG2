@@ -106,4 +106,23 @@ class UsuariosController extends ActionController
 
         return $this->redirect()->toUrl('/application/usuarios');
     }
+    
+    public function getPhotoAction()
+    {
+        header('Content-Type: image');
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $photo = $this->getServiceUser()->getFoto($id);
+        $view = new ViewModel(array('photo' => $photo));
+        $view->setTerminal(true);
+
+        return $view;
+    }
+
+    /**
+     * @return object
+     */
+    private function getServiceUser()
+    {
+        return $this->getServiceLocator()->get('Application\Service\Usuario');
+    }
 }

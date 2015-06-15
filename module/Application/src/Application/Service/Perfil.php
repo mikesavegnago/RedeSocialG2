@@ -91,7 +91,6 @@ class Perfil extends Service {
                 ->findAll();
         
         foreach ($perfis as $perfil){
-            
             if($perfil->getId()== $id){
                 $result = $perfil;
             }

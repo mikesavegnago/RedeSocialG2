@@ -72,7 +72,6 @@ class EventosController extends ActionController
     */
     public function saveAction()
     {
-
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new \Application\Form\Evento($em);
         $request = $this->getRequest();
