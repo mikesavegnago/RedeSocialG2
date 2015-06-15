@@ -32,8 +32,16 @@ class Album extends Entity
      *
      * @var \Admin\Entity\Perfil
      */
-    protected $perfil;    
-    
+    protected $perfil;   
+
+    /**
+     * @ORM\Column (type="text")
+     * 
+     * @var text
+     */
+
+    protected $descricao; 
+
     
     /**
      * @return integer
@@ -56,6 +64,60 @@ class Album extends Entity
     public function getPerfil(){
         return $this->perfil;
     }
+
+
+
+/**
+     * Filtros
+     *
+     * @return Zend\InputFilter\InputFilter
+     */
+    public function getInputFilter() {
+
+        $input_filter = new InputFilter();
+        $factory = new InputFactory();
+
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'id',
+                            'required' => false,
+                            'filters' => array(
+                                array(
+                                    'name' => 'Int'
+                                )
+                            )
+                        )
+                )
+        );
+
+        $input_filter->add($factory->createInput(array(
+            'name' => 'descricao',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        ),
+                    ),
+                ),
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToUpper',
+                    'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
+            )));
+
+
+            $this->input_filter = $input_filter;
+            return $this->input_filter;
+} 
+
 }
+
+
 
 ?>
