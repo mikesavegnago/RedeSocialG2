@@ -23,8 +23,7 @@ class Mural extends Service
         $session = $this->getServiceManager()->get('Session');
         $usuario = $session->offsetGet('usuario');
         
-        $perfil = $this->getService('Application\Service\Perfil')->find((int)$usuario->getId());
-        
+        $perfil = $this->getService('Application\Service\Perfil')->find($usuario->getId());
         
         if((int) $values['id'] > 0){
             $mural = $this->getObjectManager()

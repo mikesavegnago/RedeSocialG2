@@ -13,7 +13,7 @@
                     <div class="avatar">
                         <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="people" />
                     </div>
-                    <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
+                    <div class="name"><a href="#"><?php echo $perfil->getNome(); ?></a></div>
                     <ul class="cover-nav">
                         <li><a href="/application/index/layout">
                             <i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
@@ -24,9 +24,13 @@
                         <li><a href="/application/imagens/layout/perfil/<?php echo $perfil->getId(); ?>">
                             <i class="fa fa-fw fa-photo"></i> Fotos</a></li>
                     </ul>
+                    <?php 
+                        if ($perfil->getid() != $usuario->getId()){ 
+                    ?>
                     <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
                         <li><a href=""><i class="fa fa-fw fa-plus"></i>Adicionar Contato</a></li>
-                    </ul>  
+                    </ul>
+                    <?php } ?>
                 </div>
             </div> 
 
@@ -34,7 +38,11 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-gray">
+                            <?php 
+                                if ($perfil->getid() == $usuario->getId()){ 
+                            ?>
                             <a class="btn btn-white btn-xs pull-right" id="editarPerfil"><i class="fa fa-pencil"></i></a>
+                            <?php } ?>
                             <i class="fa fa-fw fa-info-circle"></i> Informações do perfil
                         </div>
                         <form action="/application/perfis/save/id/<?php echo $usuario->getId(); ?>" method="post" enctype="multipart/form-data">
@@ -50,15 +58,21 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="padding-v-5">
+                                    <li class="padding-v-5" id="fotoPerfil" style="display: none">
                                         <div class="row">
-                                            <div class="col-sm-4"><span class="text-muted">Fotinha</span></div>
-                                            <!--                                            <div class="col-sm-8">
-                                                                                           <a href="#"><input type="file" name="foto" enctype="multipart/form-data"  id="foto" class="fa fa-photo"> </a>
-                                                                                        </div>-->
+                                            <div class="col-sm-4"><span class="text-muted">Foto Perfil</span></div>
                                             <div class="panel-footer share-buttons">
-                                                <a href="#"><input type="file" disabled name="foto" enctype="multipart/form-data"
-                                                                    id="foto" > </a>
+                                                <a href="#"><input type="file" disabled name="foto_perfil"
+                                                                    id="foto_perfil" > </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="padding-v-5" id="fotoCapa" style="display: none">
+                                        <div class="row">
+                                            <div class="col-sm-4"><span class="text-muted">Foto da Capa</span></div>
+                                            <div class="panel-footer share-buttons">
+                                                <a href="#"><input type="file" disabled name="foto_capa"
+                                                                    id="foto_capa" > </a>
                                             </div>
                                         </div>
                                     </li>

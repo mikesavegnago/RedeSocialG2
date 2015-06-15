@@ -13,7 +13,12 @@ use Core\Model\EntityException as EntityException;
  * @author   Paulo José Cella <paulocella@unochapeco.edu.br> 
  * @link     localhost 
  */
-class Perfil extends Service {
+class Perfil extends Service 
+{
+    /**
+     * @var string
+     */
+    protected $entity = '\Admin\Entity\Perfil';
 
     public function savePerfil($values, $valores) {
         
@@ -30,9 +35,7 @@ class Perfil extends Service {
             }
        }else{
          $perfil = new \Application\Entity\Perfil();
-       }
-       
-       
+       } 
          $valuesCidade['id'] = null;
          $valuesCidade['uf'] = $valores['uf'];
          $valuesCidade['cidade'] = $valores['cidade'];
@@ -61,7 +64,6 @@ class Perfil extends Service {
          $perfil->setProfissao($values['profissao']);
          $perfil->setPermissao($values['permissao']);
          $perfil->setNome($usuario->getNome());
-         //$perfil->setSobrenome($usuario->getSobrenome());
          $perfil->setEmail($usuario->getEmail());
          $perfil->setCelular($values['celular']);
          $perfil->setSenha($usuario->getSenha());
@@ -83,21 +85,12 @@ class Perfil extends Service {
         return $perfil;
     }
     
-    
-     public function find($id)
-    {
-        $id = (int) $id;
-        $perfis = $this->getObjectManager()->getRepository('Application\Entity\Perfil')
-                ->findAll();
-        
-        foreach ($perfis as $perfil){
-            if($perfil->getId()== $id){
-                $result = $perfil;
-            }
-        }
-        
-        return $result;
-    }
+    public function find($values){
+       $em = $this->getObjectManager();
+       $usuario = $em->find ('\Application\Entity\Perfil',$values);
+       
+       return $usuario;
+   }
 
 
     

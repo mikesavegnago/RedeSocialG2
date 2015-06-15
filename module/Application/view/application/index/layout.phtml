@@ -104,8 +104,8 @@
                                                         </ul>
                                                     </div>
 
-                                                    <a href="" class="comment-author pull-left"><?php echo $mural->getData()->format('d-m-y H:i:s'); ?></a><br>
-                                                    <div class="comment-date"><?php echo $mural->getData()->format('d-m-y'); ?></div>
+                                                    <a href="" class="comment-author pull-left"><?php echo $mural->getPerfil()?></a><br>
+                                                    <div class="comment-date"><?php echo $mural->getData()->format('d/m/y'); ?></div>
                                                     <span><?php echo $mural->getDescricao(); ?><br>
                                                         <!--<img src="<?= $this->basePath() . '/img/user.jpg' ?>" class="foto-mural img-thumbnail">-->
                                                         <div id="imagem"> <?php echo $mural->getFoto(); ?> </div>

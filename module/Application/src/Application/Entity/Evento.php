@@ -27,9 +27,9 @@ class Evento extends Entity
     protected $id;
     
     /**
-     * @ORM\Column (type="blob", nullable=true)
+     * @ORM\Column (type="string", nullable=true)
      * 
-     * @var blob
+     * @var string
      */
     protected $capa;
 

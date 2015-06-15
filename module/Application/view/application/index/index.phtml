@@ -53,6 +53,19 @@
                             <input type="text" id="data_nasc" name="data_nasc" class="form-control input-lg date" placeholder="Data de Nascimento" autocomplete="off" required>
                         </div>
                     </div>
+                </div>    
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <?php if ($this->flashMessenger()->getErrorMessages()) { ?>
+                        <div class="alert alert-danger" style="color:#000; background: #f21f0f; font-weight: bold; margin-bottom: 0px;" role="alert">
+                                <?php
+                                foreach ($this->flashMessenger()->getErrorMessages() as $msg) {
+                                    echo $msg;
+                                }
+                                ?>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">

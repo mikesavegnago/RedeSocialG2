@@ -4,6 +4,7 @@ namespace Application\Controller;
 use Core\Controller\ActionController as ActionController;
 use Application\Form\Usuario as Form;
 use Zend\View\Model\ViewModel;
+use Core\Model\EntityException as EntityException;
 
 /**
 * Controller Usuarios
@@ -67,6 +68,10 @@ class UsuariosController extends ActionController
                 try{
                     $usuario = $this->getService('Application\Service\Usuario')
                             ->saveUsuario($values);
+                    if(!$usuario){
+                        $this->flashMessenger()->addErrorMessage('Você deve ser maior de 16 anos!');
+                        return $this->redirect()->toUrl('/');
+                    }
                 }catch(\Exception $e){
                     echo $e->getMessage(); 
                     exit;

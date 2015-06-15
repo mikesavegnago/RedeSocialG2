@@ -47,15 +47,13 @@ class MuraisController extends ActionController {
             $file = $request->getFiles('foto');
             $valores['foto'] = $this->getService('Application\Service\UpLoadImagem')->uploadPhoto($file);
             $mural = new \Application\Entity\Mural();
-
             $filtros = $mural->getInputFilter();
             $form->setInputFilter($filtros);
             $filtros = $mural->getInputFilter();
             $form->setData($valores);
-
+            
             if (!$form->isValid()) {
                 $values = $form->getData();
-
                 try {
                     $mural = $this->getService('Application\Service\Mural')->saveMural($values);
                 } catch (\Exception $e) {
@@ -66,12 +64,6 @@ class MuraisController extends ActionController {
                 return $this->redirect()->toUrl('/application/index/layout');
             }
         }
-//        $id = (int) $this->params()->fromRoute('id', 0);
-//        if ($id > 0) {
-//            $usuario = $this->getService('Application\Service\Mural')->find($id);
-//            $form->bind($usuario);
-//        }
-        //return new ViewModel(array('form' => $form));
     }
 
     /**

@@ -73,12 +73,18 @@ class Perfil extends Usuario
     protected $endereco;
 
     /**
-     * @ORM\OneToOne(targetEntity="Imagem")
-     * @ORM\JoinColumn(name="id_imagem",referencedColumnName="id")
+     * @ORM\Column (type="string", nullable=true)
      * 
-     *  @var \Application\Entity\Imagem
+     * @var string
      */
-    protected $imagem;
+    protected $foto;
+    
+    /**
+     * @ORM\Column (type="string", nullable=true)
+     * 
+     * @var string
+     */
+    protected $capa;
     
     
     /**
@@ -180,18 +186,36 @@ class Perfil extends Usuario
     }    
    
     /**
-     * @return imagem
+     * @param blob $foto
+     *
      */
-    public function getImagem(){
-        return $this->imagem;
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+    }
+    /**
+     * @return blob
+     */
+    public function getFoto()
+    {
+        return $this->foto;
     }
     
     /**
-     * @var imagem
+     * @param string $capa
+     *
      */
-    public function setImagem($imagem){
-         $this->imagem = $imagem;
-    }    
+    public function setCapa($capa)
+    {
+        $this->capa = $capa;
+    }
+    /**
+     * @return string
+     */
+    public function getCapa()
+    {
+        return $this->capa;
+    }  
    
    /**
      * Filtros

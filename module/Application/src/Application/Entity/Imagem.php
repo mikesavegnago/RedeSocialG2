@@ -34,9 +34,9 @@ class Imagem extends Entity
     protected $idAlbum;
     
     /**
-     * @ORM\Column (type="blob")
+     * @ORM\Column (type="string")
      * 
-     * @var blob
+     * @var string
      */
     protected $imagem;
 

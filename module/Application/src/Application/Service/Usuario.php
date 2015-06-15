@@ -40,7 +40,7 @@ class Usuario extends Service
         $compara = (new \DateTime())->format('Y') - $compara[2];
         
         if($compara < 16){
-            throw new EntityException('Você deve ser maior de 16 anos!');
+            return false;
         }
         
         $usuario->setDataNascimento($values['data_nasc']);
