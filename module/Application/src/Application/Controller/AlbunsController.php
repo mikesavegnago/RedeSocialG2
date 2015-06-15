@@ -80,11 +80,16 @@ class AlbunsController extends ActionController
         
          if($request->isPost()){
             $valores = $request->getPost();
+            $fotoAlbum = $request->getFiles('imagem');
+            if ($fotoAlbum) {
+                $valores['imagem'] = $this->getService('Application\Service\UpLoadImagem')
+                        ->uploadPhoto($fotoAlbum);
+            }
+           
             $album = new \Application\Entity\Album();
             $filtros = $album->getInputFilter();
             $form->setInputFilter($filtros);
             $form->setData($valores);
-            
 
            if ($form->isValid()){
                 $values = $form->getData();
