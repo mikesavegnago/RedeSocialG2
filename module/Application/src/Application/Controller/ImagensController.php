@@ -39,10 +39,13 @@ class ImagensController extends ActionController
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
             
         }
+        
+        $albuns = $em->getRepository('\Application\Entity\Album')->findAll();
 
         return new ViewModel(
             array(
-                'perfil' => $perfil
+                'perfil' => $perfil,
+                'albuns' => $albuns
             )
         );
         
