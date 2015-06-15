@@ -22,17 +22,7 @@ class ImagensController extends ActionController
     */
     public function indexAction()
     {
-        $perfil = (int) $this->params()->fromRoute('perfil', 0);
-        if ($perfil > 0) {            
-            $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-            $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
-        }
-
-        return new ViewModel(
-            array(
-                'perfil' => $perfil
-            )
-        );
+        return new ViewModel();
     }
     
     /**
@@ -43,9 +33,11 @@ class ImagensController extends ActionController
     public function layoutAction()
     {
         $perfil = (int) $this->params()->fromRoute('perfil', 0);
+        
         if ($perfil > 0) {            
             $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
             $perfil = $em->getRepository('\Application\Entity\Usuario')->find($perfil);
+            
         }
 
         return new ViewModel(
@@ -53,6 +45,8 @@ class ImagensController extends ActionController
                 'perfil' => $perfil
             )
         );
+        
+        
     }
     
     /**
