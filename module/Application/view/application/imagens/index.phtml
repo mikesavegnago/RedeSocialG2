@@ -1,30 +1,34 @@
-<?php $usuario = $this->session()->offsetGet('usuario'); ?>
-<div class="st-container">
+<?php  $usuario = $this->session()->offsetGet('usuario'); ?>
+<div class="st-container"> 
     <div class="st-pusher" id="content"> 
         <div class="st-content"> 
 
             <div class="cover profile">
                 <div class="wrapper">
-                    <div class="image">
-                        <img src="<?=$this->basePath() . '/img/background.jpg'?>" alt="people" />
-                    </div> 
+                        <img src="<?= $this->basePath() . $perfil->getCapa(); ?>" alt="people" />
                 </div>
                 <div class="cover-info">
                     <div class="avatar">
-                        <img src="<?=$this->basePath() . '/img/user.jpg'?>" alt="people" />
+                        <img src="<?= $this->basePath() . $perfil->getFoto(); ?>" alt="people" />
                     </div>
-                    <div class="name"><a href="#"><?php echo $usuario->getNome(); ?></a></div>
+                    <div class="name"><a href="#"><?php echo $perfil->getNome(); ?></a></div>
                     <ul class="cover-nav">
                         <li><a href="/application/index/layout">
                             <i class="fa fa-fw fa-tasks"></i> Timeline</a></li>
-                        <li><a href="/application/index/sobre/perfil/<?php// echo $perfil->getId(); ?>">
+                        <li class="active"><a href="/application/index/sobre/perfil/<?php echo $perfil->getId(); ?>">
                             <i class="fa fa-fw fa-user"></i> Perfil</a></li>
-                        <li><a href="/application/eventos/index/perfil/<?php //echo $perfil->getId(); ?>">
+                        <li><a href="/application/eventos/index/perfil/<?php echo $perfil->getId(); ?>">
                             <i class="fa fa-fw fa-users"></i> Eventos</a></li>
-                        <li class="active"><a href="/application/imagens/layout/perfil/<?php// echo $perfil->getId(); ?>">
+                        <li><a href="/application/imagens/layout/perfil/<?php echo $perfil->getId(); ?>">
                             <i class="fa fa-fw fa-photo"></i> Fotos</a></li>
-
                     </ul>
+                    <?php
+                        if ($perfil->getId() != $usuario->getId() && !$amigo){
+                    ?>
+                    <ul class="nav navbar navbar-nav navbar-right " style="margin-right: 5px;">
+                        <li><a href="/application/perfis/adicionar/perfil/<?=$perfil->getid();?>"><i class="fa fa-fw fa-plus"></i>Adicionar Contato</a></li>
+                    </ul>
+                    <?php } ?>
                 </div>
             </div>
             
@@ -33,24 +37,46 @@
                     
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-gray">
-                            <i class="fa fa-photo"></i> NOME DO ALBUM
+                            <i class="fa fa-photo"></i> Fotos
+                        </div>
+                        
+                        
+                        
+                        <div class="panel-body">
+                            <div class="row">
+                                <?php foreach ($fotos as $foto) { ?>
+                                <div class="col-md-2">
+                                    <img src="<?php echo $foto->getImagem();?>" alt="image" class="img-responsive">
+                                </div>
+                                <?php } ?>
+                            </div> 
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-gray">
+                            <i class="fa fa-plus"></i> Enviar fotos 
                         </div>
                         
                         <div class="panel-body">
                             <div class="row">
-
-                                <div class="col-md-2">
-                                    <div class="panel panel-default">
-                                        <a href="">
-                                            <img src="<?= $this->basePath() . '/img/user.jpg' ?>" alt="image" class="img-responsive">
-                                        </a>
-                                    </div>
+                                <form action="/application/imagens/save/album/<?php echo $album?>" method="post" enctype="multipart/form-data">
+                                <div class="col-md-6"> 
+                                    <a href="#"><input type="file" name="imagem"  id="imagem" > </a>
                                 </div>
+                                    <input type="submit" class="btn btn-primary"  style="float: right">
+                                    
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>            
+                </div>
+            </div>
+            
         </div>
     </div>
-</div>
 </div>

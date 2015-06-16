@@ -21,7 +21,6 @@ class Perfil extends Service
     protected $entity = '\Application\Entity\Perfil';
 
     public function savePerfil($values) {
-
         $session = $this->getServiceManager()->get('Session');
         $usuario = $session->offsetGet('usuario');
         $em = $this->getObjectManager();
@@ -37,9 +36,7 @@ class Perfil extends Service
         if ($values['cidade']) {
             $cidade = $this->getService('Application\Service\Cidade')->findWithDesc($values);
         }
-        if ($values['endereco']) {
-            $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($values['endereco']);
-        }
+            $endereco = $this->getService('Application\Service\Endereco')->saveEndereco($values);
         $idade = $values['data_nasc'];
         $compara = explode("/", $idade);
         $compara = (new \DateTime())->format('Y') - $compara[2];
@@ -71,7 +68,6 @@ class Perfil extends Service
             $perfil->setCapa($values['foto_capa']);
         }
         $perfil->setEndereco($endereco);
-        
         $this->getObjectManager()->persist($perfil);
         try {
             $this->getObjectManager()->flush();

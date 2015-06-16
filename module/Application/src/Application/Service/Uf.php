@@ -65,12 +65,18 @@ class Uf extends Service
     {
         $uf = $this->getObjectManager()->getRepository('\Application\Entity\Uf')
                 ->findOneBy(array('descricao'=>$desc));
-        
         if(!$uf){
-            $values['uf'] = $desc;
-            $uf = $this->saveUfs($values['uf']);
+            $uf = $this->saveUfs($desc);
         }
         return $uf;
+    }
+    
+    public function findByNome($nome)
+    {
+        mb_strtoupper($nome, 'UTF-8');
+
+        return $this->getObjectManager()->getRepository('\Application\Entity\Uf')
+            ->findOneBy(array('descricao' => $nome));
     }
 
     /**
@@ -103,7 +109,7 @@ class Uf extends Service
     public function saveUfs($values)
     {
         $uf = new \Application\Entity\Uf();
-        $uf->setDescricao($values['uf']);
+        $uf->setDescricao($values);
         
         $this->getObjectManager()->persist($uf);
         try{

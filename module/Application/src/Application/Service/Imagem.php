@@ -4,12 +4,12 @@ namespace Application\Service;
 
 use Core\Service\Service;
 use Core\Model\EntityException as EntityException;
-use Core\Controller\ActionController as ActionController;
+use Application\Entity\Imagem as ImagemModel;
 
 /**
 * Service Save Entityes
 *
-* @category Admin
+* @category Application
 * @package  Service
 * @author   Paulo José Cella <paulocella@unochapeco.edu.br> 
 * @link     localhost 
@@ -26,11 +26,11 @@ class Imagem extends Service
     
    public function saveImagem($values)
     {
-       
-        $imagem = new \Application\Entity\Imagem();
+        $imagem = new ImagemModel();
         $imagem->setImagem($values['imagem']);
-        $imagem->setIdAlbum($values['idAlbum']);
-        
+        $album = $this->getObjectManager()->find('\Application\Entity\Album',$values['album']);
+        $imagem->setIdAlbum($album);
+
         $this->getObjectManager()->persist($imagem);
         try{
             $this->getObjectManager()->flush();
@@ -44,8 +44,6 @@ class Imagem extends Service
     
     public function removerImagem($values ,$em)
     {
-        
-        
         if ($values > 0) {
             $imagem = $em->find('\Application\Entity\Imagem',$values);
             $em->remove($imagem);

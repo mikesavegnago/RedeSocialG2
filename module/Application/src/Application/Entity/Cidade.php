@@ -28,13 +28,7 @@ class Cidade extends Entity
      *@var integer
      */
     protected $id;
-    /**
-    *@ORM\ManyToOne(targetEntity="Uf")
-    *@ORM\JoinColumn(name="id_uf", referencedColumnName="id")
-    *
-    *@var Uf
-    */
-    protected $uf;
+    
     /**
     *@ORM\Column(type="string", nullable=true)
     *
@@ -52,26 +46,6 @@ class Cidade extends Entity
         return $this->id;
     }
     /**
-    *Set Uf
-    *
-    *@param Uf $uf variavel uf
-    *
-    *@return string
-    */
-    public function setUf( $uf )
-    {
-        $this->uf = $uf;
-    }
-    /**
-    *@Uf
-    *
-    *@return Uf
-    */
-    public function getUf( )
-    {
-        return $this->uf;
-    }
-    /**
      *Set Descricao
      *
      *@param string $descricao variavel descricao
@@ -80,7 +54,7 @@ class Cidade extends Entity
      */
     public function setDescricao( $descricao )
     {
-        $this->descricao = $this->valid('cidade', $descricao);
+        $this->descricao = $descricao;
     }
      /**
      *@Descricao

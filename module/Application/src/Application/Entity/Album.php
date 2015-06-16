@@ -33,6 +33,13 @@ class Album extends Entity
      * @var \Admin\Entity\Perfil
      */
     protected $perfil;   
+    
+    /**
+     * @ORM\Column (type="string", nullable=true)
+     * 
+     * @var string
+     */
+    protected $imagem; 
 
     /**
      * @ORM\Column (type="text")
@@ -40,16 +47,7 @@ class Album extends Entity
      * @var text
      */
     protected $descricao; 
-
-/**
-     * @ORM\Column (type="string", nullable=true)
-     * 
-     * @var string
-     */
-    protected $imagem; 
-
-
-    
+ 
     /**
      * @return integer
      */
@@ -86,8 +84,8 @@ class Album extends Entity
     public function getDescricao(){
         return $this->descricao;
     }
-
-       /**
+    
+    /**
      * @param string $imagem
      */
     public function setImagem($imagem) {
@@ -101,7 +99,7 @@ class Album extends Entity
     public function getImagem(){
         return $this->imagem;
     }
-
+    
 /**
      * Filtros
      *

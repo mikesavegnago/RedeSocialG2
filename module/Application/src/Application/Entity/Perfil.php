@@ -38,19 +38,7 @@ class Perfil extends Usuario
      */
     protected $profissao;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Evento", mappedBy="evento")
-     **/
-    private $children;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Evento", inversedBy="children")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
-     *
-     * @var Evento
-     */
-    protected $evento;
-
+    
     /**
      *
      * @ORM\Column (type="string", nullable=true)

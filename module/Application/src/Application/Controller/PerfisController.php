@@ -63,11 +63,13 @@ class PerfisController extends ActionController
                         ->uploadPhoto($fotoCapa);
             }
             $perfil = new \Application\Entity\Perfil();
+            $endereco = new \Application\Entity\Endereco();
 
 
             $filtros = $perfil->getInputFilter();
             $form->setInputFilter($filtros);
-            $filtros = $perfil->getInputFilter();
+            $form->setInputFilter($endereco->getInputFilter());
+            
             $form->setData($valores);
 
             if (!$form->isValid()) {

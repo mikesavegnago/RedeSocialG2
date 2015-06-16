@@ -101,47 +101,27 @@ class Imagem extends Entity
                         )
                 )
         );
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'album',
+                            'required' => false,
+                            
+                        )
+                )
+        );
+        $input_filter->add(
+                $factory->createInput(
+                        array(
+                            'name' => 'imagem',
+                            'required' => false,
+                        )
+                )
+        );
 
-
-/*$inputFilter->add($factory->createInput(array(
-                'name' => 'idAlbum',
-                'required' => true,
-                'validators' => array(
-                    array(
-                        'name' => 'NotEmpty',
-                        'options' => array('message' => 'O campo Sobrenome não pode estar vazio')
-                    ),
-                    array(
-                        'name' => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min' => 3,
-                            'max' => 255,
-                            'message' => 'O campo sobrenome deve ter mais que 3 caracteres e menos que 255',
-                        ),
-                    ),
-                ),
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                    array('name' => 'StringToUpper',
-                        'options' => array('encoding' => 'UTF-8')
-                    ),
-                ),
-            ))); */
-
-
-
-    $inputFilter->add($factory->createInput(
-            array(
-                'name' => 'imagem',
-                'required' => false
-            )
-
-        ));
-         return $this->inputFilter;
+        $this->input_filter = $input_filter;
+        return $this->input_filter;
     }
 }
 
-?>
 

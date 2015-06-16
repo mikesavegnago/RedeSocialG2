@@ -25,16 +25,15 @@ class Endereco extends Service
    }
     
    public function saveEndereco($values)
-    {
-       
-       //var_dump($values);exit;
-
-        $endereco = new \Application\Entity\Endereco();
+    { 
+       $endereco = new \Application\Entity\Endereco();
         $endereco->setRua($values['rua']);
         $endereco->setNumero($values['numero']);
         $endereco->setBairro($values['bairro']);
-        $endereco->setCidade($values['cidade']);
-        $endereco->setUf($endereco->getCidade()->getUf());
+        $cidade = $this->getService('Application\Service\Cidade')->findWithDesc($values['cidade']);
+        $endereco->setCidade($cidade);
+        $uf = $this->getService('Application\Service\Uf')->findWithDesc($values['uf']);
+        $endereco->setUf($uf);
         
         $this->getObjectManager()->persist($endereco);
         try{

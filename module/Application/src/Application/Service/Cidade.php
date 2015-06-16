@@ -72,10 +72,9 @@ class Cidade extends Service
     */
     public function save($values)
     {
-        $uf = $this->getService('Application\Service\Uf')->findWithDesc($values['uf']);
+        
         $cidade = new \Application\Entity\Cidade();
         $cidade->setDescricao($values['cidade']);
-        $cidade->setUf($uf);
         $this->getObjectManager()->persist($cidade);
         
         try{
